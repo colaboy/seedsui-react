@@ -56,7 +56,18 @@ export default () => {
         </ToolBar>
 
         <Divider>SearchBar</Divider>
-        <ToolBar className="searchbar">
+        <ToolBar>
+          <ToolBar.Search
+            value={search}
+            onChange={setSearch}
+            onSearch={(keyword) => {
+              console.log('search keyword:' + keyword)
+            }}
+          />
+        </ToolBar>
+
+        <Divider>SearchBar Invert</Divider>
+        <ToolBar invert>
           <ToolBar.Search
             value={search}
             onChange={setSearch}

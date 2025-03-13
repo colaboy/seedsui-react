@@ -1,4 +1,8 @@
 .toolbar {
+  // Bg gray, input white
+  --toolbar-bg: var(--navbar-bg);
+  --toolbar-search-input-bg: white;
+
   gap: 8px;
   padding: 0 12px;
   position: sticky;
@@ -7,13 +11,12 @@
   display: flex;
   align-items: center;
   min-height: 44px;
-  background-color: var(--navbar-bg);
+  background-color: var(--toolbar-bg);
 
-  &.search {
-    .bg-white;
-    .toolbar-search-input {
-      background: var(--app-background-color);
-    }
+  // 反色模式: Bg white, input gray
+  &.invert {
+    --toolbar-bg: white;
+    --toolbar-search-input-bg: var(--app-background-color);
   }
 
   // 活动状态, 必须关闭弹窗后才可点击
