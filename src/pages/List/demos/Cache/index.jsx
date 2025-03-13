@@ -1,18 +1,26 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
+// 第三方库导入
+import { LocaleUtil, Storage, Layout, List } from 'seedsui-react'
+
+// 项目内部模块导入
 import { cacheConfig, queryData } from './api'
-import { LocaleUtil, Storage, Layout, ToolBar, List, Button } from 'seedsui-react'
+import QueryBar from './QueryBar'
+import Footer from './Footer'
+
+// 样式图片等资源文件导入
 import './index.less'
+
 const locale = LocaleUtil.locale
 
-// 分页列表
+// 缓存列表
 const Cache = () => {
-  // Forward history clear cache
+  // 前进需要清除缓存
   // const history = useHistory()
   // if (Storage.getCache(`${cache.name}:list`) && history.action !== 'POP') {
   //   Storage.clearCache(cache.name, { match: 'prefix' })
   // }
 
-  const [keyword, setKeyword] = Storage.useCacheState('', {
+  const [queryParams, setQueryPrams] = Storage.useCacheState('', {
     name: `${cacheConfig.name}:keyword`,
     persist: cacheConfig.persist
   })
@@ -22,45 +30,38 @@ const Cache = () => {
 
   return (
     <Layout className="full">
-      <Layout.Header>
-        <ToolBar className="search">
-          <ToolBar.Search
-            placeholder={locale('按名称/拼音/拼音首字母查询')}
-            value={keyword}
-            onChange={setKeyword}
-            onSearch={() => {
-              mainRef.current.reload()
-            }}
-          />
-        </ToolBar>
-      </Layout.Header>
+      {/* 搜索栏 */}
+      <QueryBar
+        queryParams={queryParams}
+        onChange={(newQueryParams) => {
+          setQueryPrams(newQueryParams)
+          mainRef.current.reload()
+        }}
+      />
 
+      {/* 列表 */}
       <List.Main
         ref={mainRef}
         cache={cacheConfig}
-        className="employee-people-main"
+        className="list-pageName"
         loadList={({ page, action }) => {
           console.log('action:', action)
-          return queryData({ page: page, keyword: keyword })
+          return queryData({ page: page, ...queryParams })
         }}
         // value={value}
         onChange={() => {
           console.log('onChange:', arguments)
         }}
-        pagination={true}
       />
 
-      <Layout.Footer>
-        <Button
-          className="flex primary radius-l"
-          onClick={() => {
-            Storage.clearCache(cacheConfig.name, { match: 'prefix' })
-            alert('Clear success!')
-          }}
-        >
-          Clear cache
-        </Button>
-      </Layout.Footer>
+      {/* 底部 */}
+      <Footer
+        okText={locale('Clear cache')}
+        onOk={() => {
+          Storage.clearCache(cacheConfig.name, { match: 'prefix' })
+          alert('Clear success!')
+        }}
+      />
     </Layout>
   )
 }

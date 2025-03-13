@@ -1,17 +1,13 @@
 import { Request, Device } from 'seedsui-react'
 
-import localData from './localData'
-
-// 获取详情
+// 获取列表
 function queryData(params) {
-  const rows = 500
-
   return new Promise((resolve) => {
     // 查询
     Request.post(
       '/combo/v1/getComboGrid.do?comboCode=employee',
       {
-        rows: rows,
+        rows: 500,
         isControl: '0',
         menuId: Device.getUrlParameter('menuId') || '',
         ...params
@@ -28,15 +24,10 @@ function queryData(params) {
             return {
               ...item,
               id: item.id,
-              avatar: item.face_pic,
               name: item.name,
-              description: item.dept_name + ' ' + item.position_name,
-              // 排序号小于9999，则锚点为'*'，否则为拼音首字母
-              anchor: item.sequ < 99999 ? '*' : item.name_spell
+              description: item.dept_name + ' ' + item.position_name
             }
           })
-          list.rows = rows
-          list.totalItems = result.total
           resolve(list)
         } else {
           resolve(result.message || '服务器繁忙，请稍后重试')
