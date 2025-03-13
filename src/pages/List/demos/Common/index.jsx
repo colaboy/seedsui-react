@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 // 第三方库导入
-import { Storage, Layout, List } from 'seedsui-react'
+import { Layout, List } from 'seedsui-react'
 
 // 项目内部模块导入
 import { cacheConfig, queryData } from './api'
@@ -11,10 +11,7 @@ import './index.less'
 
 // 普通列表
 const Common = () => {
-  let [queryParams, setQueryPrams] = Storage.useCacheState('', {
-    name: `${cacheConfig.name}:queryParams`,
-    persist: cacheConfig.persist
-  })
+  const queryParamsRef = useRef(null)
 
   // Expose
   const mainRef = useRef(null)
@@ -25,8 +22,7 @@ const Common = () => {
       <QueryBar
         queryParams={queryParams}
         onChange={(newQueryParams) => {
-          queryParams = newQueryParams
-          setQueryPrams(queryParams)
+          queryParamsRef.current = newQueryParams
           mainRef.current.reload()
         }}
       />
