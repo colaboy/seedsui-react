@@ -114,7 +114,7 @@ const Edit = () => {
           virtual={true}
         >
           <Form.Item
-            height={42}
+            height={22}
             name="input"
             label={locale('Input')}
             rules={[
@@ -127,7 +127,7 @@ const Edit = () => {
             <Input.Text placeholder={locale('Please input')} maxLength={50} />
           </Form.Item>
           <Form.Item
-            height={97}
+            height={77}
             name="textarea"
             maxLength={150}
             label={locale('Textarea')}
@@ -137,10 +137,10 @@ const Edit = () => {
           >
             <Input.Textarea placeholder={locale('Please input')} />
           </Form.Item>
-          <Form.Item height={42} name="autoFit" label={locale('Auto fit')}>
+          <Form.Item height={22} name="autoFit" label={locale('Auto fit')}>
             <Input.AutoFit placeholder={locale('Please input')} />
           </Form.Item>
-          <Form.Item height={42} name="select" label={locale('Select')}>
+          <Form.Item height={22} name="select" label={locale('Select')}>
             <Select.Combo
               placeholder={locale('Please select')}
               list={[
@@ -163,7 +163,7 @@ const Edit = () => {
               }}
             />
           </Form.Item>
-          <Form.Item height={42} name="picker" label={locale('Picker')}>
+          <Form.Item height={22} name="picker" label={locale('Picker')}>
             <Picker.Combo
               placeholder={locale('Please select')}
               list={[
@@ -186,10 +186,10 @@ const Edit = () => {
               }}
             />
           </Form.Item>
-          <Form.Item height={50} name="switch" valuePropName="checked" label={locale('Switch')}>
+          <Form.Item height={30} name="switch" valuePropName="checked" label={locale('Switch')}>
             <Switch />
           </Form.Item>
-          <Form.Item height={74} name="checkbox" label={locale('Checkbox')}>
+          <Form.Item height={54} name="checkbox" label={locale('Checkbox')}>
             <Checkbox.Group
               placeholder={locale('Please select')}
               list={[
@@ -205,7 +205,7 @@ const Edit = () => {
               allowClear
             />
           </Form.Item>
-          <Form.Item height={74} name="radio" label={locale('Radio')}>
+          <Form.Item height={54} name="radio" label={locale('Radio')}>
             <Radio.Group
               placeholder={locale('Please select')}
               list={[
@@ -221,7 +221,7 @@ const Edit = () => {
               allowClear
             />
           </Form.Item>
-          <Form.Item height={102} name="selector" label={locale('Selector')}>
+          <Form.Item height={82} name="selector" label={locale('Selector')}>
             <Selector
               placeholder={locale('Please select')}
               list={[
@@ -245,7 +245,7 @@ const Edit = () => {
               allowClear
             />
           </Form.Item>
-          <Form.Item height={42} name="number" label={locale('Number')}>
+          <Form.Item height={22} name="number" label={locale('Number')}>
             <Input.Number placeholder={locale('Please input')} />
           </Form.Item>
           <Form.Item
@@ -262,7 +262,7 @@ const Edit = () => {
             <Input.NumberBox placeholder={locale('Please input')} />
           </Form.Item>
           <Form.Item
-            height={72}
+            height={52}
             name="password"
             label={locale('Password')}
             extra={({ value }) => {
@@ -271,16 +271,16 @@ const Edit = () => {
           >
             <Input.Password placeholder={locale('Please input')} />
           </Form.Item>
-          <Form.Item height={55} name="range" label={locale('Range')}>
+          <Form.Item height={35} name="range" label={locale('Range')}>
             <Input.Range />
           </Form.Item>
-          <Form.Item height={42} name="tel" label={locale('Tel')}>
+          <Form.Item height={22} name="tel" label={locale('Tel')}>
             <Input.Tel placeholder={locale('Please input')} />
           </Form.Item>
-          <Form.Item height={42} name="url" label={locale('Url')}>
+          <Form.Item height={22} name="url" label={locale('Url')}>
             <Input.Url placeholder={locale('Please input')} />
           </Form.Item>
-          <Form.Item height={42} name="datetime" label={locale('Datetime')}>
+          <Form.Item height={22} name="datetime" label={locale('Datetime')}>
             <DatePicker.Combo
               type="datetime"
               placeholder={locale('Please select')}
@@ -294,7 +294,7 @@ const Edit = () => {
               }}
             />
           </Form.Item>
-          <Form.Item height={42} name="date" label={locale('Date')}>
+          <Form.Item height={22} name="date" label={locale('Date')}>
             <DatePicker.Combo
               placeholder={locale('Please select')}
               allowClear
@@ -307,7 +307,7 @@ const Edit = () => {
               }}
             />
           </Form.Item>
-          <Form.Item height={42} name="time" label={locale('Time')}>
+          <Form.Item height={22} name="time" label={locale('Time')}>
             <DatePicker.Combo
               type="time"
               placeholder={locale('Please select')}
@@ -321,7 +321,7 @@ const Edit = () => {
               }}
             />
           </Form.Item>
-          <Form.Item height={42} name="dateRange" label={locale('Date range')}>
+          <Form.Item height={22} name="dateRange" label={locale('Date range')}>
             <DatePicker.RangeCombo
               placeholder={locale('Please select')}
               allowClear
@@ -334,7 +334,7 @@ const Edit = () => {
               }}
             />
           </Form.Item>
-          <Form.Item height={42} name="district" label={locale('District')}>
+          <Form.Item height={22} name="district" label={locale('District')}>
             <Cascader.DistrictCombo
               placeholder={locale('Please select')}
               allowClear
@@ -347,7 +347,7 @@ const Edit = () => {
               }}
             />
           </Form.Item>
-          <Form.Item height={44} name="location" label={locale('Location')}>
+          <Form.Item height={24} name="location" label={locale('Location')}>
             <Location.Combo
               type="gcj02"
               config={{
@@ -363,7 +363,7 @@ const Edit = () => {
               }}
             />
           </Form.Item>
-          <Form.Item height={52} name="signature" label={locale('Signature')}>
+          <Form.Item height={32} name="signature" label={locale('Signature')}>
             <Signature.Combo />
           </Form.Item>
         </Form>

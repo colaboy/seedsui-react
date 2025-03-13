@@ -20,8 +20,8 @@ const Cache = () => {
   //   Storage.clearCache(cache.name, { match: 'prefix' })
   // }
 
-  const [queryParams, setQueryPrams] = Storage.useCacheState('', {
-    name: `${cacheConfig.name}:keyword`,
+  let [queryParams, setQueryPrams] = Storage.useCacheState('', {
+    name: `${cacheConfig.name}:queryParams`,
     persist: cacheConfig.persist
   })
 
@@ -34,7 +34,8 @@ const Cache = () => {
       <QueryBar
         queryParams={queryParams}
         onChange={(newQueryParams) => {
-          setQueryPrams(newQueryParams)
+          queryParams = newQueryParams
+          setQueryPrams(queryParams)
           mainRef.current.reload()
         }}
       />
@@ -56,7 +57,7 @@ const Cache = () => {
 
       {/* 底部 */}
       <Footer
-        okText={locale('Clear cache')}
+        ok={locale('Clear cache')}
         onOk={() => {
           Storage.clearCache(cacheConfig.name, { match: 'prefix' })
           alert('Clear success!')

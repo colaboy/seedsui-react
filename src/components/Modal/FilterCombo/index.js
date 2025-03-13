@@ -14,15 +14,17 @@ import FilterModal from './../FilterModal'
 const FilterCombo = forwardRef(
   (
     {
-      // Modal
-      modalProps,
-
       // Combo
       onClick,
       onBeforeOpen,
       combo,
       onVisibleChange,
 
+      // Modal
+      modalProps,
+      onOk,
+      onReset,
+      onConfig,
       children,
       ...props
     },
@@ -31,6 +33,10 @@ const FilterCombo = forwardRef(
     // Expose methods
     const comboRef = useRef(null)
     const modalRef = useRef(null)
+
+    // 控制Modal显隐
+    const [visible, setVisible] = useState(null)
+
     useImperativeHandle(ref, () => {
       return {
         ...comboRef?.current,
@@ -44,8 +50,13 @@ const FilterCombo = forwardRef(
       }
     })
 
-    // 控制Modal显隐
-    const [visible, setVisible] = useState(null)
+    useEffect(() => {
+      if (visible === null) return
+      typeof modalProps?.onVisibleChange === 'function' && modalProps.onVisibleChange(visible)
+      typeof onVisibleChange === 'function' && onVisibleChange(visible)
+
+      // eslint-disable-next-line
+    }, [visible])
 
     // 点击文本框
     async function handleClick(e) {
@@ -60,19 +71,11 @@ const FilterCombo = forwardRef(
       setVisible(!visible)
     }
 
-    useEffect(() => {
-      if (visible === null) return
-      typeof modalProps?.onVisibleChange === 'function' && modalProps.onVisibleChange(visible)
-      typeof onVisibleChange === 'function' && onVisibleChange(visible)
-
-      // eslint-disable-next-line
-    }, [visible])
-
     function getComboNode() {
-      if (combo || children) {
+      if (combo) {
         return (
           <ComboWrapper {...props} onClick={handleClick} ref={comboRef}>
-            {typeof combo === 'function' ? combo() : combo || children}
+            {typeof combo === 'function' ? combo() : combo}
           </ComboWrapper>
         )
       }
@@ -99,7 +102,12 @@ const FilterCombo = forwardRef(
           {...modalProps}
           onVisibleChange={setVisible}
           visible={visible}
-        />
+          onOk={onOk}
+          onReset={onReset}
+          onConfig={onConfig}
+        >
+          {children}
+        </FilterModal>
       </Fragment>
     )
   }

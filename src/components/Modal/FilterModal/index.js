@@ -29,7 +29,6 @@ function FilterModal(
   return (
     <Modal
       ref={ref}
-      portal={false}
       animation="slideLeft" // slideLeft | slideRight | slideUp | slideDown | zoom | fade
       {...props}
       className={`modal-filtermodal${props?.className ? ' ' + props.className : ''}`}
@@ -52,7 +51,17 @@ function FilterModal(
         </Layout.Header>
         <Layout.Main>{children}</Layout.Main>
         {/* 底部 */}
-        <Footer onReset={onReset} onOk={onOk} onConfig={onConfig} />
+        <Footer
+          onOk={() => {
+            onOk && onOk({ close: () => onVisibleChange && onVisibleChange(false) })
+          }}
+          onReset={() => {
+            onReset && onReset({ close: () => onVisibleChange && onVisibleChange(false) })
+          }}
+          onConfig={() => {
+            onConfig && onConfig({ close: () => onVisibleChange && onVisibleChange(false) })
+          }}
+        />
       </Layout>
     </Modal>
   )

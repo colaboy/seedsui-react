@@ -3,17 +3,17 @@ import { LocaleUtil, Layout, Button } from 'seedsui-react'
 const locale = LocaleUtil.locale
 
 // 底部
-function Footer({ okText, onOk, cancelText, onCancel }) {
+function Footer({ ok, onOk, cancel, onCancel }) {
   return (
     <Layout.Footer className="bg-white padding">
       {onCancel && (
         <Button className="primary flex radius-m" onClick={onCancel}>
-          {cancelText || locale('Back')}
+          {cancel || locale('Back')}
         </Button>
       )}
       {onOk && (
         <Button className="primary flex radius-m" onClick={onOk}>
-          {okText || locale('Ok')}
+          {ok || locale('Ok')}
         </Button>
       )}
     </Layout.Footer>
