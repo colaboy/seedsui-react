@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { Form, Modal, LocaleUtil, Input } from 'seedsui-react'
 
 const locale = LocaleUtil.locale
 
 function Filter({ queryParams, onChange }) {
   const [form] = Form.useForm()
+  const modifiedRef = useRef(false)
 
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState(false)
@@ -21,20 +22,32 @@ function Filter({ queryParams, onChange }) {
       onVisibleChange={(visible) => {
         setVisible(visible)
       }}
+      // 取消还原激活状态
+      onCancel={() => {
+        modifiedRef.current = active
+      }}
       onConfig={() => {
         console.log('setting')
       }}
       onReset={() => {
-        setActive(false)
+        modifiedRef.current = false
         form.resetFields()
       }}
       onOk={({ close }) => {
+        setActive(modifiedRef.current)
         console.log(form.getFieldsValue())
         onChange && onChange({ ...queryParams, ...form.getFieldsValue() })
         close()
       }}
     >
-      <Form layout="vertical" form={form} style={{ marginLeft: '12px' }}>
+      <Form
+        layout="vertical"
+        form={form}
+        onValuesChange={() => {
+          modifiedRef.current = true
+        }}
+        style={{ marginLeft: '12px' }}
+      >
         <Form.Item name="input" label={locale('单行文本框')}>
           <Input.Text placeholder={locale('请输入')} maxLength={50} />
         </Form.Item>

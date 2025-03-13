@@ -22,6 +22,7 @@ const FilterCombo = forwardRef(
 
       // Modal
       modalProps,
+      onCancel,
       onOk,
       onReset,
       onConfig,
@@ -102,6 +103,7 @@ const FilterCombo = forwardRef(
           {...modalProps}
           onVisibleChange={setVisible}
           visible={visible}
+          onCancel={onCancel}
           onOk={onOk}
           onReset={onReset}
           onConfig={onConfig}

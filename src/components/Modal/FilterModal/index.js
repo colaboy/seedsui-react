@@ -18,6 +18,7 @@ function FilterModal(
     // Modal fixed properties
     visible,
     onVisibleChange,
+    onCancel,
     onOk,
     onReset,
     onConfig,
@@ -31,6 +32,14 @@ function FilterModal(
       ref={ref}
       animation="slideLeft" // slideLeft | slideRight | slideUp | slideDown | zoom | fade
       {...props}
+      maskProps={{
+        ...props?.maskProps,
+        onClick: () => {
+          // Set maskClosable false (default is true)
+          if (props?.maskClosable !== undefined && !props?.maskClosable) return
+          onCancel && onCancel()
+        }
+      }}
       className={`modal-filtermodal${props?.className ? ' ' + props.className : ''}`}
       visible={visible}
       onVisibleChange={onVisibleChange}
@@ -40,6 +49,7 @@ function FilterModal(
           <NavBar>
             <NavBar.Button
               onClick={() => {
+                onCancel && onCancel()
                 onVisibleChange && onVisibleChange(false)
               }}
             >
