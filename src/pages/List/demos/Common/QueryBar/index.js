@@ -9,6 +9,7 @@ const locale = LocaleUtil.locale
 
 // 筛选栏
 const QueryBar = ({ queryParams, onChange }) => {
+  console.log(queryParams)
   let [query, setQuery] = useState(queryParams)
 
   return (
@@ -17,7 +18,7 @@ const QueryBar = ({ queryParams, onChange }) => {
         {/* 搜索 */}
         <ToolBar.Search
           placeholder={locale('按名称/拼音/拼音首字母查询')}
-          value={query.keyword}
+          value={query?.keyword || ''}
           onChange={(value) => {
             setQuery({
               ...query,

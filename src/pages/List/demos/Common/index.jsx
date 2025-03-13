@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useState, useRef } from 'react'
 // 第三方库导入
 import { Layout, List } from 'seedsui-react'
 
 // 项目内部模块导入
-import { cacheConfig, queryData } from './api'
+import { queryData } from './api'
 import QueryBar from './QueryBar'
 
 // 样式图片等资源文件导入
@@ -11,7 +11,7 @@ import './index.less'
 
 // 普通列表
 const Common = () => {
-  const queryParamsRef = useRef(null)
+  let [queryParams, setQueryParams] = useState(null)
 
   // Expose
   const mainRef = useRef(null)
@@ -22,7 +22,8 @@ const Common = () => {
       <QueryBar
         queryParams={queryParams}
         onChange={(newQueryParams) => {
-          queryParamsRef.current = newQueryParams
+          queryParams = newQueryParams
+          setQueryParams(newQueryParams)
           mainRef.current.reload()
         }}
       />
@@ -30,7 +31,6 @@ const Common = () => {
       {/* 列表 */}
       <List.Main
         ref={mainRef}
-        cache={cacheConfig}
         className="list-pageName"
         loadList={({ page, action }) => {
           console.log('action:', action)

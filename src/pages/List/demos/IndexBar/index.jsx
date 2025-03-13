@@ -1,14 +1,17 @@
 import React, { useState, useRef } from 'react'
+// 第三方库导入
+import { IndexBar, Layout, List } from 'seedsui-react'
+
+// 项目内部模块导入
 import { queryData } from './api'
-import { LocaleUtil, Layout } from 'seedsui-react'
-import { IndexBar, ToolBar, List } from 'seedsui-react'
+import QueryBar from './QueryBar'
+
+// 样式图片等资源文件导入
 import './index.less'
-const locale = LocaleUtil.locale
 
 // IndexBar列表示例
 const IndexBarList = () => {
-  const [keyword, setKeyword] = useState('')
-
+  let [queryParams, setQueryParams] = useState(null)
   const [anchors, setAnchors] = useState(null)
   const [indexBarVisible, setIndexBarVisible] = useState(undefined)
 
@@ -17,19 +20,17 @@ const IndexBarList = () => {
 
   return (
     <Layout className="full">
-      <Layout.Header>
-        <ToolBar className="search">
-          <ToolBar.Search
-            placeholder={locale('按名称/拼音/拼音首字母查询')}
-            value={keyword}
-            onChange={setKeyword}
-            onSearch={() => {
-              mainRef.current.reload()
-            }}
-          />
-        </ToolBar>
-      </Layout.Header>
+      {/* 搜索栏 */}
+      <QueryBar
+        queryParams={queryParams}
+        onChange={(newQueryParams) => {
+          queryParams = newQueryParams
+          setQueryParams(newQueryParams)
+          mainRef.current.reload()
+        }}
+      />
 
+      {/* 列表 */}
       <List.Main
         ref={mainRef}
         virtual={{
@@ -40,14 +41,11 @@ const IndexBarList = () => {
             return 71
           }
         }}
-        // multiple={false}
-        // allowClear={false}
-        // checkbox={false}
-        className="employee-people-main"
+        className="list-pageName"
         loadList={({ page, action }) => {
           console.log('action:', action)
           return queryData(
-            { page: page, keyword: keyword },
+            { page: page, ...queryParams },
             {
               success: () => {
                 setIndexBarVisible(true)
