@@ -9,7 +9,6 @@ const locale = LocaleUtil.locale
 
 // 筛选栏
 const QueryBar = ({ queryParams, onChange }) => {
-  console.log(queryParams)
   let [query, setQuery] = useState(queryParams)
 
   return (

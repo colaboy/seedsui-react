@@ -1,17 +1,14 @@
-import { Request, Device } from 'seedsui-react'
+import { Request, Device, LocaleUtil } from 'seedsui-react'
+const locale = LocaleUtil.locale
 
-import localData from './localData'
-
-// 获取详情
+// 获取列表
 function queryData(params) {
-  const rows = 10000
-
   return new Promise((resolve) => {
     // 查询
     Request.post(
       '/combo/v1/getComboGrid.do?comboCode=employee',
       {
-        rows: rows,
+        rows: 10000,
         isControl: '0',
         menuId: Device.getUrlParameter('menuId') || '',
         ...params
@@ -28,23 +25,17 @@ function queryData(params) {
             return {
               ...item,
               id: item.id,
-              avatar: item.face_pic,
               name: item.name,
-              description: item.dept_name + ' ' + item.position_name,
-              // 排序号小于9999，则锚点为'*'，否则为拼音首字母
-              anchor: item.sequ < 99999 ? '*' : item.name_spell
+              description: item.dept_name + ' ' + item.position_name
             }
           })
-          let groupList = localData(list)
-          groupList.rows = rows
-          groupList.totalItems = result.total
-          resolve(groupList)
+          resolve(list)
         } else {
-          resolve(result.message || '服务器繁忙，请稍后重试')
+          resolve(result.message || locale('获取数据错误！'))
         }
       })
       .catch((err) => {
-        resolve(err?.data?.message || '服务器繁忙，请稍后重试')
+        resolve(err?.data?.message || locale('获取数据异常！'))
       })
   })
 }

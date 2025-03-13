@@ -1,32 +1,34 @@
 import React, { useState, useRef } from 'react'
-import { queryData } from './api'
-import { LocaleUtil, Layout } from 'seedsui-react'
-import { ToolBar, List } from 'seedsui-react'
-import './index.less'
-const locale = LocaleUtil.locale
+// 第三方库导入
+import { Layout, List } from 'seedsui-react'
 
-// Virtual虚拟列表
-const VirtualList = () => {
-  const [keyword, setKeyword] = useState('')
+// 项目内部模块导入
+import { queryData } from './api'
+import QueryBar from './QueryBar'
+
+// 样式图片等资源文件导入
+import './index.less'
+
+// 虚拟滚动列表
+const Virtual = () => {
+  let [queryParams, setQueryParams] = useState(null)
 
   // Expose
   const mainRef = useRef(null)
 
   return (
     <Layout className="full">
-      <Layout.Header>
-        <ToolBar className="search">
-          <ToolBar.Search
-            placeholder={locale('按名称/拼音/拼音首字母查询')}
-            value={keyword}
-            onChange={setKeyword}
-            onSearch={() => {
-              mainRef.current.reload()
-            }}
-          />
-        </ToolBar>
-      </Layout.Header>
+      {/* 搜索栏 */}
+      <QueryBar
+        queryParams={queryParams}
+        onChange={(newQueryParams) => {
+          queryParams = newQueryParams
+          setQueryParams(newQueryParams)
+          mainRef.current.reload()
+        }}
+      />
 
+      {/* 列表 */}
       <List.Main
         ref={mainRef}
         virtual={{
@@ -37,22 +39,18 @@ const VirtualList = () => {
             return 71
           }
         }}
-        // multiple={false}
-        // allowClear={false}
-        // checkbox={false}
-        className="employee-people-main"
+        className="list-pageName"
         loadList={({ page, action }) => {
           console.log('action:', action)
-          return queryData({ page: page, keyword: keyword })
+          return queryData({ page: page, ...queryParams })
         }}
         // value={value}
         onChange={() => {
           console.log('onChange:', arguments)
         }}
-        pagination={true}
       />
     </Layout>
   )
 }
 
-export default VirtualList
+export default Virtual
