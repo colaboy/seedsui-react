@@ -1,10 +1,8 @@
 // getSafeAreaClassName by safeArea
 function getSafeAreaClassName(safeArea) {
   return (
-    (safeArea === 'auto' && ' autoSafeArea') ||
-    (safeArea === true && ' safeArea') ||
-    (safeArea === false && ' clearSafeArea') ||
-    ''
+    // (safeArea === 'auto' && ' autoSafeArea') ||
+    (safeArea === true && ' autoSafeArea') || (safeArea === false && ' clearSafeArea') || ''
   )
 }
 

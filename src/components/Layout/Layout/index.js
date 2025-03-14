@@ -8,6 +8,7 @@ import SafeArea from './../../SafeArea'
 import { SafeArea } from 'seedsui-react'
 测试使用-end */
 
+// [safeArea] true: 自动安全区; false: 强制取消安全区
 const Layout = forwardRef(({ safeArea, animation, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
