@@ -96,8 +96,7 @@ async function fileChoose(
   // 同步上传
   Loading.show({ content: LocaleUtil.locale('上传中') })
   // 同步上传: list发生变化即开始上传
-  newList = await uploadList(newList)
-  onChange && onChange(newList, { action: 'upload' })
+  newList = await uploadList(newList, { action: 'upload' })
   uploadDOM.classList.remove('uploading')
   Loading.hide()
 }

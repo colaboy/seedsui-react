@@ -35,13 +35,12 @@ export default () => {
   // 异步上传
   async function handleAsyncUpload() {
     let isOK = Image.validateListStatus(list)
-    // if (isOK !== true) {
-    //   Toast.show({ content: isOK })
-    //   return
-    // }
-
-    let result = await imageUploaderRef.current.uploadList()
-    alert(JSON.stringify(result))
+    if (isOK !== true) {
+      Toast.show({ content: isOK })
+      let result = await imageUploaderRef.current.uploadList()
+      console.log('上传结果：', result)
+      return
+    }
   }
 
   return (

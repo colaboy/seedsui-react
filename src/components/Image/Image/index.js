@@ -90,16 +90,18 @@ function Browser(
   }
 
   // 上传
-  async function uploadList(newList) {
+  async function uploadList(newList, { action } = {}) {
     // eslint-disable-next-line
     if (!newList) newList = list
     if (!newList) return
 
+    let hasUploaded = false
     // 开始上传
     for (let [index, item] of newList.entries()) {
       // 只上传未上传的视频
       if (item.status === 'choose') {
         newList[index] = await uploadItem(item)
+        hasUploaded = true
       }
     }
 
@@ -129,6 +131,11 @@ function Browser(
         }
       }
     }
+
+    if (hasUploaded) {
+      onChangeRef.current && onChangeRef.current(newList, { action })
+    }
+
     return newList
   }
 
