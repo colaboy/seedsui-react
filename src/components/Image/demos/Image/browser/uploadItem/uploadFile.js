@@ -1,20 +1,11 @@
 import axios from 'axios'
-import library_request from 'library_request'
-import locale from 'library/utils/locale'
-import { formatUploadDir, formatThumb } from './../../utils'
+import { LocaleUtil } from 'seedsui-react'
+const locale = LocaleUtil.locale
 
-// 默认请求参数
-export const DEFAULT_QUERY = {
-  ...library_request.ImageUploader.fileUpload
-}
-
-export default function uploadFile({ fileData, uploadDir, watermark, watermarkConfig }) {
+export default function uploadFile({ fileData, watermark, watermarkConfig }) {
   const formData = new FormData()
 
-  // filePath: file.tempFilePath,
-  // name: 'file',
-
-  formData.append('uploadPath', formatUploadDir(uploadDir))
+  formData.append('uploadPath', '2025/04')
   // isFullPath=1接口不补年月
   formData.append('isFullPath', '1')
   formData.append('file', fileData)
@@ -30,7 +21,7 @@ export default function uploadFile({ fileData, uploadDir, watermark, watermarkCo
 
   return new Promise((resolve) => {
     axios
-      .post(DEFAULT_QUERY.url, formData, {
+      .post('/platform/fileupload/v1/doUploadImageForMinProgram.do', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -50,8 +41,8 @@ export default function uploadFile({ fileData, uploadDir, watermark, watermarkCo
         }
 
         resolve({
-          thumb: formatThumb(data.previewUrl),
-          uploadDir: formatUploadDir(uploadDir),
+          thumb: data.previewUrl,
+          uploadDir: '2025/04',
           src: data.previewUrl,
           tenantId: tenantId,
           path: data.filePath

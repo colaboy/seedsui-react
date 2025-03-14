@@ -17,8 +17,11 @@ function Image(
     // Config
     async = false,
     reUpload = true,
+    uploadType: externalUploadType,
     count = 5,
     sourceType = ['album', 'camera'],
+    sizeType = ['compressed'], // ['original', 'compressed']
+    maxWidth,
     list = [], // [{thumb: '全路径', src: '全路径', path: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
 
     // Events
@@ -61,6 +64,8 @@ function Image(
       reUpload={reUpload}
       count={count}
       sourceType={sourceType}
+      sizeType={sizeType}
+      maxWidth={maxWidth}
       list={list}
       // Events
       onBeforeChoose={onBeforeChoose}

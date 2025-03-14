@@ -1,9 +1,8 @@
-import locale from 'library/utils/locale'
-import { validateImageSrc } from './../../utils'
+import { Image, LocaleUtil } from 'seedsui-react'
 import uploadFile from './uploadFile'
-
+const locale = LocaleUtil.locale
 // 上传
-function uploadItem(item, { watermarkConfig, uploadDir }) {
+function uploadItem(item) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     let fileData = item.fileData
@@ -11,9 +10,7 @@ function uploadItem(item, { watermarkConfig, uploadDir }) {
     // 用临时方案尝试
     let serverItem = await uploadFile({
       fileData,
-      uploadDir: uploadDir,
-      watermark: item?.watermark?.list || [],
-      watermarkConfig
+      watermark: item?.watermark?.list || []
     })
 
     // 上传失败
@@ -23,7 +20,7 @@ function uploadItem(item, { watermarkConfig, uploadDir }) {
     }
 
     // 校验其是否真的是否法图片
-    let isValid = await validateImageSrc(serverItem.src)
+    let isValid = await Image.validateImageSrc(serverItem.src)
     if (!isValid) {
       resolve(locale('图片加载失败，请重试', 'library.419ade42d1243fe183355b7930c4f830'))
       return

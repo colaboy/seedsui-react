@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Layout, Bridge, Button } from 'seedsui-react'
-import Image from './ImageUploader/Browser'
+import React, { useEffect, useState, useRef } from 'react'
+import { Layout, Bridge, Button, Image } from 'seedsui-react'
+import uploadItem from './browser/uploadItem'
 
 export default () => {
+  const imageUploaderRef = useRef(null)
   const [list, setList] = useState([
     {
       id: '1',
@@ -43,52 +44,36 @@ export default () => {
     alert(JSON.stringify(result))
   }
 
-  function handlePreview(...params) {
-    console.log('预览')
-    console.log(...params)
-  }
-  function handleReUpload(item, index, otherOptions) {
-    console.log('重新上传')
-    otherOptions.itemDOM.classList.remove('fail')
-    otherOptions.itemDOM.classList.add('uploading')
-  }
-  function handleChoose(...params) {
-    alert('选择')
-    console.log(...params)
-  }
-  function handleDelete(item, index) {
-    console.log('删除', item)
-    let successList = list.filter((photo, photoIndex) => {
-      return photoIndex !== index
-    })
-    setList(successList)
-  }
   return (
     <Layout className="full">
       <Layout.Main>
         <Image
-          async
-          type="browser"
-          // beta
-          uploadPosition="start"
           ref={imageUploaderRef}
-          // type="browser"
-          // timeout={2000}
-          uploadDir={`businessName`}
+          // async
+          uploadType="browser"
+          uploadPosition="start"
           sizeType={['compressed']}
-          // width={100}
-          isFake
           sourceType={['camera', 'album']}
           list={list}
           count={4}
-          watermarkConfig={{ showLogo: '0', showTime: 1, type: 2 }}
-          // 离北京天安门差不多2.4公里
-          // watermark={['0924-定位拍照', '$name $datetime', '$address $distance:116.37,39.91']}
-          onChange={handlePhotoChange}
-          onDelete={handlePhotoChange}
-          // onLoad={() => {
-          //   imageUploaderRef.current.chooseImage()
-          // }}
+          onFileChoose={({ localeId }) => {
+            // 待传文件
+            return [
+              {
+                status: 'choose',
+                localId: imgURL,
+                fileData: fileData,
+                thumb: imgURL,
+                src: imgURL,
+                path: ``
+              }
+            ]
+          }}
+          onChange={(newList) => {
+            console.log('修改:', newList)
+            setList(newList)
+          }}
+          onUpload={uploadItem}
         />
       </Layout.Main>
       <Layout.Footer>

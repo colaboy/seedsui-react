@@ -18,12 +18,12 @@ const Upload = ({
   onChoose,
   onFileChange
 }) => {
-  // onBeforeChoose时，允许
-  const chooseParamsRef = useRef(null)
+  // Bridge.chooseImage参数
+  let chooseParamsRef = useRef(null)
 
   // 选择文件
   function handleFileChange(e) {
-    onFileChange && onFileChange(e)
+    onFileChange && onFileChange(e, chooseParamsRef.current)
   }
 
   // 点击选择框
@@ -62,7 +62,7 @@ const Upload = ({
     }
 
     // 触发选择
-    onChoose && onChoose(e, { params: chooseParamsRef.current })
+    onChoose && onChoose(e, chooseParamsRef.current)
   }
 
   return (

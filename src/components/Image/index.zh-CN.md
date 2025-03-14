@@ -8,7 +8,7 @@ title: Image
 
 ## 照片
 
-<code src="./demos/image.jsx"></code>
+<code src="./demos/Image/index.jsx"></code>
 
 ## 视频
 
