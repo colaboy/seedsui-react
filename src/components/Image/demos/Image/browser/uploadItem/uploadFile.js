@@ -1,31 +1,20 @@
-import axios from 'axios'
-import { LocaleUtil } from 'seedsui-react'
+import { LocaleUtil, Request } from 'seedsui-react'
 const locale = LocaleUtil.locale
 
-export default function uploadFile({ fileData, watermark, watermarkConfig }) {
+export default function uploadFile({ fileData }) {
   const formData = new FormData()
 
   formData.append('uploadPath', '2025/04')
   // isFullPath=1接口不补年月
   formData.append('isFullPath', '1')
   formData.append('file', fileData)
-  if (watermark || watermarkConfig) {
-    formData.append(
-      'exts',
-      JSON.stringify({
-        watermarks: watermark || '',
-        watermarkConfig: watermarkConfig || ''
-      })
-    )
-  }
 
   return new Promise((resolve) => {
-    axios
-      .post('/platform/fileupload/v1/doUploadImageForMinProgram.do', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+    Request.post('/platform/fileupload/v1/doUploadImageForMinProgram.do', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
       .then((response) => {
         const data = response?.data?.[0]
         if (!data) {

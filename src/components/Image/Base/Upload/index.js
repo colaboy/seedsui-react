@@ -38,7 +38,6 @@ const Upload = ({
     if (typeof onBeforeChoose === 'function') {
       let isOk = await onBeforeChoose(e, {
         setUploading: (isUploading) => {
-          debugger
           if (isUploading) {
             e.nativeEvent.target.classList.add('uploading')
           } else {

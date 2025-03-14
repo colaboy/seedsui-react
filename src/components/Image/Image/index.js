@@ -80,9 +80,13 @@ function Browser(
       })
       item.status = 'fail'
     }
+    // 上传成功
+    else {
+      item.status = 'success'
+    }
 
     // 更新状态
-    return item
+    return { ...item, ...result }
   }
 
   // 上传

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Layout, Bridge, Button, Image } from 'seedsui-react'
+import { Toast, Layout, Bridge, Button, Image } from 'seedsui-react'
 import uploadItem from './browser/uploadItem'
 
 export default () => {
@@ -34,11 +34,11 @@ export default () => {
 
   // 异步上传
   async function handleAsyncUpload() {
-    let isOK = validate(list)
-    if (isOK !== true) {
-      Toast.show({ content: isOK })
-      return
-    }
+    let isOK = Image.validateListStatus(list)
+    // if (isOK !== true) {
+    //   Toast.show({ content: isOK })
+    //   return
+    // }
 
     let result = await imageUploaderRef.current.uploadList()
     alert(JSON.stringify(result))
@@ -49,21 +49,21 @@ export default () => {
       <Layout.Main>
         <Image
           ref={imageUploaderRef}
-          // async
+          async
           uploadPosition="start"
           sizeType={['compressed']}
           sourceType={['camera', 'album']}
           list={list}
           count={4}
-          onFileChoose={({ localeId, fileData }) => {
+          onFileChoose={({ localId, fileData }) => {
             // 待传文件
             return [
               {
                 status: 'choose',
-                localId: localeId,
+                localId: localId,
                 fileData: fileData,
-                thumb: localeId,
-                src: localeId,
+                thumb: localId,
+                src: localId,
                 path: ``
               }
             ]

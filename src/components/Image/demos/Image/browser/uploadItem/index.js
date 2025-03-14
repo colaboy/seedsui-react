@@ -9,8 +9,7 @@ function uploadItem(item) {
 
     // 用临时方案尝试
     let serverItem = await uploadFile({
-      fileData,
-      watermark: item?.watermark?.list || []
+      fileData
     })
 
     // 上传失败
