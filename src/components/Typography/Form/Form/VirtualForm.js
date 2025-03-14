@@ -23,6 +23,7 @@ const VirtualForm = forwardRef(
 
     useEffect(() => {
       // 创建IntersectionObserver实例
+      // eslint-disable-next-line
       observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
