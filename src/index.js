@@ -10,7 +10,7 @@ if (packageJson?.version) {
 // 记录语言: window.seedsLocaleLanguage, window.seedsLocaleData
 
 export { default as Modal } from './components/Modal'
-export { default as ActionSheet1 } from './components/ActionSheet1'
+export { default as ActionSheet } from './components/ActionSheet'
 export { default as NavBar } from './components/NavBar'
 export { default as Upload } from './components/Upload'
 export { default as Badge } from './components/Badge'
