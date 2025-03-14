@@ -1,5 +1,4 @@
-import React from 'react'
-import Status from './../Status'
+import React, { useRef } from 'react'
 
 // 上传按钮
 const Upload = ({
@@ -11,14 +10,17 @@ const Upload = ({
   // 上传DOM和状态
   uploadNode,
 
-  // Custom Status
-  statusRender,
+  // 上传中
+  uploadingNode,
 
   // Events
   onBeforeChoose,
   onChoose,
   onFileChange
 }) => {
+  // onBeforeChoose时，允许
+  const chooseParamsRef = useRef(null)
+
   // 选择文件
   function handleFileChange(e) {
     onFileChange && onFileChange(e)
@@ -32,9 +34,22 @@ const Upload = ({
     e.stopPropagation()
 
     // 前置校验
+    chooseParamsRef.current = null
     if (typeof onBeforeChoose === 'function') {
-      let goOn = await onBeforeChoose(e)
-      if (goOn === false) return
+      let isOk = await onBeforeChoose(e, {
+        setUploading: (isUploading) => {
+          debugger
+          if (isUploading) {
+            e.nativeEvent.target.classList.add('uploading')
+          } else {
+            e.nativeEvent.target.classList.remove('uploading')
+          }
+        },
+        setChooseParams: (chooseParams) => {
+          chooseParamsRef.current = chooseParams
+        }
+      })
+      if (isOk === false) return
     }
 
     // 点击的是input框
@@ -47,7 +62,7 @@ const Upload = ({
     }
 
     // 触发选择
-    onChoose && onChoose(e)
+    onChoose && onChoose(e, { params: chooseParamsRef.current })
   }
 
   return (
@@ -71,8 +86,8 @@ const Upload = ({
         />
       )}
       {uploadNode && uploadNode}
-      {/* 状态遮罩 */}
-      <Status statusRender={statusRender} />
+      {/* 上传中 */}
+      {uploadingNode && uploadingNode}
     </div>
   )
 }

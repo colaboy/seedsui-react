@@ -1,12 +1,12 @@
-import { Toast, Device } from 'seedsui-react'
+import { Toast, Device, LocaleUtil } from 'seedsui-react'
 import { getData as getCurrentUser } from 'library/utils/useCurrentUser'
-import locale from 'library/utils/locale'
+// import locale from 'library/utils/locale'
 // 记录日志
-import Logger from 'library/utils/Logger'
 import getAddress from './getAddress'
 import getDistance from './getDistance'
 import getDateTime from './getDateTime'
 import getModel from './getModel'
+const locale = LocaleUtil.locale
 
 function getWatermark(watermark = [], onWatermark) {
   // eslint-disable-next-line
@@ -80,17 +80,13 @@ function getWatermark(watermark = [], onWatermark) {
         line = line.replace(/\$model/gim, getModel())
       }
       if (line.indexOf('$datetime') !== -1) {
-        Logger.logStartTime('开始获取系统时间')
         wmMap.datetime = await getDateTime()
-        Logger.logEndTime('获取系统时间结束', wmMap.datetime)
         line = line.replace(/\$datetime/gim, wmMap.datetime)
       }
       if (line.indexOf('$name') !== -1) {
         // 获取用户id
         if (!window?.loginUser) {
-          Logger.logStartTime('开始获取用户名称')
           window.loginUser = await getCurrentUser()
-          Logger.logEndTime('获取用户名称结束', window?.loginUser?.name || '')
         }
         wmMap.name = window?.loginUser?.name || ''
         line = line.replace(/\$name/gim, wmMap.name)
@@ -122,9 +118,7 @@ async function getLocation(watermark) {
   if (
     watermark.some((item) => item.indexOf('$address') !== -1 || item.indexOf('$distance') !== -1)
   ) {
-    Logger.logStartTime('开始定位')
     locationResult = await getAddress()
-    Logger.logEndTime('定位结束', locationResult)
 
     // 需要定位, 却没有开启权限阻止拍照
     if (locationResult?.errCode === 'PERMISSION_DENIED') {

@@ -2,8 +2,6 @@ import locale from 'library/utils/locale'
 import DistrictUtil from 'library/utils/DistrictUtil'
 import Bridge from 'library/utils/Bridge'
 
-// import Logger from 'library/utils/Logger'
-
 // 获取地址和偏差
 function getAddress() {
   return new Promise((resolve) => {

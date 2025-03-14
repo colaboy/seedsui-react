@@ -1,6 +1,7 @@
 @import 'Preview/ImagePreview.less';
-@import 'Status/ImageStatus.less';
 @import 'Upload/ImageUpload.less';
+@import 'Uploading/ImageUploading.less';
+@import 'Reload/ImageReload.less';
 @import 'Mark/ImageMark.less';
 
 // 照片视频列表
@@ -19,6 +20,15 @@
     width: var(--cell-width);
     height: var(--cell-height);
   }
+
+  // 上传中: 添加按钮要转圈
+  &.uploading {
+    .image-upload {
+      .image-uploading {
+        display: block;
+      }
+    }
+  }
 }
 
 // 单个照片
@@ -31,6 +41,26 @@
   background-size: cover;
   border-radius: 10px;
   cursor: pointer;
+
+  // 上传中
+  &.uploading {
+    // 显示转圈
+    .image-uploading {
+      display: block;
+    }
+    // 上传中不允许删除
+    .image-delete {
+      display: none;
+    }
+  }
+
+  // 上传失败
+  &.fail {
+    // 显示重转
+    .image-reload {
+      display: block;
+    }
+  }
 }
 
 // 图片

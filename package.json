@@ -62,6 +62,7 @@
     "ahooks": "^3.8.0",
     "axios": "^1.6.1",
     "better-scroll": "^2.5.0",
+    "compressorjs": "^1.2.1",
     "dayjs": "^1.11.12",
     "html-react-parser": "^3.0.4",
     "leaflet-canvas-marker": "^0.2.0",

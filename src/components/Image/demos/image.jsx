@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Bridge, Image } from 'seedsui-react'
+import { Layout, Bridge, Button } from 'seedsui-react'
+import Image from './ImageUploader/Browser'
 
 export default () => {
   const [list, setList] = useState([
@@ -30,6 +31,18 @@ export default () => {
     })
   }, [])
 
+  // 异步上传
+  async function handleAsyncUpload() {
+    let isOK = validate(list)
+    if (isOK !== true) {
+      Toast.show({ content: isOK })
+      return
+    }
+
+    let result = await imageUploaderRef.current.uploadList()
+    alert(JSON.stringify(result))
+  }
+
   function handlePreview(...params) {
     console.log('预览')
     console.log(...params)
@@ -51,26 +64,38 @@ export default () => {
     setList(successList)
   }
   return (
-    <>
-      <Image
-        list={list}
-        onBeforeChoose={() => {
-          return new Promise((resolve) => {
-            resolve(true)
-          })
-        }}
-        onReUpload={handleReUpload}
-        onChoose={handleChoose}
-        onDelete={handleDelete}
-        onPreview={handlePreview}
-        onFileChange={(e) => {
-          console.log('e', e)
-        }}
-        uploadPosition="end"
-        fileProps={{
-          capture: 'camera'
-        }}
-      />
-    </>
+    <Layout className="full">
+      <Layout.Main>
+        <Image
+          async
+          type="browser"
+          // beta
+          uploadPosition="start"
+          ref={imageUploaderRef}
+          // type="browser"
+          // timeout={2000}
+          uploadDir={`businessName`}
+          sizeType={['compressed']}
+          // width={100}
+          isFake
+          sourceType={['camera', 'album']}
+          list={list}
+          count={4}
+          watermarkConfig={{ showLogo: '0', showTime: 1, type: 2 }}
+          // 离北京天安门差不多2.4公里
+          // watermark={['0924-定位拍照', '$name $datetime', '$address $distance:116.37,39.91']}
+          onChange={handlePhotoChange}
+          onDelete={handlePhotoChange}
+          // onLoad={() => {
+          //   imageUploaderRef.current.chooseImage()
+          // }}
+        />
+      </Layout.Main>
+      <Layout.Footer>
+        <Button className="flex primary" onClick={handleAsyncUpload}>
+          Sync Upload
+        </Button>
+      </Layout.Footer>
+    </Layout>
   )
 }

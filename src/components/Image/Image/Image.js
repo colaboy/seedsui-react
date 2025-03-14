@@ -1,14 +1,15 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
 import Img from './Img'
-import Status from './Status'
 import Upload from './Upload'
+import Uploading from './Uploading'
+import Reload from './Reload'
 import Preview from './Preview'
 
 import getPreviewType from './getPreviewType'
 
 // 内库使用-start
-import Bridge from './../../utils/Bridge'
+import Bridge from './../../../utils/Bridge'
 // 内库使用-end
 
 /* 测试使用-start
@@ -24,7 +25,7 @@ const Image = forwardRef(
       list, // [{id: '', name: '', thumb: '', src: '', status: 'choose|uploading|fail|success'}]
       uploadPosition = 'end', // start | end
       uploadNode, // 上传按钮覆盖的dom
-      statusRender, // 自定义状态渲染func({status, itemDOM})
+      uploading,
       // Events
       onBeforeChoose, // 选择前校验
       onChoose,
@@ -100,6 +101,17 @@ const Image = forwardRef(
       }
     }
 
+    // 上传中node
+    function getUploadingNode(params) {
+      if (typeof uploading === 'function') {
+        return uploading(params)
+      }
+      if (React.isValidElement(uploading)) {
+        return uploading
+      }
+      return <Uploading />
+    }
+
     // 上传node
     function getUploadNode() {
       return (
@@ -109,8 +121,8 @@ const Image = forwardRef(
           fileProps={fileProps}
           // 上传DOM
           uploadNode={uploadNode}
-          // Custom Status
-          statusRender={statusRender}
+          // 上传中DOM
+          uploadingNode={getUploadingNode()}
           // Choose events
           onChoose={onChooseRef.current}
           onBeforeChoose={onBeforeChooseRef.current}
@@ -154,19 +166,12 @@ const Image = forwardRef(
                 {/* 缩略图 */}
                 {item.thumb && <Img src={item.thumb} />}
 
-                {/* 状态遮罩 */}
-                <Status
-                  statusRender={statusRender}
-                  onReUpload={(e) => {
-                    onReUploadRef.current &&
-                      onReUploadRef.current(item, index, {
-                        event: e,
-                        list: list,
-                        rootDOM: rootRef.current,
-                        itemDOM: e.currentTarget.parentNode
-                      })
-                  }}
-                />
+                {/* 重新上传图标 */}
+                <Reload />
+
+                {/* 上传中图标 */}
+                {getUploadingNode(item)}
+
                 {/* 自定义dom */}
                 {item.children}
                 {/* 删除按钮 */}

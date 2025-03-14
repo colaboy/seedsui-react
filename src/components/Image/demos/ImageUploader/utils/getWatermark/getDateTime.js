@@ -1,11 +1,12 @@
 import dayjs from 'dayjs'
-import locale from 'library/utils/locale'
-import ApiAxios from 'library/deprecated/ApiAxios'
+import { Request, LocaleUtil } from 'seedsui-react'
+// import locale from 'library/utils/locale'
+const locale = LocaleUtil.locale
 
 // 获取系统时间, 获取失败时返回系统时间(手机时间)
 function getDateTime() {
   return new Promise((resolve) => {
-    ApiAxios.post(`/client/getSystemTime.action`)
+    Request.post(`/client/getSystemTime.action`)
       .then((result) => {
         if (result.code === '1' && result.data && result.data.s) {
           resolve(dayjs(result.data.s).format('YYYY-MM-DD HH:mm'))

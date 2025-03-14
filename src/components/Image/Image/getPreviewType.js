@@ -1,6 +1,6 @@
 // 内库使用-start
-import Device from './../../utils/Device'
-import Bridge from './../../utils/Bridge'
+import Device from './../../../utils/Device'
+import Bridge from './../../../utils/Bridge'
 // 内库使用-end
 
 /* 测试使用-start

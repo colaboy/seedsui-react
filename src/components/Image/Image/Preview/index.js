@@ -5,8 +5,8 @@ import preventDefault from './preventDefault'
 import getActiveIndex from './getActiveIndex'
 
 // 内库使用-start
-import SelectModal from './../../Modal/SelectModalBase'
-import VideoPlayer from './../../VideoPlayer'
+import SelectModal from './../../../Modal/SelectModalBase'
+import VideoPlayer from './../../../VideoPlayer'
 // 内库使用-end
 
 /* 测试使用-start
