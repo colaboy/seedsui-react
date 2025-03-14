@@ -6,6 +6,6 @@ title: 详情
 
 # Detail
 
-## 布局示例
+## 表单
 
-<code src="./demos/Layout/index.jsx"></code>
+<code src="./demos/Common/index.jsx"></code>
