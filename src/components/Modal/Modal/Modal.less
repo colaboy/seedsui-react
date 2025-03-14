@@ -8,16 +8,17 @@
   // 动画使用.popup-animation
 }
 
-// Adapt to the safe area
+// Adapt to the safe area: className
 .modal.safeArea {
   &:extend(.safe-area all);
   &:extend(.safe-area.border-bottom all);
 }
+// Adapt to the safe area: safeArea={false}
 .modal.clearSafeArea {
   &:extend(.clear-safe-area all);
   &:extend(.clear-safe-area.border-bottom all);
 }
-
+// Adapt to the safe area: safeArea={true}
 .auto-safe-area-children {
   .modal.autoSafeArea {
     &:extend(.safe-area all);

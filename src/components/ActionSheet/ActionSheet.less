@@ -46,17 +46,19 @@
   background-color: rgba(255, 255, 255, 0.85);
 }
 
-// Adapt to the safe area
+// Adapt to the safe area: className
 .actionsheet-modal.safeArea {
   &:extend(.safe-area all);
   &:extend(.safe-area.border-bottom all);
   border-color: white !important;
 }
+
+// Adapt to the safe area: safeArea={false}
 .actionsheet-modal.clearSafeArea {
   &:extend(.clear-safe-area all);
   &:extend(.clear-safe-area.border-bottom all);
 }
-
+// Adapt to the safe area: safeArea={true}
 .auto-safe-area-children {
   .actionsheet-modal.autoSafeArea {
     &:extend(.safe-area all);

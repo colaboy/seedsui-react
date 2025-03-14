@@ -4,16 +4,17 @@
   z-index: 10;
 }
 
-// Adapt to the safe area
+// Adapt to the safe area: className
 .signature-modal.safeArea {
   &:extend(.safe-area all);
   &:extend(.safe-area.border-bottom all);
 }
+// Adapt to the safe area: safeArea={false}
 .signature-modal.clearSafeArea {
   &:extend(.clear-safe-area all);
   &:extend(.clear-safe-area.border-bottom all);
 }
-
+// Adapt to the safe area: safeArea={true}
 .auto-safe-area-children {
   .signature-modal.autoSafeArea {
     &:extend(.safe-area all);
