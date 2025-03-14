@@ -1,8 +1,7 @@
 // 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
-import { Form, Modal, LocaleUtil, Input, Storage } from 'seedsui-react'
+import { Form, Modal, LocaleUtil, Input } from 'seedsui-react'
 // 项目内部模块导入
-import cacheConfig from './../../api/cacheConfig'
 // 样式图片等资源文件导入
 
 const locale = LocaleUtil.locale
@@ -11,9 +10,7 @@ function Filter({ queryParams, onChange }) {
   const [form] = Form.useForm()
   const modifiedRef = useRef(false)
 
-  const [active, setActive] = useState(
-    Storage.getCache(`${cacheConfig.name}:filterActive`) || false
-  )
+  const [active, setActive] = useState(false)
   const [visible, setVisible] = useState(false)
 
   // 显示弹窗时需要还原值
@@ -40,10 +37,8 @@ function Filter({ queryParams, onChange }) {
         form.resetFields()
       }}
       onOk={({ close }) => {
-        Storage.setCache(`${cacheConfig.name}:filterActive`, modifiedRef.current, {
-          persist: cacheConfig.persist
-        })
         setActive(modifiedRef.current)
+        console.log(form.getFieldsValue())
         onChange && onChange({ ...queryParams, ...form.getFieldsValue() })
         close()
       }}

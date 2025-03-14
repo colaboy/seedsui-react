@@ -9,8 +9,8 @@ import QueryBar from './QueryBar'
 // 样式图片等资源文件导入
 import './index.less'
 
-// 虚拟滚动列表
-const Virtual = () => {
+// 普通列表
+const Common = () => {
   let [queryParams, setQueryParams] = useState(null)
 
   // Expose
@@ -31,14 +31,6 @@ const Virtual = () => {
       {/* 列表 */}
       <List.Main
         ref={mainRef}
-        virtual={{
-          getItemHeight: (item) => {
-            if (item?.virtualData?.type === 'group') {
-              return 33
-            }
-            return 71
-          }
-        }}
         className="list-pageName"
         loadList={({ page, action }) => {
           console.log('action:', action)
@@ -53,4 +45,4 @@ const Virtual = () => {
   )
 }
 
-export default Virtual
+export default Common

@@ -2,6 +2,7 @@ import constant from './constant'
 
 // 计算可见区域元素
 function getVisibleItems({ prependHeight, items, itemHeights, scrollTop, containerHeight }) {
+  if (!Array.isArray(items) || !items.length) return []
   // 计算每一项的 top 值和高度
   let top = 0
   for (let [index, item] of items.entries()) {
