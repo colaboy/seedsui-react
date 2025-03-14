@@ -1,17 +1,17 @@
 ---
 category: Components
 group: Feedback
-title: ActionSheet1
+title: ActionSheet
 ---
 
-# ActionSheet1
+# ActionSheet
 
 ## 示例
 
-### ActionSheet1.Combo
+### ActionSheet.Combo
 
 <code src="./demos/Combo/index.jsx"></code>
 
-### ActionSheet1.Modal
+### ActionSheet.Modal
 
 <code src="./demos/Modal/index.jsx"></code>

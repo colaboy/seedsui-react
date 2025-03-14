@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, ActionSheet1, SafeArea } from 'seedsui-react'
+import { Layout, ActionSheet, SafeArea } from 'seedsui-react'
 
 export default () => {
   const list = [
@@ -29,9 +29,8 @@ export default () => {
   return (
     <Layout className="full">
       <Layout.Main>
-        {JSON.stringify(value)}
-        <ActionSheet1.Modal
-          visible={true}
+        <ActionSheet.Combo
+          placeholder="Please select"
           value={value}
           list={list}
           onChange={(newValue) => {
@@ -41,6 +40,13 @@ export default () => {
           onVisibleChange={(visible) => {
             console.log('visible:', visible)
           }}
+          // style={{ height: '100px', backgroundColor: '#f8f8f8' }}
+          modalProps={
+            {
+              // safeArea: true
+              // cancel: null
+            }
+          }
         />
       </Layout.Main>
     </Layout>
