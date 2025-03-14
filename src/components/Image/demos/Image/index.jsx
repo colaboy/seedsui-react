@@ -50,21 +50,20 @@ export default () => {
         <Image
           ref={imageUploaderRef}
           // async
-          uploadType="browser"
           uploadPosition="start"
           sizeType={['compressed']}
           sourceType={['camera', 'album']}
           list={list}
           count={4}
-          onFileChoose={({ localeId }) => {
+          onFileChoose={({ localeId, fileData }) => {
             // 待传文件
             return [
               {
                 status: 'choose',
-                localId: imgURL,
+                localId: localeId,
                 fileData: fileData,
-                thumb: imgURL,
-                src: imgURL,
+                thumb: localeId,
+                src: localeId,
                 path: ``
               }
             ]

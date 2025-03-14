@@ -1,8 +1,13 @@
 import _ from 'lodash'
+import { Loading, LocaleUtil } from 'seedsui-react'
 import { getRemainCount } from './../../utils'
 
 // 选择文件
-async function choose(event, params, { count, list, onChoose, onChange }) {
+async function choose(
+  event,
+  params,
+  { async, count, list, uploadPosition, uploadList, onChoose, onChange }
+) {
   let uploadDOM = event.nativeEvent.target.parentNode
 
   // 大于总数禁止选择

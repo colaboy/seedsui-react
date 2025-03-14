@@ -11,25 +11,25 @@ import { Loading, Toast, , LocaleUtil } from 'seedsui-react'
 测试使用-end */
 import fileChoose from './fileChoose'
 import choose from './choose'
-import Image from './../Image'
+import Image from './../Base'
 
 // 照片上传
 function Browser(
   {
     // Style
-    allowClear,
+    allowClear = true,
     uploadPosition,
     uploadNode,
     uploading,
 
     // Config
-    async,
-    reUpload,
-    count,
-    sourceType,
-    sizeType,
+    async = false,
+    reUpload = true,
+    count = 5,
+    sourceType = ['album', 'camera'],
+    sizeType = ['compressed'], // ['original', 'compressed']
     maxWidth,
-    list, // [{thumb: '全路径', src: '全路径', path: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
+    list = [], // [{thumb: '全路径', src: '全路径', path: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
 
     // Events
     onBeforeChoose,
@@ -175,36 +175,39 @@ function Browser(
       onFileChange={
         onFileChoose && chooseVisible
           ? (e, params) =>
-              fileChoose(e, params, { count, list, onFileChoose, onChange: onChangeRef.current })
+              fileChoose(e, params, {
+                async,
+                sizeType,
+                maxWidth,
+                count,
+                list,
+                uploadPosition,
+                uploadList,
+                onFileChoose,
+                onChange: onChangeRef.current
+              })
           : null
       }
       onChoose={
         onChoose && chooseVisible
           ? (e, params) =>
-              choose(e, params, { count, list, onChoose, onChange: onChangeRef.current })
+              choose(e, params, {
+                async,
+                sizeType,
+                maxWidth,
+                count,
+                list,
+                uploadPosition,
+                uploadList,
+                onFileChoose,
+                onChange: onChangeRef.current
+              })
           : null
       }
       onDelete={allowClear ? handleDelete : null}
       onReUpload={handleReUpload}
       onBeforeChoose={onBeforeChoose}
-      onPreview={async (item, index, { event, rootDOM, itemDOM, list }) => {
-        if (typeof onClick === 'function') {
-          onClick(event, item, index)
-          return false
-        }
-        // 自定义预览
-        if (typeof onPreview === 'function') {
-          let goOn = await onPreview(item, index, { rootDOM, itemDOM, list })
-          if (goOn === false || goOn) return goOn
-        }
-
-        // 异步上传使用h5预览
-        if (!item?.src?.startsWith?.('http')) {
-          return 'browser'
-        }
-
-        return true
-      }}
+      onPreview={onPreview}
       fileProps={
         capture
           ? {

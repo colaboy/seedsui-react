@@ -1,9 +1,14 @@
 import _ from 'lodash'
+import { Loading, LocaleUtil } from 'seedsui-react'
 import { getRemainCount } from './../../utils'
 import compressImage from './compressImage'
 
 // 选择文件
-async function fileChoose(event, params, { count, list, onFileChoose, onChange }) {
+async function fileChoose(
+  event,
+  params,
+  { async, sizeType, maxWidth, count, list, uploadPosition, uploadList, onFileChoose, onChange }
+) {
   let file = event.nativeEvent.target
   let uploadDOM = file.parentNode
 
