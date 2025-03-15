@@ -1,36 +1,24 @@
 import _ from 'lodash'
-import { Loading, LocaleUtil } from 'seedsui-react'
+import { LocaleUtil } from 'seedsui-react'
 import { getRemainCount } from './../../utils'
 
 // 选择文件
-async function choose(
-  event,
-  params,
-  { async, count, list, uploadPosition, uploadList, onChoose, onChange }
-) {
-  let uploadDOM = event.nativeEvent.target.parentNode
-
+async function choose({ async, count, list, uploadPosition, uploadList, onChoose, onChange }) {
   // 大于总数禁止选择
   if (getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
       content: LocaleUtil.locale(`照片总数不能大于${count}张`),
       maskClickable: true
     })
-    return
+    return false
   }
-
-  Loading.show({ className: 'hide' })
-  uploadDOM.classList.add('uploading')
 
   let currentList = null
   if (typeof onChoose === 'function') {
-    currentList = await onChoose({
-      ...params
-    })
+    currentList = await onChoose()
   }
   if (_.isEmpty(currentList)) {
-    uploadDOM.classList.remove('uploading')
-    Loading.hide()
+    return false
   }
 
   // 构建新的照片列表
@@ -47,17 +35,12 @@ async function choose(
   // 异步上传
   if (async) {
     onChange && onChange(newList, { action: 'choose' })
-    uploadDOM.classList.remove('uploading')
-    Loading.hide()
-    return
+    return newList
   }
 
-  // 同步上传
-  Loading.show({ content: LocaleUtil.locale('上传中') })
   // 同步上传: list发生变化即开始上传
   newList = await uploadList(newList, { action: 'upload' })
-  uploadDOM.classList.remove('uploading')
-  Loading.hide()
+  return newList
 }
 
 export default choose

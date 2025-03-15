@@ -1,18 +1,22 @@
 import _ from 'lodash'
-import { Loading, LocaleUtil } from 'seedsui-react'
+import { LocaleUtil } from 'seedsui-react'
 import { getRemainCount } from './../../utils'
 import compressImage from './compressImage'
 
 // 选择文件
-async function fileChoose(
-  event,
-  params,
-  { async, sizeType, maxWidth, count, list, uploadPosition, uploadList, onFileChoose, onChange }
-) {
-  let file = event.nativeEvent.target
-  let uploadDOM = file.parentNode
-
-  if (file?.type !== 'file') return
+async function fileChoose({
+  file,
+  async,
+  sizeType,
+  maxWidth,
+  count,
+  list,
+  uploadPosition,
+  uploadList,
+  onFileChoose,
+  onChange
+}) {
+  if (file?.type !== 'file') return false
 
   if (!file || !file.files?.[0]) {
     Toast.show({
@@ -46,32 +50,17 @@ async function fileChoose(
     }
   }
 
-  Loading.show({ className: 'hide' })
-  uploadDOM.classList.add('uploading')
-
-  const localId = URL.createObjectURL(fileData)
-  let currentList = [
-    {
-      status: 'choose',
-      localId: localId,
-      fileData: fileData,
-      thumb: localId,
-      src: localId,
-      path: ``
-    }
-  ]
-
+  let currentList = null
   if (typeof onFileChoose === 'function') {
+    const fileURL = URL.createObjectURL(fileData)
     currentList = await onFileChoose({
-      localId: localId,
-      fileData: fileData,
-      ...params
+      fileURL: fileURL,
+      fileData: fileData
     })
   }
 
   if (_.isEmpty(currentList)) {
-    uploadDOM.classList.remove('uploading')
-    Loading.hide()
+    return false
   }
 
   // 构建新的照片列表
@@ -88,17 +77,12 @@ async function fileChoose(
   // 异步上传
   if (async) {
     onChange && onChange(newList, { action: 'choose' })
-    uploadDOM.classList.remove('uploading')
-    Loading.hide()
-    return
+    return newList
   }
 
-  // 同步上传
-  Loading.show({ content: LocaleUtil.locale('上传中') })
   // 同步上传: list发生变化即开始上传
   newList = await uploadList(newList, { action: 'upload' })
-  uploadDOM.classList.remove('uploading')
-  Loading.hide()
+  return newList
 }
 
 export default fileChoose

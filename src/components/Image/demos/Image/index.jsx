@@ -54,15 +54,15 @@ export default () => {
           sourceType={['camera', 'album']}
           list={list}
           count={4}
-          onFileChoose={({ localId, fileData }) => {
+          onFileChoose={({ fileURL, fileData }) => {
             // 待传文件
             return [
               {
                 status: 'choose',
-                localId: localId,
+                localId: fileURL,
                 fileData: fileData,
-                thumb: localId,
-                src: localId,
+                thumb: fileURL,
+                src: fileURL,
                 path: ``
               }
             ]

@@ -1,0 +1,31 @@
+@import 'Delete/ImageItemDelete.less';
+@import 'Img/ImageItemImg.less';
+@import 'Reload/ImageItemReload.less';
+
+// 单个照片
+.image-item {
+  position: relative;
+
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  cursor: pointer;
+
+  // 上传中
+  &.uploading {
+    // 显示转圈
+    .image-uploading {
+      display: block;
+    }
+  }
+
+  // 上传失败
+  &.fail {
+    // 显示重转
+    .image-reload {
+      display: block;
+    }
+  }
+}

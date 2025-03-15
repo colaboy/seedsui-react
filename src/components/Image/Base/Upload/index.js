@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
 // 上传按钮
 const Upload = ({
@@ -18,12 +18,9 @@ const Upload = ({
   onChoose,
   onFileChange
 }) => {
-  // Bridge.chooseImage参数
-  let chooseParamsRef = useRef(null)
-
   // 选择文件
   function handleFileChange(e) {
-    onFileChange && onFileChange(e, chooseParamsRef.current)
+    onFileChange && onFileChange(e)
   }
 
   // 点击选择框
@@ -34,20 +31,8 @@ const Upload = ({
     e.stopPropagation()
 
     // 前置校验
-    chooseParamsRef.current = null
     if (typeof onBeforeChoose === 'function') {
-      let isOk = await onBeforeChoose(e, {
-        setUploading: (isUploading) => {
-          if (isUploading) {
-            e.nativeEvent.target.classList.add('uploading')
-          } else {
-            e.nativeEvent.target.classList.remove('uploading')
-          }
-        },
-        setChooseParams: (chooseParams) => {
-          chooseParamsRef.current = chooseParams
-        }
-      })
+      let isOk = await onBeforeChoose(e)
       if (isOk === false) return
     }
 
@@ -61,7 +46,7 @@ const Upload = ({
     }
 
     // 触发选择
-    onChoose && onChoose(e, chooseParamsRef.current)
+    onChoose && onChoose(e)
   }
 
   return (

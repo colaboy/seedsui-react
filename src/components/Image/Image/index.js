@@ -42,7 +42,7 @@ function Browser(
   },
   ref
 ) {
-  const photosRef = useRef(null)
+  const imageRef = useRef(null)
 
   const onChangeRef = useRef()
   onChangeRef.current = onChange
@@ -52,7 +52,7 @@ function Browser(
 
   useImperativeHandle(ref, () => {
     return {
-      ...photosRef.current,
+      ...imageRef.current,
       chooseImage: () => {
         Toast.show({
           content: LocaleUtil.locale('浏览器上传, 不支持编程式调用拍照')
@@ -62,6 +62,24 @@ function Browser(
       uploadList: uploadList
     }
   })
+
+  // 显隐Loading
+  function showLoading({ content } = {}) {
+    let imageDOM = imageRef.current?.rootDOM || null
+    if (!imageDOM) return
+    imageDOM.classList.add('uploading')
+    let uploadDOM = imageDOM.querySelector('image-upload')
+    if (uploadDOM) uploadDOM.classList.add('uploading')
+    Loading.show(content ? { content } : { className: 'hide' })
+  }
+  function hideLoading() {
+    let imageDOM = imageRef.current?.rootDOM || null
+    if (!imageDOM) return
+    imageDOM.classList.remove('uploading')
+    let uploadDOM = imageDOM.querySelector('image-upload')
+    if (uploadDOM) uploadDOM.classList.remove('uploading')
+    Loading.hide()
+  }
 
   // 上传文件
   async function uploadItem(item) {
@@ -97,6 +115,7 @@ function Browser(
 
     let hasUploaded = false
     // 开始上传
+    showLoading({ content: LocaleUtil.locale('上传中') })
     for (let [index, item] of newList.entries()) {
       // 只上传未上传的视频
       if (item.status === 'choose') {
@@ -104,6 +123,7 @@ function Browser(
         hasUploaded = true
       }
     }
+    hideLoading()
 
     // 不支持重新上传，则过滤上传失败的照片
     if (!reUpload) {
@@ -143,11 +163,11 @@ function Browser(
   async function handleReUpload(item, index, otherOptions) {
     let newList = otherOptions.list
     // 开始上传
-    Loading.show({ content: LocaleUtil.locale('上传中') })
+    showLoading({ content: LocaleUtil.locale('上传中') })
     otherOptions.itemDOM.classList.remove('fail')
     otherOptions.itemDOM.classList.add('uploading')
     newList[index] = await uploadItem(item, index)
-    Loading.hide()
+    hideLoading()
     otherOptions.itemDOM.classList.remove('uploading')
     if (newList[index].status === 'fail') {
       otherOptions.itemDOM.classList.add('fail')
@@ -176,7 +196,7 @@ function Browser(
 
   return (
     <Image
-      ref={photosRef}
+      ref={imageRef}
       uploadPosition={uploadPosition}
       // 自定义上传按钮与上传中的样式
       uploadNode={uploadNode}
@@ -185,8 +205,10 @@ function Browser(
       // 照片数量未超时可以选择
       onFileChange={
         onFileChoose && chooseVisible
-          ? (e, params) =>
-              fileChoose(e, params, {
+          ? async (e) => {
+              showLoading()
+              await fileChoose({
+                file: e.nativeEvent.target,
                 async,
                 sizeType,
                 maxWidth,
@@ -197,12 +219,15 @@ function Browser(
                 onFileChoose,
                 onChange: onChangeRef.current
               })
+              hideLoading()
+            }
           : null
       }
       onChoose={
         onChoose && chooseVisible
-          ? (e, params) =>
-              choose(e, params, {
+          ? async (e) => {
+              showLoading()
+              await choose({
                 async,
                 sizeType,
                 maxWidth,
@@ -213,11 +238,22 @@ function Browser(
                 onFileChoose,
                 onChange: onChangeRef.current
               })
+              hideLoading()
+            }
           : null
       }
       onDelete={allowClear ? handleDelete : null}
       onReUpload={handleReUpload}
-      onBeforeChoose={onBeforeChoose}
+      onBeforeChoose={
+        typeof onBeforeChoose === 'function'
+          ? async (e) => {
+              showLoading()
+              let isOk = await onBeforeChoose(e)
+              hideLoading()
+              return isOk
+            }
+          : null
+      }
       onPreview={onPreview}
       fileProps={
         capture

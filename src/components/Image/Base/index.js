@@ -1,9 +1,8 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
-import Img from './Img'
+import Item from './Item'
 import Upload from './Upload'
 import Uploading from './Uploading'
-import Reload from './Reload'
 import Preview from './Preview'
 
 import getPreviewType from './getPreviewType'
@@ -145,16 +144,25 @@ const Image = forwardRef(
           list.length > 0 &&
           list.map((item, index) => {
             return (
-              <div
+              <Item
                 key={index}
-                data-index={index}
-                // 状态status: choose|uploading|fail|success
-                className={`image-item${item.className ? ' ' + item.className : ''}${
-                  item.status ? ' ' + item.status : ''
-                }`}
-                onClick={(e) => {
-                  e.stopPropagation()
-
+                item={item}
+                index={index}
+                uploadingNode={getUploadingNode(item)}
+                onDelete={
+                  onDelete
+                    ? (e) => {
+                        onDeleteRef.current(item, index, {
+                          event: e,
+                          rootDOM: rootRef.current,
+                          itemDOM: e.currentTarget.parentNode,
+                          list: list
+                        })
+                      }
+                    : null
+                }
+                onReUpload={onReUploadRef.current}
+                onPreview={(e) => {
                   handlePreview(item, index, {
                     event: e,
                     rootDOM: rootRef.current,
@@ -162,37 +170,7 @@ const Image = forwardRef(
                     list: list
                   })
                 }}
-              >
-                {/* 缩略图 */}
-                {item.thumb && <Img src={item.thumb} />}
-
-                {/* 重新上传图标 */}
-                <Reload />
-
-                {/* 上传中图标 */}
-                {getUploadingNode(item)}
-
-                {/* 自定义dom */}
-                {item.children}
-                {/* 删除按钮 */}
-                {onDelete && (
-                  <div
-                    className="image-delete"
-                    onClick={(e) => {
-                      e.stopPropagation()
-
-                      onDeleteRef.current(item, index, {
-                        event: e,
-                        rootDOM: rootRef.current,
-                        itemDOM: e.currentTarget.parentNode,
-                        list: list
-                      })
-                    }}
-                  >
-                    <div className="image-delete-icon"></div>
-                  </div>
-                )}
-              </div>
+              />
             )
           })}
         {/* 图片上传: 上传按钮 */}
