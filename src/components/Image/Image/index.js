@@ -97,7 +97,7 @@ function Browser(
         let itemIndex = Number(itemDOM.getAttribute('data-index'))
         itemDOM.classList.remove('uploading')
         // 更新失败状态
-        if (failIndexes.includes(itemIndex)) {
+        if (Array.isArray(failIndexes) && failIndexes.includes(itemIndex)) {
           itemDOM.classList.add('fail')
         }
       }
@@ -113,6 +113,13 @@ function Browser(
         content: `没有onUpload入参, 无法上传`
       })
     }
+
+    // 已经上传成功, 无需要再次上传
+    if (item.src.startsWith('http')) {
+      item.status = 'success'
+      return item
+    }
+
     // 开始上传
     let result = await onUpload(item)
 
