@@ -241,7 +241,7 @@ function Browser(
       list,
       uploadPosition,
       uploadList,
-      onFileChoose,
+      onChoose,
       onChange: onChangeRef.current
     })
     hideLoading()
