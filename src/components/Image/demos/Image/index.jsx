@@ -54,12 +54,13 @@ export default () => {
           sizeType={['compressed']}
           sourceType={['camera', 'album']}
           list={list}
-          count={4}
+          count={9}
           onBeforeChoose={() => {
             watermarkRef.current = null
-            return new Promise(() => {
+            return new Promise((resolve) => {
               setTimeout(() => {
                 watermarkRef.current = ['watermark line1']
+                resolve(true)
               }, 2000)
             })
           }}
