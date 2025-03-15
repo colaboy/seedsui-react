@@ -42,8 +42,8 @@ const Main = forwardRef(
     })
 
     function handleTouchStart(e) {
-      if (isLoadingRef.current) return
       e.stopPropagation()
+      if (isLoadingRef.current) return
 
       // 如果不在顶部，则不触发
       if (e.currentTarget.scrollTop <= 0) touchesRef.current.isTop = true
@@ -56,6 +56,7 @@ const Main = forwardRef(
     }
     // 标识头部正在拖动
     function handleTouchMove(e) {
+      e.stopPropagation()
       if (isLoadingRef.current) return
       if (!touchesRef.current.isTop) return
 
@@ -83,6 +84,7 @@ const Main = forwardRef(
       }
     }
     async function handleTouchEnd(e) {
+      e.stopPropagation()
       if (isLoadingRef.current) return
       if (!touchesRef.current.isTop) return
 

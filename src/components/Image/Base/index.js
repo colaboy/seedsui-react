@@ -152,12 +152,7 @@ const Image = forwardRef(
                 onDelete={
                   onDelete
                     ? (e) => {
-                        onDeleteRef.current(item, index, {
-                          event: e,
-                          rootDOM: rootRef.current,
-                          itemDOM: e.currentTarget.parentNode,
-                          list: list
-                        })
+                        onDeleteRef.current(item, index)
                       }
                     : null
                 }

@@ -4,6 +4,7 @@ import uploadItem from './browser/uploadItem'
 
 export default () => {
   const imageUploaderRef = useRef(null)
+  const watermarkRef = useRef(null)
   const [list, setList] = useState([
     {
       id: '1',
@@ -54,6 +55,14 @@ export default () => {
           sourceType={['camera', 'album']}
           list={list}
           count={4}
+          onBeforeChoose={() => {
+            watermarkRef.current = null
+            return new Promise(() => {
+              setTimeout(() => {
+                watermarkRef.current = ['watermark line1']
+              }, 2000)
+            })
+          }}
           onFileChoose={({ fileURL, fileData }) => {
             // 待传文件
             return [
@@ -63,6 +72,7 @@ export default () => {
                 fileData: fileData,
                 thumb: fileURL,
                 src: fileURL,
+                watermark: watermarkRef.current,
                 path: ``
               }
             ]
