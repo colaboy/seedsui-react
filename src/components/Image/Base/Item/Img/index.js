@@ -1,21 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+// 内库使用-start
+import AssetUtil from './../../../../../utils/AssetUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { AssetUtil } from 'seedsui-react'
+测试使用-end */
 
 // 图片显示
 const Img = ({ src }) => {
-  // 图片加载完成
-  function handleImgLoad(e) {
-    e.currentTarget.parentNode.classList.add('success')
-    e.currentTarget.parentNode.style.backgroundImage = `url(${src})`
-  }
-  // 图片加载失败
-  function handleImgError(e) {
-    e.currentTarget.parentNode.classList.add('error')
-  }
+  const [backgroundImage, setBackGroundImage] = useState('')
+
+  useEffect(() => {
+    setBackGroundImage('')
+    AssetUtil.loadImage(src, {
+      success: () => {
+        setBackGroundImage(src)
+      },
+      fail: () => {
+        setBackGroundImage('error')
+      }
+    })
+  }, [src])
 
   return (
-    <div className={`image-item-img`}>
-      <img src={src} alt="" onLoad={handleImgLoad} onError={handleImgError} />
-    </div>
+    <div
+      className={`image-item-img${backgroundImage === 'error' ? ' error' : ''}`}
+      style={{ backgroundImage: backgroundImage === 'error' ? '' : `url(${backgroundImage})` }}
+    ></div>
   )
 }
 
