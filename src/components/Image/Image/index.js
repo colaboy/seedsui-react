@@ -149,14 +149,11 @@ function Browser(
         content: result
       })
       item.status = 'fail'
-    }
-    // 上传成功
-    else {
-      item.status = 'success'
+      return item
     }
 
     // 更新状态
-    return { ...item, ...result }
+    return { status: 'success', ...item, ...result }
   }
 
   // 上传
