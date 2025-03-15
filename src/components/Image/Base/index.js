@@ -163,12 +163,7 @@ const Image = forwardRef(
                 }
                 onReUpload={onReUploadRef.current}
                 onPreview={(e) => {
-                  handlePreview(item, index, {
-                    event: e,
-                    rootDOM: rootRef.current,
-                    itemDOM: e.currentTarget,
-                    list: list
-                  })
+                  handlePreview(item, index)
                 }}
               />
             )

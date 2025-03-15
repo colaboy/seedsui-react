@@ -8,8 +8,8 @@ export default () => {
     {
       id: '1',
       thumb: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png',
-      src: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png'
-      // status: 'fail'
+      src: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png',
+      status: 'fail'
     },
     {
       id: '2',

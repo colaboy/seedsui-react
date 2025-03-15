@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 失败重传图标
-const Reload = ({ onReUpload }) => {
+const Reload = ({ onClick }) => {
   return (
     <div
       className={`image-reload`}
@@ -9,7 +9,7 @@ const Reload = ({ onReUpload }) => {
         e.stopPropagation()
         // 上传失败允许重新上传
         if (e.currentTarget.parentNode.classList.contains('fail')) {
-          onReUpload && onReUpload(e)
+          onClick && onClick(e)
         }
       }}
     >

@@ -30,7 +30,11 @@ const Item = ({
       {item.thumb && <Img src={item.thumb} />}
 
       {/* 重新上传图标 */}
-      <Reload onClick={onReUpload} />
+      <Reload
+        onClick={(e) => {
+          onReUpload && onReUpload(item, index)
+        }}
+      />
 
       {/* 上传中 */}
       {uploadingNode && uploadingNode}
@@ -41,9 +45,7 @@ const Item = ({
       {onDelete && (
         <Delete
           onClick={(e) => {
-            e.stopPropagation()
-
-            onDelete(e)
+            onDelete(item, index)
           }}
         />
       )}

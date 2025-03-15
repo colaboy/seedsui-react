@@ -64,20 +64,45 @@ function Browser(
   })
 
   // 显隐Loading
-  function showLoading({ content } = {}) {
-    let imageDOM = imageRef.current?.rootDOM || null
-    if (!imageDOM) return
-    imageDOM.classList.add('uploading')
-    let uploadDOM = imageDOM.querySelector('image-upload')
+  function showLoading({ content, index } = {}) {
+    let rootDOM = imageRef.current?.rootDOM || null
+    if (!rootDOM) return
+    // 根节点遮罩
+    rootDOM.classList.add('uploading')
+    // 新增按钮遮罩
+    let uploadDOM = rootDOM.querySelector('image-upload')
     if (uploadDOM) uploadDOM.classList.add('uploading')
+    // 当前项遮罩
+    let itemDOM =
+      typeof index === 'number' ? rootDOM.querySelector(`[data-index="${index}"]`) : null
+    if (itemDOM) {
+      itemDOM.classList.remove('fail')
+      itemDOM.classList.add('uploading')
+    }
+
     Loading.show(content ? { content } : { className: 'hide' })
   }
-  function hideLoading() {
-    let imageDOM = imageRef.current?.rootDOM || null
-    if (!imageDOM) return
-    imageDOM.classList.remove('uploading')
-    let uploadDOM = imageDOM.querySelector('image-upload')
+  function hideLoading({ failIndexes } = {}) {
+    let rootDOM = imageRef.current?.rootDOM || null
+    if (!rootDOM) return
+    // 根节点遮罩
+    rootDOM.classList.remove('uploading')
+    // 新增按钮遮罩
+    let uploadDOM = rootDOM.querySelector('image-upload')
     if (uploadDOM) uploadDOM.classList.remove('uploading')
+    // 当前项遮罩
+    let itemsDOM = rootDOM.querySelectorAll(`[data-index]`)
+    if (itemsDOM) {
+      for (let itemDOM of itemsDOM) {
+        let itemIndex = Number(itemDOM.getAttribute('data-index'))
+        itemDOM.classList.remove('uploading')
+        // 更新失败状态
+        if (failIndexes.includes(itemIndex)) {
+          itemDOM.classList.add('fail')
+        }
+      }
+    }
+
     Loading.hide()
   }
 
@@ -160,18 +185,12 @@ function Browser(
   }
 
   // 重新上传
-  async function handleReUpload(item, index, otherOptions) {
-    let newList = otherOptions.list
+  async function handleReUpload(item, index) {
+    let newList = list
     // 开始上传
-    showLoading({ content: LocaleUtil.locale('上传中') })
-    otherOptions.itemDOM.classList.remove('fail')
-    otherOptions.itemDOM.classList.add('uploading')
+    showLoading({ content: LocaleUtil.locale('上传中'), index: index })
     newList[index] = await uploadItem(item, index)
-    hideLoading()
-    otherOptions.itemDOM.classList.remove('uploading')
-    if (newList[index].status === 'fail') {
-      otherOptions.itemDOM.classList.add('fail')
-    }
+    hideLoading(newList[index].status === 'fail' ? { failIndexes: [index] } : undefined)
 
     onChangeRef.current && onChangeRef.current(newList, { action: 'reUpload' })
   }
