@@ -17,8 +17,8 @@ async function choose({ async, count, list, uploadPosition, uploadList, onChoose
   if (typeof onChoose === 'function') {
     currentList = await onChoose()
   }
-  if (_.isEmpty(currentList)) {
-    return false
+  if (!Array.isArray(currentList) || _.isEmpty(currentList)) {
+    return null
   }
 
   // 构建新的照片列表

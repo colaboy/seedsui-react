@@ -23,7 +23,7 @@ const Image = forwardRef(
       fileProps, // file框属性
       list, // [{id: '', name: '', thumb: '', src: '', status: 'choose|uploading|fail|success'}]
       uploadPosition = 'end', // start | end
-      uploadNode, // 上传按钮覆盖的dom
+      upload, // 上传按钮覆盖的dom
       uploading,
       // Events
       onBeforeChoose, // 选择前校验
@@ -101,14 +101,25 @@ const Image = forwardRef(
     }
 
     // 上传中node
-    function getUploadingNode(params) {
+    function getUploadingNode(item) {
       if (typeof uploading === 'function') {
-        return uploading(params)
+        return uploading(item)
       }
       if (React.isValidElement(uploading)) {
         return uploading
       }
       return <Uploading />
+    }
+
+    // 上传node
+    function getUploadInnerNode() {
+      if (typeof upload === 'function') {
+        return upload()
+      }
+      if (React.isValidElement(upload)) {
+        return upload
+      }
+      return null
     }
 
     // 上传node
@@ -119,7 +130,7 @@ const Image = forwardRef(
           // file框属性
           fileProps={fileProps}
           // 上传DOM
-          uploadNode={uploadNode}
+          uploadNode={getUploadInnerNode()}
           // 上传中DOM
           uploadingNode={getUploadingNode()}
           // Choose events

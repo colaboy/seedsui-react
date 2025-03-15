@@ -59,8 +59,8 @@ async function fileChoose({
     })
   }
 
-  if (_.isEmpty(currentList)) {
-    return false
+  if (!Array.isArray(currentList) || _.isEmpty(currentList)) {
+    return null
   }
 
   // 构建新的照片列表

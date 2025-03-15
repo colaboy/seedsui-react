@@ -11,7 +11,7 @@ import { Loading, Toast, , LocaleUtil } from 'seedsui-react'
 测试使用-end */
 import fileChoose from './fileChoose'
 import choose from './choose'
-import Image from './../Base'
+import ImageBase from './../Base'
 
 // 照片上传
 function Browser(
@@ -19,7 +19,7 @@ function Browser(
     // Style
     allowClear = true,
     uploadPosition,
-    uploadNode,
+    upload,
     uploading,
 
     // Config
@@ -53,13 +53,32 @@ function Browser(
   useImperativeHandle(ref, () => {
     return {
       ...imageRef.current,
-      chooseImage: () => {
-        Toast.show({
-          content: LocaleUtil.locale('浏览器上传, 不支持编程式调用拍照')
+      chooseImage: async () => {
+        if (!chooseVisible) {
+          Toast.show({
+            content: locale('此照片控件无拍照功能, 请勿调用拍照')
+          })
+          return false
+        }
+        let uploadDOM = imageRef.current?.rootDOM?.querySelector?.('.image-item.image-upload')
+        if (!uploadDOM) {
+          Toast.show({
+            content: locale('未找到拍照按钮, 调用拍照失败')
+          })
+          return false
+        }
+
+        let chooseCallBack = onFileChoose ? handleFileChoose : handleChoose
+        let chooseOk = await chooseCallBack({
+          nativeEvent: {
+            target: uploadDOM
+          }
         })
-        return false
+        return chooseOk
       },
-      uploadList: uploadList
+      uploadList: uploadList,
+      showLoading: showLoading,
+      hideLoading: hideLoading
     }
   })
 
@@ -82,6 +101,7 @@ function Browser(
 
     Loading.show(content ? { content } : { className: 'hide' })
   }
+
   function hideLoading({ failIndexes } = {}) {
     let rootDOM = imageRef.current?.rootDOM || null
     if (!rootDOM) return
@@ -191,6 +211,43 @@ function Browser(
     return newList
   }
 
+  // 选择照片
+  async function handleFileChoose(e) {
+    showLoading()
+    let chooseResult = await fileChoose({
+      file: e.nativeEvent.target,
+      async,
+      sizeType,
+      maxWidth,
+      count,
+      list,
+      uploadPosition,
+      uploadList,
+      onFileChoose,
+      onChange: onChangeRef.current
+    })
+    hideLoading()
+    return chooseResult
+  }
+
+  // 选择照片
+  async function handleChoose(e) {
+    showLoading()
+    let chooseResult = await choose({
+      async,
+      sizeType,
+      maxWidth,
+      count,
+      list,
+      uploadPosition,
+      uploadList,
+      onFileChoose,
+      onChange: onChangeRef.current
+    })
+    hideLoading()
+    return chooseResult
+  }
+
   // 重新上传
   async function handleReUpload(item, index) {
     let newList = list
@@ -221,53 +278,16 @@ function Browser(
   // }
 
   return (
-    <Image
+    <ImageBase
       ref={imageRef}
       uploadPosition={uploadPosition}
       // 自定义上传按钮与上传中的样式
-      uploadNode={uploadNode}
+      upload={upload}
       uploading={uploading}
       list={list}
       // 照片数量未超时可以选择
-      onFileChange={
-        onFileChoose && chooseVisible
-          ? async (e) => {
-              showLoading()
-              await fileChoose({
-                file: e.nativeEvent.target,
-                async,
-                sizeType,
-                maxWidth,
-                count,
-                list,
-                uploadPosition,
-                uploadList,
-                onFileChoose,
-                onChange: onChangeRef.current
-              })
-              hideLoading()
-            }
-          : null
-      }
-      onChoose={
-        onChoose && chooseVisible
-          ? async (e) => {
-              showLoading()
-              await choose({
-                async,
-                sizeType,
-                maxWidth,
-                count,
-                list,
-                uploadPosition,
-                uploadList,
-                onFileChoose,
-                onChange: onChangeRef.current
-              })
-              hideLoading()
-            }
-          : null
-      }
+      onFileChange={onFileChoose && chooseVisible ? handleFileChoose : null}
+      onChoose={onChoose && chooseVisible ? handleChoose : null}
       onDelete={allowClear ? handleDelete : null}
       onReUpload={handleReUpload}
       onBeforeChoose={
