@@ -153,7 +153,7 @@ function Browser(
     }
 
     // 更新状态
-    return { status: 'success', ...item, ...result }
+    return { ...item, status: 'success', ...result }
   }
 
   // 上传
