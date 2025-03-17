@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
-import getHighlightKeyword from './getHighlightKeyword'
+import getHighlightNode from './getHighlightNode'
 
 // Base
 const Base = forwardRef(({ highlight, children, ...props }, ref) => {
@@ -16,7 +16,7 @@ const Base = forwardRef(({ highlight, children, ...props }, ref) => {
   // 获取Node
   function getNode() {
     if (typeof highlight === 'string' && typeof children === 'string') {
-      return getHighlightKeyword(children, highlight)
+      return getHighlightNode(children, highlight)
     }
     return children
   }
