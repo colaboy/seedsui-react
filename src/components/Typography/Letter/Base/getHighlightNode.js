@@ -1,4 +1,5 @@
 import React from 'react'
+import Highlight from './../Highlight'
 
 // 关键字高亮
 const getHighlightNode = (text, keyword) => {
@@ -11,7 +12,7 @@ const getHighlightNode = (text, keyword) => {
     index > -1 ? (
       <>
         {beforeStr}
-        <span className="typography-highlight">{keyword}</span>
+        <Highlight>{keyword}</Highlight>
         {afterStr}
       </>
     ) : (
