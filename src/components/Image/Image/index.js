@@ -56,14 +56,14 @@ function Image(
       chooseImage: async () => {
         if (!chooseVisible) {
           Toast.show({
-            content: locale('此照片控件无拍照功能, 请勿调用拍照')
+            content: LocaleUtil.locale('此照片控件无拍照功能, 请勿调用拍照')
           })
           return false
         }
         let uploadDOM = imageRef.current?.rootDOM?.querySelector?.('.image-item.image-upload')
         if (!uploadDOM) {
           Toast.show({
-            content: locale('未找到拍照按钮, 调用拍照失败')
+            content: LocaleUtil.locale('未找到拍照按钮, 调用拍照失败')
           })
           return false
         }

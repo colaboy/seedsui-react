@@ -75,8 +75,7 @@ const Search = forwardRef(
 
         if (typeof combo === 'function') {
           return combo({
-            value,
-            displayValue
+            value
           })
         }
         return combo || children

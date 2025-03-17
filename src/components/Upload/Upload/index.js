@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import getAccept from './../utils/getAccept'
 import fileChoose from './fileChoose'
 import choose from './choose'
