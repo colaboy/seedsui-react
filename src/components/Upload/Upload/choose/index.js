@@ -15,7 +15,7 @@ async function choose({ async, count, list, uploadPosition, uploadList, onChoose
   // 大于总数禁止选择
   if (getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`照片总数不能大于${count}张`),
+      content: LocaleUtil.locale(`总数不能大于${count}`),
       maskClickable: true
     })
     return false
@@ -29,13 +29,13 @@ async function choose({ async, count, list, uploadPosition, uploadList, onChoose
     return null
   }
 
-  // 构建新的照片列表
+  // 构建新的列表
   let newList = []
-  // 新照片放前面
+  // 新放前面
   if (uploadPosition === 'start') {
     newList = [...currentList, ...(list || [])]
   }
-  // 新照片放后面
+  // 新放后面
   else {
     newList = [...(list || []), ...currentList]
   }

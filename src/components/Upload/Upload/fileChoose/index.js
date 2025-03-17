@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import getRemainCount from './../../utils/getRemainCount'
-import compressImage from './compressImage'
+import validateMaxSize from './../../utils/validateMaxSize'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -15,8 +15,7 @@ import { LocaleUtil, Toast} from 'seedsui-react'
 async function fileChoose({
   file,
   async,
-  sizeType,
-  maxWidth,
+  maxSize,
   count,
   list,
   uploadPosition,
@@ -37,33 +36,41 @@ async function fileChoose({
   // 大于总数禁止选择
   if (getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`照片总数不能大于${count}张`),
+      content: LocaleUtil.locale(`总数不能大于${count}`),
       maskClickable: true
+    })
+    return
+  }
+
+  if (maxSize && !validateMaxSize(file, maxSize)) {
+    Toast.show({
+      content: LocaleUtil.locale(`文件大小不能超过${Math.abs(maxSize / 1024)}M`)
     })
     return
   }
 
   // 数据
   let fileData = file.files?.[0]
+  let fileName = fileData?.name || file.value
+  let fileURL = URL.createObjectURL(fileData)
+  let fileSize = fileData?.size
 
-  // 压缩图片
-  if (JSON.stringify(sizeType || []) !== JSON.stringify(['original'])) {
-    try {
-      let startCompressLog = Date.now()
-      fileData = await compressImage(fileData, 'file', { maxWidth: maxWidth })
-      let endCompressLog = Date.now()
-      console.log('图片压缩完成, 用时: ' + (endCompressLog - startCompressLog) / 1000 + '秒')
-    } catch (error) {
-      console.error('图片压缩失败, 使用原图上传:', error)
-    }
+  // 未获取到文件名
+  if (!fileName) {
+    Toast.show({
+      content: LocaleUtil.locale(`未获取到文件名, 无法上传`),
+      maskClickable: true
+    })
+    return
   }
 
   let currentList = null
   if (typeof onFileChange === 'function') {
-    const fileURL = URL.createObjectURL(fileData)
     currentList = await onFileChange({
+      fileName: fileName,
+      fileData: fileData,
       fileURL: fileURL,
-      fileData: fileData
+      fileSize: fileSize
     })
   }
 
@@ -71,13 +78,13 @@ async function fileChoose({
     return null
   }
 
-  // 构建新的照片列表
+  // 构建新的列表
   let newList = []
-  // 新照片放前面
+  // 新放前面
   if (uploadPosition === 'start') {
     newList = [...currentList, ...(list || [])]
   }
-  // 新照片放后面
+  // 新放后面
   else {
     newList = [...(list || []), ...currentList]
   }

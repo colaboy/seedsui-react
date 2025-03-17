@@ -1,0 +1,81 @@
+import React, { useEffect, useState, useRef } from 'react'
+import { Toast, Layout, Bridge, Button, Upload } from 'seedsui-react'
+import uploadItem from './browser/uploadItem'
+
+export default () => {
+  const uploadRef = useRef(null)
+  const [list, setList] = useState([
+    {
+      name: '1',
+      src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png?x-oss-process=style/zk320'
+    },
+    {
+      name: '2',
+      src: 'https://img.zcool.cn/community/01a9a65dfad975a8012165189a6476.doc'
+    }
+  ])
+
+  useEffect(() => {
+    Bridge.ready(() => {
+      console.log('加载桥接')
+    })
+  }, [])
+
+  // 异步上传
+  async function handleAsyncUpload() {
+    let isOK = Upload.validateListStatus(list)
+    if (isOK !== true) {
+      Toast.show({ content: isOK })
+      let result = await uploadRef.current.uploadList()
+      console.log('上传结果：', result)
+      return
+    }
+  }
+
+  return (
+    <Layout className="full">
+      <Layout.Main>
+        <Upload
+          ref={uploadRef}
+          async
+          uploadPosition="start"
+          maxSize={2048}
+          list={list}
+          count={9}
+          onBeforeChoose={() => {
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                resolve(true)
+              }, 2000)
+            })
+          }}
+          onFileChange={({ fileName, fileSize, fileURL, fileData }) => {
+            // 待传文件
+            return [
+              {
+                sourceType: 'local',
+                status: 'choose',
+                name: fileName,
+                size: fileSize,
+                uploadDir: 'uploadDir/202504',
+                src: fileURL,
+                path: '',
+                fileData: fileData
+              }
+            ]
+          }}
+          onChange={(newList) => {
+            console.log('修改:', newList)
+            setList(newList)
+          }}
+          onUpload={uploadItem}
+        />
+      </Layout.Main>
+      <Layout.Footer>
+        <Button className="flex primary" onClick={handleAsyncUpload}>
+          Sync Upload
+        </Button>
+      </Layout.Footer>
+    </Layout>
+  )
+}

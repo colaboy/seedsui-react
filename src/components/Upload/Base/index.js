@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
-import UploadButton from './UploadButton'
+import UploadButton from './../UploadButton'
 import UploadList from './UploadList'
 
 // 文件

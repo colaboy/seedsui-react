@@ -1,12 +1,12 @@
 import React from 'react'
 
 // 内库使用-start
-import LocaleUtil from './../../utils/LocaleUtil'
-import Clipboard from './../../utils/Clipboard'
-import AssetUtil from './../../utils/AssetUtil'
-import Bridge from './../../utils/Bridge'
-import Toast from './../Toast'
-import Modal from './../Modal'
+import LocaleUtil from './../../../utils/LocaleUtil'
+import Clipboard from './../../../utils/Clipboard'
+import AssetUtil from './../../../utils/AssetUtil'
+import Bridge from './../../../utils/Bridge'
+import Toast from './../../Toast'
+import Modal from './../../Modal'
 // 内库使用-end
 
 /* 测试使用-start
@@ -24,14 +24,14 @@ const UploadList = ({
   onReUpload
 }) => {
   // 点击预览
-  async function handlePreview(item, index, otherOptions) {
+  async function handlePreview(item, index) {
     // 自定义预览
     if (typeof onPreview === 'function') {
-      let goOn = await onPreview(item, index, otherOptions)
+      let goOn = await onPreview(item, index)
       if (goOn === false) return
     }
 
-    // 失败的照片用localId预览
+    // 失败的文件用localId预览
     if (item.status === 'fail') {
       Toast.show({
         content: LocaleUtil.locale('图片未上传成功, 无法预览', 'SeedsUI_upload_preview_error')
@@ -163,12 +163,7 @@ const UploadList = ({
               onClick={(e) => {
                 e.stopPropagation()
 
-                handlePreview(item, index, {
-                  event: e,
-                  rootDOM: rootRef.current,
-                  itemDOM: e.currentTarget,
-                  list: list
-                })
+                handlePreview(item, index)
               }}
             >
               {/* 文件图标 */}
@@ -185,12 +180,7 @@ const UploadList = ({
                     onClick={(e) => {
                       e.stopPropagation()
 
-                      onReUpload(item, index, {
-                        event: e,
-                        rootDOM: rootRef.current,
-                        itemDOM: e.currentTarget.parentNode,
-                        list: list
-                      })
+                      onReUpload(item, index)
                     }}
                   ></div>
                 )}
@@ -202,12 +192,7 @@ const UploadList = ({
                     onClick={(e) => {
                       e.stopPropagation()
 
-                      onDelete(item, index, {
-                        event: e,
-                        rootDOM: rootRef.current,
-                        itemDOM: e.currentTarget.parentNode,
-                        list: list
-                      })
+                      onDelete(item, index)
                     }}
                   ></div>
                 )}

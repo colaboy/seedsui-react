@@ -1,7 +1,8 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
+import getAccept from './../utils/getAccept'
 import fileChoose from './fileChoose'
 import choose from './choose'
-import ImageBase from './../Base'
+import UploadBase from './../Base'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -10,11 +11,11 @@ import Toast from './../../Toast'
 // 内库使用-end
 
 /* 测试使用-start
-import { Loading, Toast, , LocaleUtil } from 'seedsui-react'
+import { LocaleUtil, Loading, Toast } from 'seedsui-react'
 测试使用-end */
 
-// 照片上传
-function Image(
+// 文件上传
+function Upload(
   {
     // Style
     allowClear = true,
@@ -26,10 +27,9 @@ function Image(
     async = false,
     reUpload = true,
     count = 5,
-    sourceType = ['album', 'camera'],
-    sizeType = ['compressed'], // ['original', 'compressed']
-    maxWidth,
-    list = [], // [{thumb: '全路径', src: '全路径', path: '目录/年月/照片名.jpg', status: 'choose|uploading|fail|success', children: node}]
+    extension,
+    maxSize,
+    list = [], // [{name: '附件名称', src: '全路径', path: '目录/年月/文件名.jpg', status: 'choose|uploading|fail|success', children: node}]
 
     // Events
     onBeforeChoose,
@@ -42,7 +42,7 @@ function Image(
   },
   ref
 ) {
-  const imageRef = useRef(null)
+  const uploadRef = useRef(null)
 
   const onChangeRef = useRef()
   onChangeRef.current = onChange
@@ -52,30 +52,7 @@ function Image(
 
   useImperativeHandle(ref, () => {
     return {
-      ...imageRef.current,
-      chooseImage: async () => {
-        if (!chooseVisible) {
-          Toast.show({
-            content: locale('此照片控件无拍照功能, 请勿调用拍照')
-          })
-          return false
-        }
-        let uploadDOM = imageRef.current?.rootDOM?.querySelector?.('.image-item.image-upload')
-        if (!uploadDOM) {
-          Toast.show({
-            content: locale('未找到拍照按钮, 调用拍照失败')
-          })
-          return false
-        }
-
-        let chooseCallBack = onFileChange ? handleFileChange : handleChoose
-        let chooseOk = await chooseCallBack({
-          nativeEvent: {
-            target: uploadDOM
-          }
-        })
-        return chooseOk
-      },
+      ...uploadRef.current,
       uploadList: uploadList,
       showLoading: showLoading,
       hideLoading: hideLoading
@@ -84,12 +61,12 @@ function Image(
 
   // 显隐Loading
   function showLoading({ content, index } = {}) {
-    let rootDOM = imageRef.current?.rootDOM || null
+    let rootDOM = uploadRef.current?.rootDOM || null
     if (!rootDOM) return
     // 根节点遮罩
     rootDOM.classList.add('uploading')
     // 新增按钮遮罩
-    let uploadDOM = rootDOM.querySelector('.image-upload')
+    let uploadDOM = rootDOM.querySelector('.upload-choose')
     if (uploadDOM) uploadDOM.classList.add('uploading')
     // 当前项遮罩
     let itemDOM =
@@ -103,12 +80,12 @@ function Image(
   }
 
   function hideLoading({ failIndexes } = {}) {
-    let rootDOM = imageRef.current?.rootDOM || null
+    let rootDOM = uploadRef.current?.rootDOM || null
     if (!rootDOM) return
     // 根节点遮罩
     rootDOM.classList.remove('uploading')
     // 新增按钮遮罩
-    let uploadDOM = rootDOM.querySelector('.image-upload')
+    let uploadDOM = rootDOM.querySelector('.upload-choose')
     if (uploadDOM) uploadDOM.classList.remove('uploading')
     // 当前项遮罩
     let itemsDOM = rootDOM.querySelectorAll(`[data-index]`)
@@ -157,24 +134,20 @@ function Image(
   }
 
   // 上传
-  async function uploadList(newList, { action } = {}) {
+  async function uploadList(newList) {
     // eslint-disable-next-line
     if (!newList) newList = list
     if (!newList) return
 
-    let hasUploaded = false
     // 开始上传
-    showLoading({ content: LocaleUtil.locale('上传中') })
     for (let [index, item] of newList.entries()) {
-      // 只上传未上传的视频
+      // 只上传未上传的文件
       if (item.status === 'choose') {
-        newList[index] = await uploadItem(item)
-        hasUploaded = true
+        newList[index] = await uploadItem(item, index)
       }
     }
-    hideLoading()
 
-    // 不支持重新上传，则过滤上传失败的照片
+    // 不支持重新上传，则过滤上传失败的文件
     if (!reUpload) {
       if (Array.isArray(newList) && newList.length) {
         let failCount = 0
@@ -193,29 +166,40 @@ function Image(
         // 上传失败
         if (failCount) {
           Toast.show({
-            content: `${LocaleUtil.locale('网络异常，上传失败')}${failCount}${LocaleUtil.locale(
-              '张'
-            )})`
+            content: `${LocaleUtil.locale('网络异常，上传失败')}${failCount})`
           })
         }
       }
     }
-
-    if (hasUploaded) {
-      onChangeRef.current && onChangeRef.current(newList, { action })
-    }
-
     return newList
   }
 
-  // 选择照片
+  // 重新上传
+  async function handleReUpload(item, index, otherOptions) {
+    let newList = otherOptions.list
+    // 开始上传
+    Loading.show({
+      content: LocaleUtil.locale('上传中', 'library.fc09a73e52b76f697cff129b4dddecd1')
+    })
+    otherOptions.itemDOM.classList.remove('fail')
+    otherOptions.itemDOM.classList.add('uploading')
+    newList[index] = await uploadItem(item, index)
+    Loading.hide()
+    otherOptions.itemDOM.classList.remove('uploading')
+    if (newList[index].status === 'fail') {
+      otherOptions.itemDOM.classList.add('fail')
+    }
+
+    onChangeRef.current && onChangeRef.current(newList)
+  }
+
+  // 选择文件
   async function handleFileChange(e) {
     showLoading()
     let chooseResult = await fileChoose({
       file: e.nativeEvent.target,
       async,
-      sizeType,
-      maxWidth,
+      maxSize,
       count,
       list,
       uploadPosition,
@@ -227,13 +211,12 @@ function Image(
     return chooseResult
   }
 
-  // 选择照片
+  // 选择文件
   async function handleChoose(e) {
     showLoading()
     let chooseResult = await choose({
       async,
-      sizeType,
-      maxWidth,
+      maxSize,
       count,
       list,
       uploadPosition,
@@ -245,69 +228,41 @@ function Image(
     return chooseResult
   }
 
-  // 重新上传
-  async function handleReUpload(item, index) {
-    let newList = list
-    // 开始上传
-    showLoading({ content: LocaleUtil.locale('上传中'), index: index })
-    newList[index] = await uploadItem(item, index)
-    hideLoading(newList[index].status === 'fail' ? { failIndexes: [index] } : undefined)
-
-    onChangeRef.current && onChangeRef.current(newList, { action: 'reUpload' })
-  }
-
   // 删除
   function handleDelete(item, index) {
-    let newList = list.filter((photo, photoIndex) => {
-      return photoIndex !== index
+    let newList = list.filter((current, currentIndex) => {
+      return currentIndex !== index
     })
     onChangeRef.current && onChangeRef.current(newList, { action: 'delete' })
   }
 
-  // 判断是否仅相册或者仅拍照
-  let capture = ''
-  if (sourceType.length === 1 && sourceType[0] === 'camera') {
-    capture = 'camera'
-  }
-  // file框不支持仅相册
-  // else if (sourceType.length === 1 && sourceType[0] === 'album') {
-  //   capture = 'album'
-  // }
-
   return (
-    <ImageBase
-      ref={imageRef}
+    <UploadBase
+      ref={uploadRef}
+      // Style
       uploadPosition={uploadPosition}
-      // 自定义上传按钮与上传中的样式
       upload={upload}
       uploading={uploading}
-      list={list}
-      // 照片数量未超时可以选择
+      list={(list || []).map((item) => {
+        return {
+          ...item,
+          src: item.localId || item.src
+        }
+      })}
+      // 文件数量未超时可以选择
       onFileChange={onFileChange && chooseVisible ? handleFileChange : null}
       onChoose={onChoose && chooseVisible ? handleChoose : null}
       onDelete={allowClear ? handleDelete : null}
       onReUpload={handleReUpload}
-      onBeforeChoose={
-        typeof onBeforeChoose === 'function'
-          ? async (e) => {
-              showLoading()
-              let isOk = await onBeforeChoose(e)
-              hideLoading()
-              return isOk
-            }
-          : null
-      }
+      onBeforeChoose={onBeforeChoose}
       onPreview={onPreview}
-      fileProps={
-        capture
-          ? {
-              capture: capture
-            }
-          : undefined
-      }
       {...props}
+      fileProps={{
+        accept: getAccept(extension),
+        ...props?.fileProps
+      }}
     />
   )
 }
 
-export default forwardRef(Image)
+export default forwardRef(Upload)
