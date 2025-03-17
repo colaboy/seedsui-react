@@ -64,7 +64,7 @@ export default () => {
               }, 2000)
             })
           }}
-          onFileChoose={({ fileURL, fileData }) => {
+          onFileChange={({ fileURL, fileData }) => {
             // 待传文件
             return [
               {

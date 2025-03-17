@@ -34,7 +34,7 @@ function Browser(
     // Events
     onBeforeChoose,
     onChoose,
-    onFileChoose,
+    onFileChange,
     onUpload,
     onChange,
     onPreview,
@@ -68,7 +68,7 @@ function Browser(
           return false
         }
 
-        let chooseCallBack = onFileChoose ? handleFileChoose : handleChoose
+        let chooseCallBack = onFileChange ? handleFileChange : handleChoose
         let chooseOk = await chooseCallBack({
           nativeEvent: {
             target: uploadDOM
@@ -209,7 +209,7 @@ function Browser(
   }
 
   // 选择照片
-  async function handleFileChoose(e) {
+  async function handleFileChange(e) {
     showLoading()
     let chooseResult = await fileChoose({
       file: e.nativeEvent.target,
@@ -220,7 +220,7 @@ function Browser(
       list,
       uploadPosition,
       uploadList,
-      onFileChoose,
+      onFileChange,
       onChange: onChangeRef.current
     })
     hideLoading()
@@ -283,7 +283,7 @@ function Browser(
       uploading={uploading}
       list={list}
       // 照片数量未超时可以选择
-      onFileChange={onFileChoose && chooseVisible ? handleFileChoose : null}
+      onFileChange={onFileChange && chooseVisible ? handleFileChange : null}
       onChoose={onChoose && chooseVisible ? handleChoose : null}
       onDelete={allowClear ? handleDelete : null}
       onReUpload={handleReUpload}

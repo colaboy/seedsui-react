@@ -13,7 +13,7 @@ async function fileChoose({
   list,
   uploadPosition,
   uploadList,
-  onFileChoose,
+  onFileChange,
   onChange
 }) {
   if (file?.type !== 'file') return false
@@ -51,9 +51,9 @@ async function fileChoose({
   }
 
   let currentList = null
-  if (typeof onFileChoose === 'function') {
+  if (typeof onFileChange === 'function') {
     const fileURL = URL.createObjectURL(fileData)
-    currentList = await onFileChoose({
+    currentList = await onFileChange({
       fileURL: fileURL,
       fileData: fileData
     })
