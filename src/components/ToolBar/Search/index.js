@@ -15,6 +15,9 @@ import Expand from './Expand'
 const Search = forwardRef(
   (
     {
+      // Filter properties
+      onChange,
+      // Core properties
       placeholder,
       value,
       onSearch,
