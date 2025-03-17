@@ -11,10 +11,8 @@ import { Loading } from 'seedsui-react'
 // 上传中图标
 const Uploading = () => {
   return (
-    <div className={`image-uploading`}>
-      <div className="image-uploading-icon">
-        <Loading.Ouroboros className="image-uploading-icon-loading" />
-      </div>
+    <div className="image-uploading-icon">
+      <Loading.Ouroboros className="image-uploading-icon-loading" />
     </div>
   )
 }

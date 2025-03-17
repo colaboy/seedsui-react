@@ -1,5 +1,8 @@
 import _ from 'lodash'
+import convertBytes from './../../utils/convertBytes'
+import validateMaxSize from './../../utils/validateMaxSize'
 import getRemainCount from './../../utils/getRemainCount'
+import supportTypes from './../../utils/supportTypes'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -11,7 +14,17 @@ import { LocaleUtil, Toast} from 'seedsui-react'
 测试使用-end */
 
 // 选择文件
-async function choose({ async, count, list, uploadPosition, uploadList, onChoose, onChange }) {
+async function choose({
+  async,
+  maxSize,
+  count,
+  extension,
+  list,
+  uploadPosition,
+  uploadList,
+  onChoose,
+  onChange
+}) {
   // 大于总数禁止选择
   if (getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
@@ -25,8 +38,44 @@ async function choose({ async, count, list, uploadPosition, uploadList, onChoose
   if (typeof onChoose === 'function') {
     currentList = await onChoose()
   }
+
   if (!Array.isArray(currentList) || _.isEmpty(currentList)) {
     return null
+  }
+
+  // 判断文件选中的类型
+  for (let item of currentList) {
+    if (!(item.fileName || item.name)) {
+      Toast.show({
+        content: LocaleUtil.locale(
+          `未返回fileName, 无法上传`,
+          'library.45e987cc2779b005b900456f27379057'
+        ),
+        maskClickable: true
+      })
+      return
+    }
+    if (!(item.fileSize || item.size)) {
+      Toast.show({
+        content: LocaleUtil.locale(`未返回fileSize, 无法上传`),
+        maskClickable: true
+      })
+      return false
+    }
+    if (!supportTypes(item.fileName || item.name, extension)) {
+      Toast.show({
+        content: LocaleUtil.locale(`只支持选择${extension.join(',')}格式的文件`),
+        maskClickable: true
+      })
+      return false
+    }
+
+    if (maxSize && !validateMaxSize(item.fileSize || item.size, maxSize)) {
+      Toast.show({
+        content: LocaleUtil.locale(`文件大小不能超过${Math.abs(convertBytes(maxSize))}M`)
+      })
+      return false
+    }
   }
 
   // 构建新的列表

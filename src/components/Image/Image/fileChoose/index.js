@@ -31,7 +31,7 @@ async function fileChoose({
       content: LocaleUtil.locale('没有选择文件，无法上传！'),
       maskClickable: true
     })
-    return
+    return false
   }
 
   // 大于总数禁止选择
@@ -40,7 +40,7 @@ async function fileChoose({
       content: LocaleUtil.locale(`照片总数不能大于${count}张`),
       maskClickable: true
     })
-    return
+    return false
   }
 
   // 数据

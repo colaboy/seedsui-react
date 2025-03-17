@@ -17,7 +17,8 @@ import { Loading, Toast, , LocaleUtil } from 'seedsui-react'
 function Image(
   {
     // Style
-    allowClear = true,
+    allowChoose = false,
+    allowClear = false,
     uploadPosition,
     upload,
     uploading,
@@ -48,39 +49,39 @@ function Image(
   onChangeRef.current = onChange
 
   // Judge wether to display choose button
-  const chooseVisible = onChange && (list || []).length < count ? true : false
+  const chooseVisible = allowChoose && (list || []).length < count ? true : false
 
   useImperativeHandle(ref, () => {
     return {
       ...imageRef.current,
-      chooseImage: async () => {
-        if (!chooseVisible) {
-          Toast.show({
-            content: LocaleUtil.locale('此照片控件无拍照功能, 请勿调用拍照')
-          })
-          return false
-        }
-        let uploadDOM = imageRef.current?.rootDOM?.querySelector?.('.image-item.image-upload')
-        if (!uploadDOM) {
-          Toast.show({
-            content: LocaleUtil.locale('未找到拍照按钮, 调用拍照失败')
-          })
-          return false
-        }
-
-        let chooseCallBack = onFileChange ? handleFileChange : handleChoose
-        let chooseOk = await chooseCallBack({
-          nativeEvent: {
-            target: uploadDOM
-          }
-        })
-        return chooseOk
-      },
+      chooseFile: _choose,
+      choose: _choose,
       uploadList: uploadList,
       showLoading: showLoading,
       hideLoading: hideLoading
     }
   })
+
+  // Expose manual choose
+  async function _choose(e) {
+    if (!chooseVisible) {
+      Toast.show({
+        content: LocaleUtil.locale('此照片控件无拍照功能, 请勿调用拍照')
+      })
+      return false
+    }
+    let uploadDOM = imageRef.current?.rootDOM?.querySelector?.('.image-item.image-upload')
+    if (!uploadDOM) {
+      Toast.show({
+        content: LocaleUtil.locale('未找到拍照按钮, 调用拍照失败')
+      })
+      return false
+    }
+
+    let chooseCallBack = e?.nativeEvent?.target ? handleFileChange : handleChoose
+    let chooseOk = await chooseCallBack(e)
+    return chooseOk
+  }
 
   // 显隐Loading
   function showLoading({ content, index } = {}) {

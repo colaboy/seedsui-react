@@ -71,7 +71,7 @@ const Upload = ({
       )}
       {uploadNode && uploadNode}
       {/* 上传中 */}
-      {uploadingNode && uploadingNode}
+      <div className={`image-uploading`}>{uploadingNode && uploadingNode}</div>
     </div>
   )
 }

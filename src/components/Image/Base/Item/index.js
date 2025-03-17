@@ -37,7 +37,7 @@ const Item = ({
       />
 
       {/* 上传中 */}
-      {uploadingNode && uploadingNode}
+      <div className={`image-uploading`}>{uploadingNode && uploadingNode}</div>
 
       {/* 自定义dom */}
       {item.children}

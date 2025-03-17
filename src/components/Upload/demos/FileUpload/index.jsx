@@ -39,7 +39,7 @@ export default () => {
           ref={uploadRef}
           // async
           uploadPosition="start"
-          maxSize={2048}
+          maxSize={300 * 1024 * 1024}
           list={list}
           count={9}
           onBeforeChoose={() => {

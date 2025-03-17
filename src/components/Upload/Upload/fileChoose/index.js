@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import getRemainCount from './../../utils/getRemainCount'
 import validateMaxSize from './../../utils/validateMaxSize'
+import supportTypes from './../../utils/supportTypes'
+import convertBytes from './../../utils/convertBytes'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -17,6 +19,7 @@ async function fileChoose({
   async,
   maxSize,
   count,
+  extension,
   list,
   uploadPosition,
   uploadList,
@@ -30,7 +33,7 @@ async function fileChoose({
       content: LocaleUtil.locale('没有选择文件，无法上传！'),
       maskClickable: true
     })
-    return
+    return false
   }
 
   // 大于总数禁止选择
@@ -39,14 +42,14 @@ async function fileChoose({
       content: LocaleUtil.locale(`总数不能大于${count}`),
       maskClickable: true
     })
-    return
+    return false
   }
 
   if (maxSize && !validateMaxSize(file, maxSize)) {
     Toast.show({
-      content: LocaleUtil.locale(`文件大小不能超过${Math.abs(maxSize / 1024)}M`)
+      content: LocaleUtil.locale(`文件大小不能超过${Math.abs(convertBytes(maxSize))}M`)
     })
-    return
+    return false
   }
 
   // 数据
@@ -61,7 +64,16 @@ async function fileChoose({
       content: LocaleUtil.locale(`未获取到文件名, 无法上传`),
       maskClickable: true
     })
-    return
+    return false
+  }
+
+  // 判断文件选中的类型
+  if (!supportTypes(fileName, extension)) {
+    Toast.show({
+      content: LocaleUtil.locale(`只支持选择${extension.join(',')}格式的文件`),
+      maskClickable: true
+    })
+    return false
   }
 
   let currentList = null

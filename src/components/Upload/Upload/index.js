@@ -18,7 +18,8 @@ import { LocaleUtil, Loading, Toast } from 'seedsui-react'
 function Upload(
   {
     // Style
-    allowClear = true,
+    allowChoose = false,
+    allowClear = false,
     uploadPosition,
     upload,
     uploading,
@@ -28,7 +29,7 @@ function Upload(
     reUpload = true,
     count = 5,
     extension,
-    maxSize,
+    maxSize, // bytes
     list = [], // [{name: '附件名称', src: '全路径', path: '目录/年月/文件名.jpg', status: 'choose|uploading|fail|success', children: node}]
 
     // Events
@@ -48,16 +49,39 @@ function Upload(
   onChangeRef.current = onChange
 
   // Judge wether to display choose button
-  const chooseVisible = onChange && (list || []).length < count ? true : false
+  const chooseVisible = allowChoose && (list || []).length < count ? true : false
 
   useImperativeHandle(ref, () => {
     return {
       ...uploadRef.current,
+      chooseFile: _choose,
+      choose: _choose,
       uploadList: uploadList,
       showLoading: showLoading,
       hideLoading: hideLoading
     }
   })
+
+  // Expose manual choose
+  async function _choose(e) {
+    if (!chooseVisible) {
+      Toast.show({
+        content: LocaleUtil.locale('此控件无上传功能, 请勿调用拍照')
+      })
+      return false
+    }
+    let uploadDOM = uploadRef.current?.rootDOM?.querySelector?.('.upload-choose')
+    if (!uploadDOM) {
+      Toast.show({
+        content: LocaleUtil.locale('未找到上传按钮, 调用上传失败')
+      })
+      return false
+    }
+
+    let chooseCallBack = e?.nativeEvent?.target ? handleFileChange : handleChoose
+    let chooseOk = await chooseCallBack(e)
+    return chooseOk
+  }
 
   // 显隐Loading
   function showLoading({ content, index } = {}) {
@@ -210,6 +234,7 @@ function Upload(
       async,
       maxSize,
       count,
+      extension,
       list,
       uploadPosition,
       uploadList,
@@ -227,6 +252,7 @@ function Upload(
       async,
       maxSize,
       count,
+      extension,
       list,
       uploadPosition,
       uploadList,
