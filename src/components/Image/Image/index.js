@@ -136,7 +136,7 @@ function Image(
     }
 
     // 已经上传成功, 无需要再次上传
-    if (item.src.startsWith('http')) {
+    if (item?.src?.startsWith?.('http')) {
       item.status = 'success'
       return item
     }
