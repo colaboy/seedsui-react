@@ -134,18 +134,22 @@ function Upload(
   }
 
   // 上传
-  async function uploadList(newList) {
+  async function uploadList(newList, { action } = {}) {
     // eslint-disable-next-line
     if (!newList) newList = list
     if (!newList) return
 
+    let hasUploaded = false
     // 开始上传
+    showLoading({ content: LocaleUtil.locale('上传中') })
     for (let [index, item] of newList.entries()) {
       // 只上传未上传的文件
       if (item.status === 'choose') {
         newList[index] = await uploadItem(item, index)
+        hasUploaded = true
       }
     }
+    hideLoading()
 
     // 不支持重新上传，则过滤上传失败的文件
     if (!reUpload) {
@@ -171,6 +175,11 @@ function Upload(
         }
       }
     }
+
+    if (hasUploaded) {
+      onChangeRef.current && onChangeRef.current(newList, { action })
+    }
+
     return newList
   }
 
@@ -254,7 +263,16 @@ function Upload(
       onChoose={onChoose && chooseVisible ? handleChoose : null}
       onDelete={allowClear ? handleDelete : null}
       onReUpload={handleReUpload}
-      onBeforeChoose={onBeforeChoose}
+      onBeforeChoose={
+        typeof onBeforeChoose === 'function'
+          ? async (e) => {
+              showLoading()
+              let isOk = await onBeforeChoose(e)
+              hideLoading()
+              return isOk
+            }
+          : null
+      }
       onPreview={onPreview}
       {...props}
       fileProps={{

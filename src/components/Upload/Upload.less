@@ -1,1 +1,20 @@
 @import 'Base/UploadBase.less';
+
+.upload {
+  // 上传中上传按钮需要转圈
+  &.uploading {
+    .upload-item-redo,
+    .upload-item-delete {
+      display: none;
+    }
+    .upload-choose {
+      pointer-events: none;
+      .upload-button-icon-add {
+        display: none;
+      }
+      .upload-button-loading {
+        display: block;
+      }
+    }
+  }
+}

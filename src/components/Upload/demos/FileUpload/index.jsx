@@ -37,7 +37,7 @@ export default () => {
       <Layout.Main>
         <Upload
           ref={uploadRef}
-          async
+          // async
           uploadPosition="start"
           maxSize={2048}
           list={list}
