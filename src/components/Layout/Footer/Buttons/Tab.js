@@ -31,13 +31,13 @@ export default function Tab({ icon, type, id, name, children, onChange }) {
       return icon
     }
 
-    return <i className={`layout-footer-tab-icon layout-footer-tab-icon-more`} />
+    return <i className={`layout-footer-tab-icon-more`} />
   }
 
   return (
     <>
       <div className="layout-footer-tab" onClick={handleClick}>
-        {getIconNode()}
+        <span className={`layout-footer-tab-icon`}>{getIconNode()}</span>
         <div className="layout-footer-tab-name">{name}</div>
       </div>
 

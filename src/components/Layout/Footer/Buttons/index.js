@@ -3,8 +3,7 @@ import Tab from './Tab'
 import Button from './Button'
 
 // 侧边查询底部按钮
-export default function FilterContent({ buttons, onChange }) {
-  console.log('buttons:', buttons)
+export default function Buttons({ buttons, onChange }) {
   return (
     <>
       {buttons &&

@@ -29,6 +29,9 @@ export default () => {
             onConfig: () => {
               console.log('setting')
             },
+            onOk: () => {
+              console.log('ok')
+            },
             onReset: () => {
               console.log('reset')
             }
