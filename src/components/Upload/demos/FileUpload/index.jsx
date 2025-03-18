@@ -38,6 +38,7 @@ export default () => {
       <Layout.Main>
         <Upload
           ref={uploadRef}
+          reUpload={false}
           // async
           allowChoose
           allowClear

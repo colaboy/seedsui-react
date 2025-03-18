@@ -196,7 +196,7 @@ function Upload(
         // 上传失败
         if (failCount) {
           Toast.show({
-            content: `${LocaleUtil.locale('网络异常，上传失败')}${failCount})`
+            content: `${LocaleUtil.locale('网络异常，上传失败')}${failCount}`
           })
         }
       }

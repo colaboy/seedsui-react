@@ -49,7 +49,10 @@ export default () => {
       <Layout.Main>
         <Image
           ref={imageUploaderRef}
-          async
+          // async
+          // reUpload={false}
+          allowClear
+          allowChoose
           uploadPosition="start"
           sizeType={['compressed']}
           sourceType={['camera', 'album']}
