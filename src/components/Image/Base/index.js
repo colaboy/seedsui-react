@@ -100,17 +100,6 @@ const Image = forwardRef(
       }
     }
 
-    // 上传中node
-    function getUploadingNode(item) {
-      if (typeof uploading === 'function') {
-        return uploading(item)
-      }
-      if (React.isValidElement(uploading)) {
-        return uploading
-      }
-      return <Uploading />
-    }
-
     // 上传node
     function getUploadNode() {
       if (typeof upload === 'function') {
@@ -132,7 +121,7 @@ const Image = forwardRef(
           // 上传DOM
           uploadNode={getUploadNode()}
           // 上传中DOM
-          uploadingNode={getUploadingNode()}
+          uploadingNode={<Uploading uploading={uploading} />}
           // Choose events
           onChoose={onChooseRef.current}
           onBeforeChoose={onBeforeChooseRef.current}
@@ -159,7 +148,7 @@ const Image = forwardRef(
                 key={index}
                 item={item}
                 index={index}
-                uploadingNode={getUploadingNode(item)}
+                uploadingNode={<Uploading uploading={uploading} item={item} />}
                 onDelete={
                   onDelete
                     ? (e) => {

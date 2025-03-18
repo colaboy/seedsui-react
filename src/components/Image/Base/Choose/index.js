@@ -57,7 +57,7 @@ const Choose = ({
       {onFileChange && (
         <input
           type="file"
-          className="image-choose-file-photo"
+          className="image-choose-input-file"
           onChange={handleFileChange}
           accept="image/*"
           // 以下的属性值会导致: 部分安卓机会不显示拍照
@@ -71,7 +71,7 @@ const Choose = ({
       )}
       {uploadNode && uploadNode}
       {/* 上传中 */}
-      <div className={`image-uploading`}>{uploadingNode && uploadingNode}</div>
+      {uploadingNode && uploadingNode}
     </div>
   )
 }
