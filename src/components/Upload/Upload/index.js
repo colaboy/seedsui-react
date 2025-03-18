@@ -208,20 +208,12 @@ function Upload(
   }
 
   // 重新上传
-  async function handleReUpload(item, index, otherOptions) {
-    let newList = otherOptions.list
+  async function handleReUpload(item, index) {
+    let newList = list
     // 开始上传
-    Loading.show({
-      content: LocaleUtil.locale('上传中', 'library.fc09a73e52b76f697cff129b4dddecd1')
-    })
-    otherOptions.itemDOM.classList.remove('fail')
-    otherOptions.itemDOM.classList.add('uploading')
+    showLoading()
     newList[index] = await uploadItem(item, index)
-    Loading.hide()
-    otherOptions.itemDOM.classList.remove('uploading')
-    if (newList[index].status === 'fail') {
-      otherOptions.itemDOM.classList.add('fail')
-    }
+    hideLoading(newList[index].status === 'fail' ? { failIndexes: [index] } : undefined)
 
     onChangeRef.current && onChangeRef.current(newList)
   }

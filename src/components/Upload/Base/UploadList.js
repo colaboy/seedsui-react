@@ -176,7 +176,7 @@ const UploadList = ({
                 {/* 重新上传 */}
                 {onReUpload && (
                   <div
-                    className="upload-item-operate upload-item-redo"
+                    className="upload-item-operate upload-reload"
                     onClick={(e) => {
                       e.stopPropagation()
 
@@ -188,7 +188,7 @@ const UploadList = ({
                 {/* 删除按钮 */}
                 {onDelete && (
                   <div
-                    className="upload-item-operate upload-item-delete"
+                    className="upload-item-operate upload-delete"
                     onClick={(e) => {
                       e.stopPropagation()
 

@@ -18,7 +18,7 @@ const UploadButton = ({ ...props }, ref) => {
       {...props}
       className={`upload-choose-button${props?.className ? ' ' + props.className : ''}`}
     >
-      <i className={`upload-button-icon-add`}></i>
+      <i className={`upload-choose-icon-add`}></i>
       {/* Loading图标 */}
       <div className="upload-button-loading">
         <Loading.Ouroboros className="upload-button-loading-icon" />

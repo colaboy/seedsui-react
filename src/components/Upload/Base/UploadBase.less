@@ -38,7 +38,7 @@
 
 // 上传图标与文字
 .upload-button-loading,
-.upload-button-icon-add,
+.upload-choose-icon-add,
 .upload-button-label {
   pointer-events: none;
 }
@@ -54,7 +54,7 @@
   }
 }
 
-.upload-button-icon-add {
+.upload-choose-icon-add {
   width: 12px;
   height: 12px;
   font-size: 12px;
@@ -81,7 +81,7 @@
   .flex-middle;
   &.fail {
     color: @danger;
-    .upload-item-redo {
+    .upload-reload {
       display: flex;
     }
   }
@@ -146,7 +146,7 @@
 .upload-item-operate {
   margin-left: 12px;
 }
-.upload-item-delete {
+.upload-delete {
   .flex;
   .flex-middle;
   .flex-center;
@@ -158,7 +158,7 @@
   &:extend(.seeds-icon-close all);
   overflow: hidden;
 }
-.upload-item-redo {
+.upload-reload {
   display: none;
   .flex-middle;
   .flex-center;
