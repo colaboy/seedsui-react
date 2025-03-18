@@ -51,6 +51,7 @@ export default () => {
           ref={imageUploaderRef}
           // async
           // reUpload={false}
+          visibleCount={2}
           allowClear
           allowChoose
           uploadPosition="start"

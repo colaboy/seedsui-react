@@ -27,6 +27,7 @@ function Image(
     async = false,
     reUpload = true,
     count = 5,
+    visibleCount,
     sourceType = ['album', 'camera'],
     sizeType = ['compressed'], // ['original', 'compressed']
     maxWidth,
@@ -282,6 +283,7 @@ function Image(
       // 自定义上传按钮与上传中的样式
       upload={upload}
       uploading={uploading}
+      visibleCount={visibleCount}
       list={list}
       // 照片数量未超时可以选择
       onFileChange={onFileChange && chooseVisible ? handleFileChange : null}

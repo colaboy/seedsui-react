@@ -4,9 +4,11 @@ import Img from './Img'
 import Uploading from './../Uploading'
 import Reload from './Reload'
 import Delete from './Delete'
+import RemainCount from './RemainCount'
 
 // 照片视频预览
 const Item = ({
+  remainCount,
   item,
   index,
   uploading,
@@ -50,6 +52,8 @@ const Item = ({
           }}
         />
       )}
+
+      {remainCount && <RemainCount count={remainCount} />}
     </div>
   )
 }

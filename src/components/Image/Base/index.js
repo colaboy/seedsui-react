@@ -24,6 +24,7 @@ const Image = forwardRef(
       uploadPosition = 'end', // start | end
       upload, // 上传按钮覆盖的dom
       uploading,
+      visibleCount,
       // Events
       onBeforeChoose, // 选择前校验
       onChoose,
@@ -142,9 +143,13 @@ const Image = forwardRef(
         {list &&
           list.length > 0 &&
           list.map((item, index) => {
+            if (visibleCount && index + 1 > visibleCount) return null
             return (
               <Item
                 key={index}
+                remainCount={
+                  visibleCount && index === visibleCount - 1 ? list.length - visibleCount : null
+                }
                 item={item}
                 index={index}
                 uploading={uploading}
