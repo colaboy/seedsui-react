@@ -9,6 +9,7 @@ const Upload = ({
 
   // 上传DOM和状态
   uploadNode,
+  uploading,
 
   // Events
   onBeforeChoose,
@@ -54,11 +55,14 @@ const Upload = ({
 
   return (
     <div className={`upload-choose${disabled ? ' disabled' : ''}`} onClick={handleUploadClick}>
+      {/* 上传按钮 */}
+      <Button disabled={disabled} uploading={uploading} {...props} />
+
       {/* 启用file框 */}
       {onFileChange && (
         <input
           type="file"
-          className="upload-choose-file"
+          className="upload-choose-input-file"
           onChange={handleFileChange}
           onClick={(e) => {
             e.stopPropagation()
@@ -67,9 +71,7 @@ const Upload = ({
         />
       )}
 
-      {/* 添加图标 */}
-      {!uploadNode && <Button disabled={disabled} {...props} />}
-
+      {/* 上传 */}
       {uploadNode && uploadNode}
     </div>
   )

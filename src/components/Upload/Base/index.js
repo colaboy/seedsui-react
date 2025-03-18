@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
-import Choose from './../Choose'
+import Choose from './Choose'
 import Item from './Item'
 
 // 文件
@@ -10,7 +10,8 @@ const Upload = forwardRef(
       fileProps, // file框属性
       list, // [{id: '', name: '', thumb: '', src: '', status: 'choose|uploading|fail|success'}]
       uploadPosition = 'end', // start | end
-      uploadNode, // 上传按钮覆盖的dom
+      upload,
+      uploading,
       // Events
       onBeforeChoose, // 选择前校验
       onChoose,
@@ -42,8 +43,9 @@ const Upload = forwardRef(
     // 根节点
     const rootRef = useRef(null)
 
-    // 节点
     const [updateStatus, setUpdateStatus] = useState(0)
+
+    // Expose
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
@@ -56,13 +58,26 @@ const Upload = forwardRef(
 
     // 上传node
     function getUploadNode() {
+      if (typeof upload === 'function') {
+        return upload()
+      }
+      if (React.isValidElement(upload)) {
+        return upload
+      }
+      return null
+    }
+
+    // 上传node
+    function getChooseNode() {
       return (
         <Choose
           disabled={disabled}
           // file框属性
           fileProps={fileProps}
           // 上传DOM
-          uploadNode={uploadNode}
+          uploadNode={getUploadNode()}
+          // 上传中DOM
+          uploading={uploading}
           // Choose events
           onChoose={onChooseRef.current}
           onBeforeChoose={onBeforeChooseRef.current}
@@ -80,7 +95,7 @@ const Upload = forwardRef(
         }`}
       >
         {/* 头部上传按钮 */}
-        {uploadPosition === 'start' && (onChoose || onFileChange) && getUploadNode()}
+        {uploadPosition === 'start' && (onChoose || onFileChange) && getChooseNode()}
 
         {/* 列表 */}
         {/* 列表 */}
@@ -92,6 +107,7 @@ const Upload = forwardRef(
                 key={index}
                 item={item}
                 index={index}
+                uploading={uploading}
                 onPreview={onPreview}
                 onDelete={onDelete}
                 onReUpload={onReUpload}
@@ -100,7 +116,7 @@ const Upload = forwardRef(
           })}
 
         {/* 底部上传按钮 */}
-        {uploadPosition === 'end' && (onChoose || onFileChange) && getUploadNode()}
+        {uploadPosition === 'end' && (onChoose || onFileChange) && getChooseNode()}
       </div>
     )
   }

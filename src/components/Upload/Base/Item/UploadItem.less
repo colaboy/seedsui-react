@@ -13,9 +13,19 @@
 .upload-item {
   .flex;
   .flex-middle;
+  .upload-uploading-icon-loading {
+    color: #d9d9d9;
+  }
+
   &.fail {
     color: @danger;
     .upload-reload {
+      display: flex;
+    }
+  }
+
+  &.uploading {
+    .upload-uploading {
       display: flex;
     }
   }
@@ -77,7 +87,7 @@
   .nowrap;
   .ellipsis;
 }
-.upload-item-operate {
+.upload-item-right-icon {
   margin-left: 12px;
 }
 .upload-delete {

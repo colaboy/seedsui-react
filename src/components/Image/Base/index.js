@@ -163,8 +163,9 @@ const Image = forwardRef(
               />
             )
           })}
+
         {/* 图片上传: 上传按钮 */}
-        {uploadPosition === 'end' && (onChoose || onFileChange) && getUploadNode()}
+        {uploadPosition === 'end' && (onChoose || onFileChange) && getChooseNode()}
 
         {/* 预览 */}
         {previewTypeRef.current === 'browser' && (

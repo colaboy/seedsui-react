@@ -3,17 +3,18 @@
 .upload {
   // 上传中上传按钮需要转圈
   &.uploading {
+    // pointer-events: none;
+    // 隐藏重试,删除,添加
     .upload-reload,
-    .upload-delete {
+    .upload-delete,
+    .upload-choose-icon {
       display: none;
     }
+
+    // 显示转圈
     .upload-choose {
-      pointer-events: none;
-      .upload-choose-icon-add {
-        display: none;
-      }
-      .upload-button-loading {
-        display: block;
+      .upload-uploading {
+        display: flex;
       }
     }
   }

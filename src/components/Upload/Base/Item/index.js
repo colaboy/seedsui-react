@@ -1,4 +1,5 @@
 import React from 'react'
+import Uploading from './../Uploading'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -17,6 +18,7 @@ import { LocaleUtil, Clipboard, AssetUtil, Bridge, Toast, Modal } from 'seedsui-
 const Item = ({
   item,
   index,
+  uploading,
   // Events
   onPreview,
   onDelete,
@@ -169,7 +171,7 @@ const Item = ({
         {/* 重新上传 */}
         {onReUpload && (
           <div
-            className="upload-item-operate upload-reload"
+            className="upload-item-right-icon upload-reload"
             onClick={(e) => {
               e.stopPropagation()
 
@@ -181,7 +183,7 @@ const Item = ({
         {/* 删除按钮 */}
         {onDelete && (
           <div
-            className="upload-item-operate upload-delete"
+            className="upload-item-right-icon upload-delete"
             onClick={(e) => {
               e.stopPropagation()
 
@@ -189,6 +191,9 @@ const Item = ({
             }}
           ></div>
         )}
+
+        {/* 转圈 */}
+        <Uploading uploading={uploading} item={item} className="upload-item-right-icon" />
       </div>
     </div>
   )

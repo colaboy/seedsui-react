@@ -1,0 +1,58 @@
+.upload-choose {
+  position: relative;
+  display: inline-block;
+  .upload-uploading-icon {
+    margin-right: 8px;
+  }
+  .upload-uploading-icon-loading {
+    color: var(--auxiliary);
+  }
+}
+
+.upload-choose-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  font-family: 'seeds-icons';
+  &:extend(.seeds-icon-plus-fill all);
+  margin-right: 8px;
+}
+
+.upload-choose-input-file {
+  display: none;
+  // position: absolute;
+  // top: 0;
+  // right: 0;
+  // bottom: 0;
+  // left: 0;
+  // z-index: 0;
+
+  // width: 100%;
+  // height: 100%;
+  // cursor: pointer;
+  // opacity: 0;
+  // filter: alpha(opacity=0);
+}
+
+.upload-choose-button {
+  position: relative;
+  box-sizing: border-box;
+  height: 32px;
+  padding: 0 12px;
+  font-size: var(--font-size-m);
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  color: #8c8c8c;
+  border-radius: 4px;
+
+  &[disabled],
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

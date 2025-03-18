@@ -1,67 +1,9 @@
-@import 'Item/Item.less';
+@import 'Item/UploadItem.less';
+@import 'Choose/UploadChoose.less';
+@import 'Uploading/UploadUploading.less';
 
 // Upload上传
 // 上传按钮
 .upload-item + .upload-choose {
   margin-top: 12px;
-}
-
-.upload-choose {
-  position: relative;
-  display: inline-block;
-
-  .upload-choose-file {
-    display: none;
-    // position: absolute;
-    // top: 0;
-    // right: 0;
-    // bottom: 0;
-    // left: 0;
-    // z-index: 0;
-
-    // width: 100%;
-    // height: 100%;
-    // cursor: pointer;
-    // opacity: 0;
-    // filter: alpha(opacity=0);
-  }
-  .upload-choose-button {
-    &[disabled],
-    &.disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    background-color: #f5f5f5;
-    color: #8c8c8c;
-    border-radius: 4px;
-    border: 0;
-  }
-}
-
-// 上传图标与文字
-.upload-button-loading,
-.upload-choose-icon-add,
-.upload-button-label {
-  pointer-events: none;
-}
-.upload-button-loading {
-  display: none;
-  width: 12px;
-  height: 12px;
-  margin-right: 8px;
-  .upload-button-loading-icon {
-    color: var(--auxiliary);
-    width: 12px;
-    height: 12px;
-  }
-}
-
-.upload-choose-icon-add {
-  width: 12px;
-  height: 12px;
-  font-size: 12px;
-  line-height: 12px;
-  font-family: 'seeds-icons';
-  &:extend(.seeds-icon-plus-fill all);
-  margin-right: 8px;
 }
