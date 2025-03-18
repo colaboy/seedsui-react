@@ -1,4 +1,5 @@
 import React from 'react'
+import Uploading from './../Uploading'
 
 // 上传按钮
 const Choose = ({
@@ -11,7 +12,7 @@ const Choose = ({
   uploadNode,
 
   // 上传中
-  uploadingNode,
+  uploading,
 
   // Events
   onBeforeChoose,
@@ -71,7 +72,7 @@ const Choose = ({
       )}
       {uploadNode && uploadNode}
       {/* 上传中 */}
-      {uploadingNode && uploadingNode}
+      <Uploading uploading={uploading} />
     </div>
   )
 }

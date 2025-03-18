@@ -98,7 +98,6 @@ const Upload = forwardRef(
         {uploadPosition === 'start' && (onChoose || onFileChange) && getChooseNode()}
 
         {/* 列表 */}
-        {/* 列表 */}
         {list &&
           list.length > 0 &&
           list.map((item, index) => {
@@ -108,9 +107,9 @@ const Upload = forwardRef(
                 item={item}
                 index={index}
                 uploading={uploading}
-                onPreview={onPreview}
-                onDelete={onDelete}
-                onReUpload={onReUpload}
+                onPreview={onPreviewRef.current}
+                onDelete={onDeleteRef.current}
+                onReUpload={onReUploadRef.current}
               />
             )
           })}

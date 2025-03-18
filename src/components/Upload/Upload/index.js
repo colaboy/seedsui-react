@@ -136,7 +136,7 @@ function Upload(
     }
 
     // 已经上传成功, 无需要再次上传
-    if (item.src.startsWith('http')) {
+    if (item?.src?.startsWith?.('http')) {
       item.status = 'success'
       return item
     }
@@ -159,8 +159,10 @@ function Upload(
 
   // 上传
   async function uploadList(newList, { action } = {}) {
-    // eslint-disable-next-line
-    if (!newList) newList = list
+    if (!newList) {
+      // eslint-disable-next-line
+      newList = [...list]
+    }
     if (!newList) return
 
     let hasUploaded = false
@@ -209,7 +211,7 @@ function Upload(
 
   // 重新上传
   async function handleReUpload(item, index) {
-    let newList = list
+    let newList = [...list]
     // 开始上传
     showLoading({ index })
     newList[index] = await uploadItem(item, index)

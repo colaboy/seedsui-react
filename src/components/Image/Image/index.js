@@ -160,7 +160,7 @@ function Image(
   // 上传
   async function uploadList(newList, { action } = {}) {
     // eslint-disable-next-line
-    if (!newList) newList = list
+    if (!newList) newList = [...list]
     if (!newList) return
 
     let hasUploaded = false
@@ -248,7 +248,7 @@ function Image(
 
   // 重新上传
   async function handleReUpload(item, index) {
-    let newList = list
+    let newList = [...list]
     // 开始上传
     showLoading({ content: LocaleUtil.locale('上传中'), index: index })
     newList[index] = await uploadItem(item, index)

@@ -2,7 +2,6 @@ import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
 import Item from './Item'
 import Choose from './Choose'
-import Uploading from './Uploading'
 import Preview from './Preview'
 
 import getPreviewType from './getPreviewType'
@@ -121,7 +120,7 @@ const Image = forwardRef(
           // 上传DOM
           uploadNode={getUploadNode()}
           // 上传中DOM
-          uploadingNode={<Uploading uploading={uploading} />}
+          uploading={uploading}
           // Choose events
           onChoose={onChooseRef.current}
           onBeforeChoose={onBeforeChooseRef.current}
@@ -148,7 +147,7 @@ const Image = forwardRef(
                 key={index}
                 item={item}
                 index={index}
-                uploadingNode={<Uploading uploading={uploading} item={item} />}
+                uploading={uploading}
                 onDelete={
                   onDelete
                     ? (e) => {

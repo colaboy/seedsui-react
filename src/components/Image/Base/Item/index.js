@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Img from './Img'
+import Uploading from './../Uploading'
 import Reload from './Reload'
 import Delete from './Delete'
 
@@ -8,7 +9,7 @@ import Delete from './Delete'
 const Item = ({
   item,
   index,
-  uploadingNode,
+  uploading,
   onDelete,
   onReUpload,
   onPreview // 是否支持单击预览, readOnly为true时才生效
@@ -37,7 +38,7 @@ const Item = ({
       />
 
       {/* 上传中 */}
-      {uploadingNode && uploadingNode}
+      <Uploading uploading={uploading} item={item} />
 
       {/* 自定义dom */}
       {item.children}
