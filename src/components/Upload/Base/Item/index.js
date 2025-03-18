@@ -1,23 +1,22 @@
 import React from 'react'
 
 // 内库使用-start
-import LocaleUtil from './../../../utils/LocaleUtil'
-import Clipboard from './../../../utils/Clipboard'
-import AssetUtil from './../../../utils/AssetUtil'
-import Bridge from './../../../utils/Bridge'
-import Toast from './../../Toast'
-import Modal from './../../Modal'
+import LocaleUtil from './../../../../utils/LocaleUtil'
+import Clipboard from './../../../../utils/Clipboard'
+import AssetUtil from './../../../../utils/AssetUtil'
+import Bridge from './../../../../utils/Bridge'
+import Toast from './../../../Toast'
+import Modal from './../../../Modal'
 // 内库使用-end
 
 /* 测试使用-start
 import { LocaleUtil, Clipboard, AssetUtil, Bridge, Toast, Modal } from 'seedsui-react'
 测试使用-end */
 
-// 上传按钮
-const UploadList = ({
-  rootRef,
-  list,
-
+// Item
+const Item = ({
+  item,
+  index,
   // Events
   onPreview,
   onDelete,
@@ -147,61 +146,52 @@ const UploadList = ({
   }
 
   return (
-    <>
-      {/* 列表 */}
-      {list &&
-        list.length > 0 &&
-        list.map((item, index) => {
-          return (
-            <div
-              key={index}
-              data-index={index}
-              // 状态status: choose|uploading|fail|success
-              className={`upload-item${item.className ? ' ' + item.className : ''}${
-                item.status ? ' ' + item.status : ''
-              }`}
-              onClick={(e) => {
-                e.stopPropagation()
+    <div
+      key={index}
+      data-index={index}
+      // 状态status: choose|uploading|fail|success
+      className={`upload-item${item.className ? ' ' + item.className : ''}${
+        item.status ? ' ' + item.status : ''
+      }`}
+      onClick={(e) => {
+        e.stopPropagation()
 
-                handlePreview(item, index)
-              }}
-            >
-              {/* 文件图标 */}
-              <i className={`icon upload-item-type ${getIcon(item.src)}`}></i>
-              {/* 文件名称 */}
-              <div className="upload-item-content">
-                <div className="upload-item-label">{item.name || item.src}</div>
-                {/* 自定义dom */}
-                {item.children}
-                {/* 重新上传 */}
-                {onReUpload && (
-                  <div
-                    className="upload-item-operate upload-reload"
-                    onClick={(e) => {
-                      e.stopPropagation()
+        handlePreview(item, index)
+      }}
+    >
+      {/* 文件图标 */}
+      <i className={`icon upload-item-type ${getIcon(item.src)}`}></i>
+      {/* 文件名称 */}
+      <div className="upload-item-content">
+        <div className="upload-item-label">{item.name || item.src}</div>
+        {/* 自定义dom */}
+        {item.children}
+        {/* 重新上传 */}
+        {onReUpload && (
+          <div
+            className="upload-item-operate upload-reload"
+            onClick={(e) => {
+              e.stopPropagation()
 
-                      onReUpload(item, index)
-                    }}
-                  ></div>
-                )}
+              onReUpload(item, index)
+            }}
+          ></div>
+        )}
 
-                {/* 删除按钮 */}
-                {onDelete && (
-                  <div
-                    className="upload-item-operate upload-delete"
-                    onClick={(e) => {
-                      e.stopPropagation()
+        {/* 删除按钮 */}
+        {onDelete && (
+          <div
+            className="upload-item-operate upload-delete"
+            onClick={(e) => {
+              e.stopPropagation()
 
-                      onDelete(item, index)
-                    }}
-                  ></div>
-                )}
-              </div>
-            </div>
-          )
-        })}
-    </>
+              onDelete(item, index)
+            }}
+          ></div>
+        )}
+      </div>
+    </div>
   )
 }
 
-export default UploadList
+export default Item

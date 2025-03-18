@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
 import UploadButton from './../UploadButton'
-import UploadList from './UploadList'
+import Item from './Item'
 
 // 文件
 const Upload = forwardRef(
@@ -83,13 +83,21 @@ const Upload = forwardRef(
         {uploadPosition === 'start' && (onChoose || onFileChange) && getUploadNode()}
 
         {/* 列表 */}
-        <UploadList
-          rootRef={rootRef}
-          list={list}
-          onPreview={onPreviewRef.current}
-          onDelete={onDeleteRef.current}
-          onReUpload={onReUploadRef.current}
-        />
+        {/* 列表 */}
+        {list &&
+          list.length > 0 &&
+          list.map((item, index) => {
+            return (
+              <Item
+                key={index}
+                item={item}
+                index={index}
+                onPreview={onPreview}
+                onDelete={onDelete}
+                onReUpload={onReUpload}
+              />
+            )
+          })}
 
         {/* 底部上传按钮 */}
         {uploadPosition === 'end' && (onChoose || onFileChange) && getUploadNode()}
