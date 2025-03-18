@@ -211,7 +211,7 @@ function Upload(
   async function handleReUpload(item, index) {
     let newList = list
     // 开始上传
-    showLoading()
+    showLoading({ index })
     newList[index] = await uploadItem(item, index)
     hideLoading(newList[index].status === 'fail' ? { failIndexes: [index] } : undefined)
 
