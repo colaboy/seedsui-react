@@ -40,7 +40,31 @@ export default () => {
         })}
         <List.InfiniteScroll />
       </Layout.Main>
-      <Layout.Footer style={{ height: 50, backgroundColor: 'white' }}>Footer</Layout.Footer>
+      <Layout.Footer
+        onChange={(newValue) => {
+          console.log(newValue)
+        }}
+        buttons={[
+          {
+            name: 'More',
+            children: [
+              {
+                id: 'option1',
+                name: 'Option 1'
+              }
+            ]
+          },
+          {
+            id: 'ok',
+            name: '确定',
+            primary: true
+          },
+          {
+            id: 'cancel',
+            name: '取消'
+          }
+        ]}
+      />
     </Layout>
     // </div>
   )
