@@ -28,7 +28,9 @@ async function choose({
   // 大于总数禁止选择
   if (getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`总数不能大于${count}`),
+      content: LocaleUtil.locale(`总数不能大于${count}`, 'SeedsUI_count_cannot_greater_than', [
+        count
+      ]),
       maskClickable: true
     })
     return false
@@ -47,24 +49,25 @@ async function choose({
   for (let item of currentList) {
     if (!(item.fileName || item.name)) {
       Toast.show({
-        content: LocaleUtil.locale(
-          `未返回fileName, 无法上传`,
-          'library.45e987cc2779b005b900456f27379057'
-        ),
+        content: LocaleUtil.locale(`未返回fileName, 无法上传`, 'SeedsUI_return_no_fileName'),
         maskClickable: true
       })
       return
     }
     if (!(item.fileSize || item.size)) {
       Toast.show({
-        content: LocaleUtil.locale(`未返回fileSize, 无法上传`),
+        content: LocaleUtil.locale(`未返回fileSize, 无法上传`, 'SeedsUI_return_no_fileSize'),
         maskClickable: true
       })
       return false
     }
     if (!supportTypes(item.fileName || item.name, extension)) {
       Toast.show({
-        content: LocaleUtil.locale(`只支持选择${extension.join(',')}格式的文件`),
+        content: LocaleUtil.locale(
+          `只支持选择${extension.join(',')}格式的文件`,
+          'SeedsUI_choose_type_error',
+          [extension.join(',')]
+        ),
         maskClickable: true
       })
       return false
@@ -72,7 +75,11 @@ async function choose({
 
     if (maxSize && !validateMaxSize(item.fileSize || item.size, maxSize)) {
       Toast.show({
-        content: LocaleUtil.locale(`文件大小不能超过${Math.abs(convertBytes(maxSize))}M`)
+        content: LocaleUtil.locale(
+          `文件大小不能超过${Math.abs(convertBytes(maxSize))}M`,
+          'SeedsUI_fileSize_cannot_greater_than',
+          [Math.abs(convertBytes(maxSize))]
+        )
       })
       return false
     }

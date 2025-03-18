@@ -67,14 +67,20 @@ function Image(
   async function _choose(e) {
     if (!chooseVisible) {
       Toast.show({
-        content: LocaleUtil.locale('此照片控件无拍照功能, 请勿调用拍照')
+        content: LocaleUtil.locale(
+          '此照片控件无拍照功能, 请勿调用拍照',
+          'SeedsUI_image_choose_no_feature'
+        )
       })
       return false
     }
     let chooseDOM = imageRef.current?.rootDOM?.querySelector?.('.image-item.image-choose')
     if (!chooseDOM) {
       Toast.show({
-        content: LocaleUtil.locale('未找到拍照按钮, 调用拍照失败')
+        content: LocaleUtil.locale(
+          '未找到拍照按钮, 调用拍照失败',
+          'SeedsUI_image_choose_no_upload_button'
+        )
       })
       return false
     }
@@ -166,7 +172,7 @@ function Image(
 
     let hasUploaded = false
     // 开始上传
-    showLoading({ content: LocaleUtil.locale('上传中') })
+    showLoading({ content: LocaleUtil.locale('上传中', 'SeedsUI_uploading') })
     for (let [index, item] of newList.entries()) {
       // 只上传未上传的视频
       if (item.status === 'choose') {
@@ -195,8 +201,10 @@ function Image(
         // 上传失败
         if (failCount) {
           Toast.show({
-            content: `${LocaleUtil.locale('网络异常，上传失败')}${failCount}${LocaleUtil.locale(
-              '张'
+            content: `${LocaleUtil.locale(
+              `网络异常，上传失败${failCount}张`,
+              'SeedsUI_upload_error_count',
+              [failCount]
             )})`
           })
         }
@@ -251,7 +259,10 @@ function Image(
   async function handleReUpload(item, index) {
     let newList = [...list]
     // 开始上传
-    showLoading({ content: LocaleUtil.locale('上传中'), index: index })
+    showLoading({
+      content: LocaleUtil.locale('上传中', 'SeedsUI_uploading'),
+      index: index
+    })
     newList[index] = await uploadItem(item, index)
     hideLoading(newList[index].status === 'fail' ? { failIndexes: [index] } : undefined)
 

@@ -30,7 +30,7 @@ async function fileChoose({
 
   if (!file || !file.files?.[0]) {
     Toast.show({
-      content: LocaleUtil.locale('没有选择文件，无法上传！'),
+      content: LocaleUtil.locale('没有选择文件，无法上传！', 'SeedsUI_no_upload_file'),
       maskClickable: true
     })
     return false
@@ -39,7 +39,9 @@ async function fileChoose({
   // 大于总数禁止选择
   if (getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`总数不能大于${count}`),
+      content: LocaleUtil.locale(`总数不能大于${count}`, 'SeedsUI_count_cannot_greater_than', [
+        count
+      ]),
       maskClickable: true
     })
     return false
@@ -47,7 +49,11 @@ async function fileChoose({
 
   if (maxSize && !validateMaxSize(file, maxSize)) {
     Toast.show({
-      content: LocaleUtil.locale(`文件大小不能超过${Math.abs(convertBytes(maxSize))}M`)
+      content: LocaleUtil.locale(
+        `文件大小不能超过${Math.abs(convertBytes(maxSize))}M`,
+        'SeedsUI_fileSize_cannot_greater_than',
+        [Math.abs(convertBytes(maxSize))]
+      )
     })
     return false
   }
@@ -61,7 +67,7 @@ async function fileChoose({
   // 未获取到文件名
   if (!fileName) {
     Toast.show({
-      content: LocaleUtil.locale(`未获取到文件名, 无法上传`),
+      content: LocaleUtil.locale(`未获取到文件名, 无法上传`, 'SeedsUI_no_fileName'),
       maskClickable: true
     })
     return false
@@ -70,7 +76,11 @@ async function fileChoose({
   // 判断文件选中的类型
   if (!supportTypes(fileName, extension)) {
     Toast.show({
-      content: LocaleUtil.locale(`只支持选择${extension.join(',')}格式的文件`),
+      content: LocaleUtil.locale(
+        `只支持选择${extension.join(',')}格式的文件`,
+        'SeedsUI_choose_type_error',
+        [extension.join(',')]
+      ),
       maskClickable: true
     })
     return false

@@ -66,14 +66,14 @@ function Upload(
   async function _choose(e) {
     if (!chooseVisible) {
       Toast.show({
-        content: LocaleUtil.locale('此控件无上传功能, 请勿调用拍照')
+        content: LocaleUtil.locale('此控件无上传功能, 请勿调用拍照', 'SeedsUI_no_upload_feature')
       })
       return false
     }
     let uploadDOM = uploadRef.current?.rootDOM?.querySelector?.('.upload-choose')
     if (!uploadDOM) {
       Toast.show({
-        content: LocaleUtil.locale('未找到上传按钮, 调用上传失败')
+        content: LocaleUtil.locale('未找到上传按钮, 调用上传失败', 'SeedsUI_no_upload_button')
       })
       return false
     }
@@ -167,7 +167,7 @@ function Upload(
 
     let hasUploaded = false
     // 开始上传
-    showLoading({ content: LocaleUtil.locale('上传中') })
+    showLoading({ content: LocaleUtil.locale('上传中', 'SeedsUI_uploading') })
     for (let [index, item] of newList.entries()) {
       // 只上传未上传的文件
       if (item.status === 'choose') {
@@ -196,7 +196,10 @@ function Upload(
         // 上传失败
         if (failCount) {
           Toast.show({
-            content: `${LocaleUtil.locale('网络异常，上传失败')}${failCount}`
+            content: `${LocaleUtil.locale(
+              '网络异常，上传失败',
+              'SeedsUI_upload_network_error'
+            )}${failCount}`
           })
         }
       }

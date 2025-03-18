@@ -28,7 +28,7 @@ async function fileChoose({
 
   if (!file || !file.files?.[0]) {
     Toast.show({
-      content: LocaleUtil.locale('没有选择文件，无法上传！'),
+      content: LocaleUtil.locale('没有选择文件，无法上传！', 'SeedsUI_no_upload_file'),
       maskClickable: true
     })
     return false
@@ -37,7 +37,11 @@ async function fileChoose({
   // 大于总数禁止选择
   if (getRemainCount(count, list?.length || 0) <= 0) {
     Toast.show({
-      content: LocaleUtil.locale(`照片总数不能大于${count}张`),
+      content: LocaleUtil.locale(
+        `照片总数不能大于${count}张`,
+        'SeedsUI_image_cannot_greater_than',
+        [count]
+      ),
       maskClickable: true
     })
     return false
