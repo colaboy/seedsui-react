@@ -1,6 +1,6 @@
 {
   "name": "seedsui-react",
-  "version": "5.9.59",
+  "version": "5.9.60",
   "description": "seedsui-react React component",
   "keywords": [
     "react-component",
@@ -34,7 +34,8 @@
     "prepare": "husky install && dumi setup",
     "prepublishOnly": "npm run build",
     "start": "npm run dev",
-    "translate": "node scripts/translate-src.js"
+    "translate": "node scripts/translate-src.js",
+    "wrapChinese": "node scripts/wrapChinese.js"
   },
   "commitlint": {
     "extends": [
