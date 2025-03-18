@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
-import UploadButton from './../UploadButton'
+import Choose from './../Choose'
 import Item from './Item'
 
 // 文件
@@ -57,7 +57,7 @@ const Upload = forwardRef(
     // 上传node
     function getUploadNode() {
       return (
-        <UploadButton
+        <Choose
           disabled={disabled}
           // file框属性
           fileProps={fileProps}

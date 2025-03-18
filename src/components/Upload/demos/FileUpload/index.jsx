@@ -39,6 +39,8 @@ export default () => {
         <Upload
           ref={uploadRef}
           // async
+          allowChoose
+          allowClear
           uploadPosition="start"
           maxSize={300 * 1024 * 1024}
           list={list}
