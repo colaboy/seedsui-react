@@ -70,8 +70,8 @@ function Image(
       })
       return false
     }
-    let uploadDOM = imageRef.current?.rootDOM?.querySelector?.('.image-item.image-upload')
-    if (!uploadDOM) {
+    let chooseDOM = imageRef.current?.rootDOM?.querySelector?.('.image-item.image-choose')
+    if (!chooseDOM) {
       Toast.show({
         content: LocaleUtil.locale('未找到拍照按钮, 调用拍照失败')
       })
@@ -90,8 +90,8 @@ function Image(
     // 根节点遮罩
     rootDOM.classList.add('uploading')
     // 新增按钮遮罩
-    let uploadDOM = rootDOM.querySelector('.image-upload')
-    if (uploadDOM) uploadDOM.classList.add('uploading')
+    let chooseDOM = rootDOM.querySelector('.image-choose')
+    if (chooseDOM) chooseDOM.classList.add('uploading')
     // 当前项遮罩
     let itemDOM =
       typeof index === 'number' ? rootDOM.querySelector(`[data-index="${index}"]`) : null
@@ -109,8 +109,8 @@ function Image(
     // 根节点遮罩
     rootDOM.classList.remove('uploading')
     // 新增按钮遮罩
-    let uploadDOM = rootDOM.querySelector('.image-upload')
-    if (uploadDOM) uploadDOM.classList.remove('uploading')
+    let chooseDOM = rootDOM.querySelector('.image-choose')
+    if (chooseDOM) chooseDOM.classList.remove('uploading')
     // 当前项遮罩
     let itemsDOM = rootDOM.querySelectorAll(`[data-index]`)
     if (itemsDOM) {

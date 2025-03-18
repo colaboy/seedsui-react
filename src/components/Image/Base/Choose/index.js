@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 上传按钮
-const Upload = ({
+const Choose = ({
   type,
 
   // file框属性
@@ -50,14 +50,14 @@ const Upload = ({
   }
 
   return (
-    <div className={`image-item image-upload`} onClick={handleUploadClick}>
+    <div className={`image-item image-choose`} onClick={handleUploadClick}>
       {/* 拍照或者视频图标 */}
-      <div className={`image-upload-icon${type === 'video' ? ' video' : ''}`}></div>
+      <div className={`image-choose-icon${type === 'video' ? ' video' : ''}`}></div>
       {/* 启用file框 */}
       {onFileChange && (
         <input
           type="file"
-          className="image-upload-file-photo"
+          className="image-choose-file-photo"
           onChange={handleFileChange}
           accept="image/*"
           // 以下的属性值会导致: 部分安卓机会不显示拍照
@@ -76,4 +76,4 @@ const Upload = ({
   )
 }
 
-export default Upload
+export default Choose

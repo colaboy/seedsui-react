@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
 import Item from './Item'
-import Upload from './Upload'
+import Choose from './Choose'
 import Uploading from './Uploading'
 import Preview from './Preview'
 
@@ -112,7 +112,7 @@ const Image = forwardRef(
     }
 
     // 上传node
-    function getUploadInnerNode() {
+    function getUploadNode() {
       if (typeof upload === 'function') {
         return upload()
       }
@@ -123,14 +123,14 @@ const Image = forwardRef(
     }
 
     // 上传node
-    function getUploadNode() {
+    function getChooseNode() {
       return (
-        <Upload
+        <Choose
           type={type}
           // file框属性
           fileProps={fileProps}
           // 上传DOM
-          uploadNode={getUploadInnerNode()}
+          uploadNode={getUploadNode()}
           // 上传中DOM
           uploadingNode={getUploadingNode()}
           // Choose events
@@ -148,7 +148,7 @@ const Image = forwardRef(
         className={`image${props.className ? ' ' + props.className : ''}`}
       >
         {/* 图片上传: 上传按钮 */}
-        {uploadPosition === 'start' && (onChoose || onFileChange) && getUploadNode()}
+        {uploadPosition === 'start' && (onChoose || onFileChange) && getChooseNode()}
 
         {/* 图片列表 */}
         {list &&

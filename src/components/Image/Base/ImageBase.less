@@ -1,6 +1,6 @@
 @import 'Item/ImageItem.less';
 @import 'Preview/ImagePreview.less';
-@import 'Upload/ImageUpload.less';
+@import 'Choose/ImageChoose.less';
 @import 'Uploading/ImageUploading.less';
 @import 'Mark/ImageMark.less';
 
@@ -9,14 +9,11 @@
   display: flex;
   flex-flow: row wrap;
   row-gap: 8px;
-  .image-item {
-    margin-right: 8px;
-  }
-
   // 单个照片
   --cell-width: 72px;
   --cell-height: 72px;
   .image-item {
+    margin-right: 8px;
     width: var(--cell-width);
     height: var(--cell-height);
   }
@@ -24,7 +21,7 @@
   // 上传中
   &.uploading {
     // 显示转圈
-    .image-upload {
+    .image-choose {
       .image-uploading {
         display: block;
       }
