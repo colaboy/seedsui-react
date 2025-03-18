@@ -164,8 +164,8 @@ const Item = ({
       {/* 文件图标 */}
       <i className={`icon upload-item-type ${getIcon(item.src)}`}></i>
       {/* 文件名称 */}
-      <div className="upload-item-content">
-        <div className="upload-item-label">{item.name || item.src}</div>
+      <div className="upload-item-main">
+        <div className="upload-item-title">{item.name || item.src}</div>
         {/* 自定义dom */}
         {item.children}
         {/* 重新上传 */}
