@@ -31,6 +31,8 @@ const Image = forwardRef(
       onDelete,
       onReUpload,
       onPreview, // 是否支持单击预览, readOnly为true时才生效
+
+      children,
       ...props
     },
     ref
@@ -111,7 +113,7 @@ const Image = forwardRef(
     }
 
     // 上传node
-    function getChooseNode() {
+    function getChooseNode(props) {
       return (
         <Choose
           type={type}
@@ -125,10 +127,26 @@ const Image = forwardRef(
           onChoose={onChooseRef.current}
           onBeforeChoose={onBeforeChooseRef.current}
           onFileChange={onFileChangeRef.current}
+          {...props}
         />
       )
     }
 
+    // Custom render
+    if (children) {
+      return (
+        <div
+          ref={rootRef}
+          {...props}
+          className={`image${props.className ? ' ' + props.className : ''}`}
+        >
+          {getChooseNode({ className: 'image-choose-hidden' })}
+          {children}
+        </div>
+      )
+    }
+
+    // Default render
     return (
       <div
         ref={rootRef}

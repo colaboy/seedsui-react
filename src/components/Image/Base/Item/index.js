@@ -44,6 +44,7 @@ const Item = ({
 
       {/* 自定义dom */}
       {item.children}
+
       {/* 删除按钮 */}
       {onDelete && (
         <Delete
@@ -53,7 +54,9 @@ const Item = ({
         />
       )}
 
-      {remainCount && <RemainCount count={remainCount} />}
+      {typeof remainCount === 'number' && remainCount > 0 ? (
+        <RemainCount count={remainCount} />
+      ) : null}
     </div>
   )
 }

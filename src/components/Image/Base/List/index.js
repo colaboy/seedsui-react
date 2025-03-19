@@ -14,7 +14,7 @@ import { Bridge } from 'seedsui-react'
 测试使用-end */
 
 // 照片视频预览
-const Image = forwardRef(
+const List = forwardRef(
   (
     {
       type, // video.录相 | 其它.为拍照
@@ -86,33 +86,33 @@ const Image = forwardRef(
     return (
       <>
         {/* 图片列表 */}
-        {list &&
-          list.length > 0 &&
-          list.map((item, index) => {
-            if (visibleCount && index + 1 > visibleCount) return null
-            return (
-              <Item
-                key={index}
-                remainCount={
-                  visibleCount && index === visibleCount - 1 ? list.length - visibleCount : null
-                }
-                item={item}
-                index={index}
-                uploading={uploading}
-                onDelete={
-                  onDelete
-                    ? (e) => {
-                        onDeleteRef.current(item, index)
-                      }
-                    : null
-                }
-                onReUpload={onReUploadRef.current}
-                onPreview={(e) => {
-                  handlePreview(item, index)
-                }}
-              />
-            )
-          })}
+        {list && list.length > 0
+          ? list.map((item, index) => {
+              if (visibleCount && index + 1 > visibleCount) return null
+              return (
+                <Item
+                  key={index}
+                  remainCount={
+                    visibleCount && index === visibleCount - 1 ? list.length - visibleCount : null
+                  }
+                  item={item}
+                  index={index}
+                  uploading={uploading}
+                  onDelete={
+                    onDelete
+                      ? (e) => {
+                          onDeleteRef.current(item, index)
+                        }
+                      : null
+                  }
+                  onReUpload={onReUploadRef.current}
+                  onPreview={(e) => {
+                    handlePreview(item, index)
+                  }}
+                />
+              )
+            })
+          : null}
         {/* 预览 */}
         {previewTypeRef.current === 'browser' && (
           <Preview
@@ -132,4 +132,4 @@ const Image = forwardRef(
   }
 )
 
-export default Image
+export default List

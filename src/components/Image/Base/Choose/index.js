@@ -3,6 +3,7 @@ import Uploading from './../Uploading'
 
 // 上传按钮
 const Choose = ({
+  className,
   type,
 
   // file框属性
@@ -51,7 +52,10 @@ const Choose = ({
   }
 
   return (
-    <div className={`image-item image-choose`} onClick={handleUploadClick}>
+    <div
+      className={`image-item image-choose${className ? ' ' + className : ''}`}
+      onClick={handleUploadClick}
+    >
       {/* 拍照或者视频图标 */}
       <div className={`image-choose-icon${type === 'video' ? ' video' : ''}`}></div>
       {/* 启用file框 */}
