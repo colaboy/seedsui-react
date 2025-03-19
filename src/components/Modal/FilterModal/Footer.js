@@ -34,7 +34,6 @@ export default function FilterFooter({ onConfig, onReset, onOk }) {
     })
   }
 
-  console.log(buttons)
   return (
     <Layout.Footer
       buttons={buttons}
