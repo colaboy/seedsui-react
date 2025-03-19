@@ -88,13 +88,6 @@ export default () => {
           maxSize={300 * 1024 * 1024}
           list={customList}
           count={9}
-          onBeforeChoose={() => {
-            return new Promise((resolve) => {
-              setTimeout(() => {
-                resolve(true)
-              }, 2000)
-            })
-          }}
           onFileChange={({ fileName, fileSize, fileURL, fileData }) => {
             // 待传文件
             return [

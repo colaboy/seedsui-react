@@ -40,10 +40,10 @@ const List = ({
   const [previewCurrent, setPreviewCurrent] = useState(null)
 
   // 点击预览
-  async function handlePreview(item, index, otherOptions) {
+  async function handlePreview(item, index) {
     // 自定义预览
     if (typeof onPreviewRef.current === 'function') {
-      let goOn = await onPreviewRef.current(item, index, otherOptions)
+      let goOn = await onPreviewRef.current(item, index)
       if (goOn === false) return
       if (goOn === 'browser') {
         previewTypeRef.current = 'browser'

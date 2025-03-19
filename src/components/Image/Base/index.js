@@ -37,9 +37,6 @@ const Image = forwardRef(
     },
     ref
   ) => {
-    // 预览类型: browser|native
-    const previewTypeRef = useRef(getPreviewType(type))
-
     // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
     const onBeforeChooseRef = useRef()
     const onChooseRef = useRef()
@@ -55,8 +52,6 @@ const Image = forwardRef(
     onReUploadRef.current = onReUpload
     onPreviewRef.current = onPreview
 
-    const [previewCurrent, setPreviewCurrent] = useState(null)
-
     // 根节点
     const rootRef = useRef(null)
 
@@ -71,35 +66,6 @@ const Image = forwardRef(
         }
       }
     })
-
-    // 点击预览
-    async function handlePreview(item, index, otherOptions) {
-      // 自定义预览
-      if (typeof onPreviewRef.current === 'function') {
-        let goOn = await onPreviewRef.current(item, index, otherOptions)
-        if (goOn === false) return
-        if (goOn === 'browser') {
-          previewTypeRef.current = 'browser'
-        }
-      }
-
-      // 本地能力预览照片
-      if (previewTypeRef.current === 'nativeImage') {
-        Bridge.previewImage({
-          urls: list.map((item) => item.src),
-          current: list[index].src,
-          index: index
-        })
-      }
-      // 勤策视频使用previewFile预览
-      else if (previewTypeRef.current === 'nativeFile') {
-        Bridge.previewFile({ url: item.src })
-      }
-      // 浏览器预览
-      else {
-        setPreviewCurrent(Number(index))
-      }
-    }
 
     // 上传node
     function getUploadNode() {
