@@ -17,7 +17,7 @@ const Compact = forwardRef(({ children, ...props }, ref) => {
     if (!childrenDOM) return
 
     // Different component, different child className
-    let componentClassNames = ['button']
+    let componentClassNames = ['button', 'toolbar-button']
 
     // Each child add compact className
     for (let index = 0; index < childrenDOM.length; index++) {

@@ -1,21 +1,25 @@
-import React, { forwardRef } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-// 内库使用-start
-import Button from './../../Button'
-// 内库使用-end
+const Button = forwardRef(({ children, ...props }, ref) => {
+  const rootRef = useRef(null)
 
-/* 测试使用-start
-import { Button } from 'seedsui-react'
-测试使用-end */
+  // Expose
+  useImperativeHandle(ref, () => {
+    return {
+      rootDOM: rootRef.current,
+      getRootDOM: () => rootRef.current
+    }
+  })
 
-const ButtonBar = forwardRef(({ ...props }, ref) => {
   return (
-    <Button
+    <div
       {...props}
       className={'toolbar-button' + (props.className ? ' ' + props.className : '')}
-      ref={ref}
-    />
+      ref={rootRef}
+    >
+      {children}
+    </div>
   )
 })
 
-export default ButtonBar
+export default Button

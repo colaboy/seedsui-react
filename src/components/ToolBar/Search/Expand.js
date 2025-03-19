@@ -46,9 +46,9 @@ const Expand = ({ placeholder, value, onSearch, onBarCode, onCancel, barCode }) 
 
       {/* 二维码 */}
       {barCode && (
-        <Button className="toolbar-search-button-barcode" onClick={onBarCode}>
+        <div className="toolbar-search-button-barcode" onClick={onBarCode}>
           <i className="toolbar-search-button-barcode-icon"></i>
-        </Button>
+        </div>
       )}
 
       {/* 取消按钮 */}

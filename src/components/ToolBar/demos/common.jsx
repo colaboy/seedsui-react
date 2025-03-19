@@ -17,6 +17,7 @@ export default () => {
             onChange={setDateRange}
           />
           <ToolBar.List
+            className="toolbar-button"
             title={!item ? 'List' : undefined}
             value={item}
             onChange={setItem}
