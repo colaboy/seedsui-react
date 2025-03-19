@@ -1,9 +1,8 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
 import Choose from './Choose'
-import Item from './Item'
+import List from './List'
 
-// 文件
 const Upload = forwardRef(
   (
     {
@@ -29,16 +28,10 @@ const Upload = forwardRef(
     const onBeforeChooseRef = useRef()
     const onChooseRef = useRef()
     const onFileChangeRef = useRef()
-    const onDeleteRef = useRef()
-    const onReUploadRef = useRef()
-    const onPreviewRef = useRef()
 
     onBeforeChooseRef.current = onBeforeChoose
     onChooseRef.current = onChoose
     onFileChangeRef.current = onFileChange
-    onDeleteRef.current = onDelete
-    onReUploadRef.current = onReUpload
-    onPreviewRef.current = onPreview
 
     // 根节点
     const rootRef = useRef(null)
@@ -98,21 +91,14 @@ const Upload = forwardRef(
         {uploadPosition === 'start' && (onChoose || onFileChange) && getChooseNode()}
 
         {/* 列表 */}
-        {list &&
-          list.length > 0 &&
-          list.map((item, index) => {
-            return (
-              <Item
-                key={index}
-                item={item}
-                index={index}
-                uploading={uploading}
-                onPreview={onPreviewRef.current}
-                onDelete={onDeleteRef.current}
-                onReUpload={onReUploadRef.current}
-              />
-            )
-          })}
+        <List
+          list={list}
+          uploading={uploading}
+          // Events
+          onDelete={onDelete}
+          onReUpload={onReUpload}
+          onPreview={onPreview}
+        />
 
         {/* 底部上传按钮 */}
         {uploadPosition === 'end' && (onChoose || onFileChange) && getChooseNode()}
