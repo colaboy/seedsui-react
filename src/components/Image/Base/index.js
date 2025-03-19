@@ -3,16 +3,6 @@ import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 import List from './List'
 import Choose from './Choose'
 
-import getPreviewType from './getPreviewType'
-
-// 内库使用-start
-import Bridge from './../../../utils/Bridge'
-// 内库使用-end
-
-/* 测试使用-start
-import { Bridge } from 'seedsui-react'
-测试使用-end */
-
 // 照片视频预览
 const Image = forwardRef(
   (

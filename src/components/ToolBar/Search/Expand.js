@@ -3,11 +3,10 @@ import React, { useState, useEffect, useRef } from 'react'
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import Input from './../../Input'
-import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Input, Button } from 'seedsui-react'
+import { LocaleUtil, Input } from 'seedsui-react'
 测试使用-end */
 
 const Expand = ({ placeholder, value, onSearch, onBarCode, onCancel, barCode }) => {
