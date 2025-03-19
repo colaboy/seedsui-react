@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Toast, Layout, Bridge, Button, Upload } from 'seedsui-react'
+import { Toast, Layout, Divider, Bridge, Button, Upload } from 'seedsui-react'
 import uploadItem from './browser/uploadItem'
 
 export default () => {
@@ -15,6 +15,8 @@ export default () => {
       src: 'https://img.zcool.cn/community/01a9a65dfad975a8012165189a6476.doc'
     }
   ])
+
+  const [customList, setCustomList] = useState([])
 
   useEffect(() => {
     Bridge.ready(() => {
@@ -36,6 +38,7 @@ export default () => {
   return (
     <Layout className="full">
       <Layout.Main>
+        <Divider>Default Upload</Divider>
         <Upload
           ref={uploadRef}
           reUpload={false}
@@ -74,6 +77,57 @@ export default () => {
           }}
           onUpload={uploadItem}
         />
+        <Divider>Custom Upload</Divider>
+        <Upload
+          className="custom-upload"
+          reUpload={false}
+          // async
+          allowChoose
+          allowClear
+          uploadPosition="start"
+          maxSize={300 * 1024 * 1024}
+          list={customList}
+          count={9}
+          onBeforeChoose={() => {
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                resolve(true)
+              }, 2000)
+            })
+          }}
+          onFileChange={({ fileName, fileSize, fileURL, fileData }) => {
+            // 待传文件
+            return [
+              {
+                sourceType: 'local',
+                status: 'choose',
+                name: fileName,
+                size: fileSize,
+                uploadDir: 'uploadDir/202504',
+                src: fileURL,
+                path: '',
+                fileData: fileData
+              }
+            ]
+          }}
+          onChange={(newList) => {
+            console.log('修改:', newList)
+            setCustomList(newList)
+          }}
+          onUpload={uploadItem}
+        >
+          {Array.isArray(customList) && customList.length ? (
+            <Upload.List
+              list={customList}
+              onPreview={() => {
+                console.log('preview')
+                return false
+              }}
+            />
+          ) : (
+            'Custom Upload Render'
+          )}
+        </Upload>
       </Layout.Main>
       <Layout.Footer>
         <Button className="flex primary" onClick={handleAsyncUpload}>

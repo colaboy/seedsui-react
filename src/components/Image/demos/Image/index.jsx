@@ -94,6 +94,7 @@ export default () => {
         />
         <Divider>Custom Image</Divider>
         <Image
+          className="custom-image"
           // async
           // reUpload={false}
           visibleCount={2}

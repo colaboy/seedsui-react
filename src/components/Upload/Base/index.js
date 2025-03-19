@@ -20,6 +20,8 @@ const Upload = forwardRef(
       onPreview, // 是否支持单击预览, readOnly为true时才生效
 
       disabled,
+
+      children,
       ...props
     },
     ref
@@ -61,7 +63,7 @@ const Upload = forwardRef(
     }
 
     // 上传node
-    function getChooseNode() {
+    function getChooseNode(props) {
       return (
         <Choose
           disabled={disabled}
@@ -75,7 +77,22 @@ const Upload = forwardRef(
           onChoose={onChooseRef.current}
           onBeforeChoose={onBeforeChooseRef.current}
           onFileChange={onFileChangeRef.current}
+          {...props}
         />
+      )
+    }
+
+    // Custom render
+    if (children) {
+      return (
+        <div
+          ref={rootRef}
+          {...props}
+          className={`upload${props.className ? ' ' + props.className : ''}`}
+        >
+          {getChooseNode({ className: 'image-choose-hidden' })}
+          {children}
+        </div>
       )
     }
 
@@ -83,9 +100,7 @@ const Upload = forwardRef(
       <div
         ref={rootRef}
         {...props}
-        className={`upload${props.className ? ' ' + props.className : ''}${
-          uploadPosition === 'start' ? ' upload-position-start' : ' upload-position-end'
-        }`}
+        className={`upload${props.className ? ' ' + props.className : ''}`}
       >
         {/* 头部上传按钮 */}
         {uploadPosition === 'start' && (onChoose || onFileChange) && getChooseNode()}

@@ -4,6 +4,7 @@ import Button from './Button'
 
 // 上传按钮
 const Upload = ({
+  className,
   // file框属性
   fileProps,
 
@@ -54,9 +55,12 @@ const Upload = ({
   }
 
   return (
-    <div className={`upload-choose${disabled ? ' disabled' : ''}`} onClick={handleUploadClick}>
+    <div
+      className={`upload-choose${disabled ? ' disabled' : ''}${className ? ' ' + className : ''}`}
+      onClick={handleUploadClick}
+    >
       {/* 上传按钮 */}
-      <Button disabled={disabled} uploading={uploading} {...props} />
+      <Button disabled={disabled} uploading={uploading} />
 
       {/* 启用file框 */}
       {onFileChange && (
