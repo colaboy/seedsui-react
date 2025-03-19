@@ -41,7 +41,7 @@ export default () => {
             ok
             // cancel
             barCode
-            combo="icon"
+            // combo="icon"
             // value
             value={search}
             onChange={setSearch}

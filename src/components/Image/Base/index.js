@@ -1,8 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
-import Item from './Item'
+import List from './List'
 import Choose from './Choose'
-import Preview from './Preview'
 
 import getPreviewType from './getPreviewType'
 
@@ -140,51 +139,19 @@ const Image = forwardRef(
         {uploadPosition === 'start' && (onChoose || onFileChange) && getChooseNode()}
 
         {/* 图片列表 */}
-        {list &&
-          list.length > 0 &&
-          list.map((item, index) => {
-            if (visibleCount && index + 1 > visibleCount) return null
-            return (
-              <Item
-                key={index}
-                remainCount={
-                  visibleCount && index === visibleCount - 1 ? list.length - visibleCount : null
-                }
-                item={item}
-                index={index}
-                uploading={uploading}
-                onDelete={
-                  onDelete
-                    ? (e) => {
-                        onDeleteRef.current(item, index)
-                      }
-                    : null
-                }
-                onReUpload={onReUploadRef.current}
-                onPreview={(e) => {
-                  handlePreview(item, index)
-                }}
-              />
-            )
-          })}
+        <List
+          type={type}
+          list={list}
+          uploading={uploading}
+          visibleCount={visibleCount}
+          // Events
+          onDelete={onDelete}
+          onReUpload={onReUpload}
+          onPreview={onPreview}
+        />
 
         {/* 图片上传: 上传按钮 */}
         {uploadPosition === 'end' && (onChoose || onFileChange) && getChooseNode()}
-
-        {/* 预览 */}
-        {previewTypeRef.current === 'browser' && (
-          <Preview
-            visible={typeof previewCurrent === 'number'}
-            type={type}
-            onVisibleChange={(visible) => {
-              if (!visible) {
-                setPreviewCurrent(null)
-              }
-            }}
-            list={list} // 需要预览的资源列表{src: '图片或视频的地址', type: 'video|image, 默认image', thumb: '封面地址'}
-            current={previewCurrent}
-          />
-        )}
       </div>
     )
   }
