@@ -175,7 +175,7 @@ export default () => {
         </Button>
 
         <h2>扫码接口</h2>
-        <p className="demo-title">调用外勤365扫码接口</p>
+        <p className="demo-title">调用365扫码接口</p>
         <Button
           className="primary flex"
           style={{ margin: '12px 10px' }}
@@ -270,7 +270,7 @@ export default () => {
         </Button>
 
         <h2>文件接口</h2>
-        <p className="demo-title">预览文件接口(仅勤策客户端支持)</p>
+        <p className="demo-title">预览文件接口(仅客户端支持)</p>
         <Button
           className="primary flex"
           style={{ margin: '12px 10px' }}
@@ -351,7 +351,7 @@ export default () => {
           getLocation(wgs84)
         </Button>
 
-        <p className="demo-title">分享: 支持勤策(ios、android)、微信、企微、小程序、飞书、钉钉</p>
+        <p className="demo-title">分享: 支持(ios、android)、微信、企微、小程序、飞书、钉钉</p>
         <Share.Combo
           onBeforeOpen={() => {
             Loading.show({

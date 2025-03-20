@@ -1,6 +1,6 @@
 import { Device } from 'seedsui-react'
 
-// 微信勤策客户端，Layout全屏时增加安全区域（仅对苹果的安全区域生效）
+// 微信客户端，Layout全屏时增加安全区域（仅对苹果的安全区域生效）
 function needsSafeArea() {
   if (Device.platform === 'wq' && Device.compareVersion(Device.platformVersion, '7.1.90') >= 0) {
     return true
