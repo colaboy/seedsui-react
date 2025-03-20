@@ -35,8 +35,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -81,8 +83,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -127,8 +131,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -172,8 +178,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -218,8 +226,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -263,8 +273,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -305,8 +317,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -344,8 +358,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -386,8 +402,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -431,8 +449,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -476,8 +496,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -522,8 +544,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -567,8 +591,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -612,8 +638,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -657,8 +685,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -703,8 +733,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -748,8 +780,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -794,8 +828,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -842,8 +878,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -890,8 +928,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -934,8 +974,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -980,8 +1022,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1025,8 +1069,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1072,8 +1118,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1118,8 +1166,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1165,8 +1215,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1209,8 +1261,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1256,8 +1310,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1294,8 +1350,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1337,8 +1395,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1380,8 +1440,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1429,8 +1491,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1476,8 +1540,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1523,8 +1589,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1569,8 +1637,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1615,8 +1685,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1662,8 +1734,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1708,8 +1782,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1756,8 +1832,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1804,8 +1882,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1843,8 +1923,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1890,8 +1972,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1935,8 +2019,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -1980,8 +2066,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2021,8 +2109,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2063,8 +2153,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2112,8 +2204,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2159,8 +2253,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2201,8 +2297,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2249,8 +2347,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2294,8 +2394,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2334,8 +2436,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2379,8 +2483,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2424,8 +2530,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2469,8 +2577,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2515,8 +2625,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2563,8 +2675,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2609,8 +2723,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2657,8 +2773,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2695,8 +2813,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2742,8 +2862,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2788,8 +2910,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2837,8 +2961,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2885,8 +3011,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2924,8 +3052,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -2969,8 +3099,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3015,8 +3147,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3063,8 +3197,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3110,8 +3246,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3154,8 +3292,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3199,8 +3339,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3245,8 +3387,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3291,8 +3435,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3339,8 +3485,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3381,8 +3529,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3419,8 +3569,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3460,8 +3612,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3499,8 +3653,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3543,8 +3699,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3587,8 +3745,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3633,8 +3793,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3673,8 +3835,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3711,8 +3875,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3756,8 +3922,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3804,8 +3972,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3846,8 +4016,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3888,8 +4060,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3930,8 +4104,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -3975,8 +4151,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4020,8 +4198,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4066,8 +4246,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4110,8 +4292,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4150,8 +4334,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4194,8 +4380,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4232,8 +4420,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4279,8 +4469,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4323,8 +4515,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4372,8 +4566,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4416,8 +4612,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4458,8 +4656,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4504,8 +4704,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4549,8 +4751,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4594,8 +4798,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4632,8 +4838,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4678,8 +4886,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4720,8 +4930,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4764,8 +4976,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4810,8 +5024,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4855,8 +5071,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4900,8 +5118,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4947,8 +5167,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -4988,8 +5210,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5031,8 +5255,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5075,8 +5301,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5118,8 +5346,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5159,8 +5389,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5202,8 +5434,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5248,8 +5482,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5291,8 +5527,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5336,8 +5574,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5375,8 +5615,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5420,8 +5662,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5458,8 +5702,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5504,8 +5750,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5551,8 +5799,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5598,8 +5848,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5647,8 +5899,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5696,8 +5950,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5742,8 +5998,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5788,8 +6046,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5832,8 +6092,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5883,8 +6145,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5930,8 +6194,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -5975,8 +6241,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6019,8 +6287,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6064,8 +6334,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6109,8 +6381,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6155,8 +6429,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6201,8 +6477,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6249,8 +6527,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6298,8 +6578,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6346,8 +6628,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6393,8 +6677,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6431,8 +6717,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6480,8 +6768,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6529,8 +6819,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6577,8 +6869,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6626,8 +6920,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6673,8 +6969,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6721,8 +7019,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6768,8 +7068,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6816,8 +7118,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
@@ -6865,8 +7169,10 @@ export default [
       options: {
         iconUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
         iconRetinaUrl: '/src/pages/PernodRicard/assets/icon/noExpand.png',
-        shadowUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
-        shadowRetinaUrl: '//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png',
+        shadowUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
+        shadowRetinaUrl:
+          'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png',
         shadowSize: [33, 33],
         iconSize: [24, 33],
         iconAnchor: [12, 16]
