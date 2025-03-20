@@ -25,8 +25,7 @@ function loadCountries() {
     }
 
     // 加载语言对应的文件
-    Request.get(`https://res.waiqin365.com/p/platform/district/${language}/country.json`)
-      // ApiAxios.get(`http://waiqin365-test.oss-cn-hangzhou.aliyuncs.com/p/platform/district/${language}/country.json`)
+    Request.get(`https://url/${language}/country.json`)
       .then(function (json) {
         window.countryData = json || []
         window.sessionStorage.setItem('countryData', JSON.stringify(window.countryData))

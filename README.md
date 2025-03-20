@@ -15,7 +15,7 @@ An enterprise-class UI design language and React UI library.
 ### Less import
 
 ```bash
-@import '//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css';
+@import 'seedsui-react.min.css';
 ```
 
 ### CSS import
@@ -23,7 +23,7 @@ An enterprise-class UI design language and React UI library.
 ```html
 <link
   rel="stylesheet"
-  href="//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css"
+  href="https://colaboy.github.io/seedsui-react/assets/seedsui-react.min.css"
 />
 ```
 

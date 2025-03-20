@@ -552,7 +552,8 @@ export default {
           productCode: 'RIO06',
           bjpType: '0',
           rate: 100,
-          imageUrl: 'https://image-test.waiqin365.com/7093658607018213657/null',
+          // 不存在的图片
+          imageUrl: 'https://colaboy.github.io/seedsui-react/assets/images/list/avatar-default.jpg',
           name: '清爽价格签',
           layers: [1],
           rank: 1,

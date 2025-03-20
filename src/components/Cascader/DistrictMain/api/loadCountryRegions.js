@@ -26,8 +26,7 @@ function loadCountryRegions(countryId = '86') {
     }
 
     // 加载语言对应的文件
-    Request.get(`https://res.waiqin365.com/p/platform/district/${language}/${countryId}.json`)
-      // ApiAxios.get(`http://waiqin365-test.oss-cn-hangzhou.aliyuncs.com/p/platform/district/${language}/${countryId}.json`)
+    Request.get(`https://url/${language}/${countryId}.json`)
       .then(function (list) {
         // 存到缓存中
         window.countryProvinces = JSON.parse(

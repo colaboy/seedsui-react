@@ -8,9 +8,7 @@ export default () => {
       <Layout.Main>
         <VideoPlayer
           ref={videoPlayerRef}
-          poster={
-            'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png?x-oss-process=style/zk320'
-          }
+          poster={'https://colaboy.github.io/seedsui-react/assets/images/logo.png'}
           src={'https://player.alicdn.com/video/aliyunmedia.mp4'}
           autoPlay={false}
           header={
