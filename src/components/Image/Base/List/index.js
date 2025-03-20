@@ -58,7 +58,7 @@ const List = ({
         index: index
       })
     }
-    // 勤策视频使用previewFile预览
+    // 视频使用previewFile预览
     else if (previewTypeRef.current === 'nativeFile') {
       Bridge.previewFile({ url: item.src })
     }
