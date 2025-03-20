@@ -534,8 +534,7 @@ export default {
       errMsg: null
     },
     sku_price_tag_enabl: true,
-    originalImageUrl:
-      'http://waiqin365-test.oss-cn-hangzhou.aliyuncs.com/7093658607018213657/sku/202309/202309011743297_738b686382d14ffa9b49b26707063952.jpg?Expires=1693878629&OSSAccessKeyId=3xQsK7v98Z2jfkyA&Signature=GAR0twEvT6dWnMBzSL%2FJ%2B7u%2Fl3A%3D',
+    originalImageUrl: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
     materials: {
       jpMaDetail: [],
       maDetail: [
@@ -632,8 +631,7 @@ export default {
   errReport: '',
   funcId: 12,
   id: '8901464828137340152',
-  imageUrl:
-    'http://waiqin365-test.oss-cn-hangzhou.aliyuncs.com/7093658607018213657/sku/202309/202309011743297_738b686382d14ffa9b49b26707063952.jpg?Expires=1693878630&OSSAccessKeyId=3xQsK7v98Z2jfkyA&Signature=5wO9YLmtkHoeEWKy1JOEpX4uo3Y%3D',
+  imageUrl: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
   jpLstDoorInfo: [],
   lstDoorInfo: [],
   next: '',
