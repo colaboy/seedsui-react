@@ -112,10 +112,10 @@ function ready(callback, options = {}, Bridge) {
       }
     }
   }
-  // 勤策cordova内核
+  // cordova内核
   else if (platform === 'waiqin') {
     console.error('请勿使用cordova内核, 请安排版本转成新内核')
-    // 外勤cordova
+    // cordova
     script.src =
       options.wqCordovaSrc || '//res.waiqin365.com/d/common_mobile/component/cordova/cordova.js'
     script.onload = function () {
@@ -124,12 +124,12 @@ function ready(callback, options = {}, Bridge) {
     if (options.fail) {
       script.onerror = function () {
         options.fail({
-          errMsg: LocaleUtil.locale('外勤cordova加载失败', 'SeedsUI_cordova_js_load_failed')
+          errMsg: LocaleUtil.locale('cordova加载失败', 'SeedsUI_cordova_js_load_failed')
         })
       }
     }
   }
-  // 勤策与订货平台
+  // 与订货平台
   else if (platform === 'wq' || platform === 'dinghuo') {
     // 初始化完成不需要重复加载
     if (window.top.wq) {
@@ -137,7 +137,7 @@ function ready(callback, options = {}, Bridge) {
       return
     }
 
-    // 外勤jssdk
+    // jssdk
     // 用开发d目录可以使用新功能
     script.src = options.wqSrc || `//res.waiqin365.com/p/open/js/waiqin365.min-2.0.6.js`
     script.onload = function () {
@@ -146,7 +146,7 @@ function ready(callback, options = {}, Bridge) {
     if (options.fail) {
       script.onerror = function () {
         options.fail({
-          errMsg: LocaleUtil.locale('外勤js加载失败', 'SeedsUI_qince_js_load_failed')
+          errMsg: LocaleUtil.locale('js加载失败', 'SeedsUI_qince_js_load_failed')
         })
       }
     }

@@ -11146,11 +11146,11 @@
     "uz_UZ": "WeChat js yuklanmadi",
     "zh_TW": "微信js載入失敗"
   },
-  "外勤cordova加载失败": {
+  "cordova加载失败": {
     "key": "SeedsUI_cordova_js_load_failed",
-    "zh_CN": "外勤cordova加载失败",
+    "zh_CN": "cordova加载失败",
     "en_US": "Field cordova loading failed",
-    "zh_HK": "外勤cordova加載失敗",
+    "zh_HK": "cordova加載失敗",
     "vi_VN": "Tải cordova trường không thành công",
     "ar_EG": "فشل تحميل حقل كوردوفا",
     "az_AZ": "Sahə kordova yükləmə iflas etdi",
@@ -11215,13 +11215,13 @@
     "ur_PK": "Field cordova loading ناکام",
     "uk_UA": "Не вдалося завантажити польову кордову",
     "uz_UZ": "Kordonani yuklash muvaffaqiyatsiz tugadi",
-    "zh_TW": "外勤cordova載入失敗"
+    "zh_TW": "cordova載入失敗"
   },
-  "外勤js加载失败": {
+  "js加载失败": {
     "key": "SeedsUI_qince_js_load_failed",
-    "zh_CN": "外勤js加载失败",
+    "zh_CN": "js加载失败",
     "en_US": "Field JS failed to load",
-    "zh_HK": "外勤js加載失敗",
+    "zh_HK": "js加載失敗",
     "vi_VN": "Không tải trường JS",
     "ar_EG": "فشل تحميل حقل JS",
     "az_AZ": "Sahə YS yüklənə bilmədi",
@@ -11286,7 +11286,7 @@
     "ur_PK": "فیلڈ JS لوڈ کرنے میں ناکام رہا",
     "uk_UA": "Не вдалося завантажити Field JS",
     "uz_UZ": "Field JS yuklanmadi",
-    "zh_TW": "外勤js載入失敗"
+    "zh_TW": "js載入失敗"
   },
   "scanQRCode仅可在移动端微信或APP中使用": {
     "key": "SeedsUI_scanQRCode_prompt",

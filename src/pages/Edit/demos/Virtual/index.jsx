@@ -351,7 +351,7 @@ const Edit = () => {
             <Location.Combo
               type="gcj02"
               config={{
-                key: '7b6e260fc45a67b31a265e22575f1c5e',
+                key: '',
                 type: 'bmap'
               }}
               placeholder={locale('Please select')}

@@ -48,19 +48,19 @@ let Device = (function () {
       platformMatch = ua.match(/dinghuoappversion\/([\w.]*)/)
       if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
     }
-    // 外勤
+    //
     else if (ua.indexOf('wqappversion') > -1) {
-      // 外勤cordova内核
+      // cordova内核
       platform = 'waiqin'
       // JsBridge内核
       if (ua.indexOf('waiqin365') > -1) {
         platform = 'wq'
       }
-      // 临时纠错: 因为652之前的客户端wq和waiqin内核ua一样, 无法区分, 所以通过外部传入_device_wq_platform变量区分外勤还是订货
+      // 临时纠错: 因为652之前的客户端wq和waiqin内核ua一样, 无法区分, 所以通过外部传入_device_wq_platform变量区分还是订货
       if (window._device_wq_platform && ua.indexOf('wqappversion') > -1) {
         platform = window._device_wq_platform
       }
-      // 外勤版本号
+      // 版本号
       platformMatch = ua.match(/wqappversion\/([\w.]*)/)
       if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
     }

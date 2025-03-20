@@ -141,7 +141,7 @@ let Bridge = {
     if (!params.type) {
       params.type = 'gcj02'
     }
-    console.log('调用勤策订货定位...', params)
+    console.log('调用订货定位...', params)
     window.top.wq.getLocation(params)
   },
   /*
@@ -212,7 +212,7 @@ let Bridge = {
       })
       return
     }
-    console.log('外勤WK内核chooseImage', params)
+    console.log('WK内核chooseImage', params)
     window.top.wq.chooseImage(params) // eslint-disable-line
   },
   /**
@@ -293,7 +293,7 @@ let Bridge = {
         })
       }
     }
-    console.log('外勤WK内核上传')
+    console.log('WK内核上传')
     console.log(uploadParams)
     window.top.wq.uploadImage(uploadParams) // eslint-disable-line
   },
@@ -377,7 +377,7 @@ let Bridge = {
         fail(LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['chooseVideo', '6.2.0']))
       return
     }
-    console.log('外勤WK内核chooseVideo', params)
+    console.log('WK内核chooseVideo', params)
 
     window.top.wq.invoke(
       'chooseVideo',

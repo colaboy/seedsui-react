@@ -140,7 +140,7 @@ let Bridge = {
   openLocation: function (params) {
     if (_.isEmpty(params)) return
     let newParams = coordToFit(params)
-    console.log('调用勤策地图...', newParams)
+    console.log('调用地图...', newParams)
 
     window.top.wq.openLocation(newParams)
   },
@@ -154,7 +154,7 @@ let Bridge = {
     if (!params.type) {
       params.type = 'gcj02'
     }
-    console.log('调用外勤定位...', params)
+    console.log('调用定位...', params)
     window.top.wq.getLocation(params)
   },
   /**
@@ -183,7 +183,7 @@ let Bridge = {
     * }
     */
   chooseImage: function (params) {
-    console.log('外勤WK内核chooseImage', params)
+    console.log('WK内核chooseImage', params)
     window.top.wq.chooseImage(params) // eslint-disable-line
   },
   /**
@@ -225,7 +225,7 @@ let Bridge = {
     }
     // 构建成功回调的参数
     uploadParams.success = function (res) {
-      console.log('外勤WK内核上传成功', res)
+      console.log('WK内核上传成功', res)
       if (params.success) {
         params.success({
           errMsg: 'uploadImage:ok',
@@ -239,7 +239,7 @@ let Bridge = {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0 && uploadParams.ext) {
       delete uploadParams.ext
     }
-    console.log('外勤WK内核上传', uploadParams)
+    console.log('WK内核上传', uploadParams)
     window.top.wq.uploadImage(uploadParams) // eslint-disable-line
   },
   previewImage: function (params) {
@@ -331,7 +331,7 @@ let Bridge = {
         fail(LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['chooseVideo', '6.6.0']))
       return
     }
-    console.log('外勤WK内核chooseVideo', params)
+    console.log('WK内核chooseVideo', params)
 
     window.top.wq.invoke(
       'chooseVideo',

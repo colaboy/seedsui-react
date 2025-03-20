@@ -380,7 +380,7 @@ let Bridge = {
    */
   /* -----------------------------------------------------
     获取当前地理位置 转为与微信的api一致, 原api如下:
-    外勤365默认使用国测局'gcj02'定位,没有参数控制
+    365默认使用国测局'gcj02'定位,没有参数控制
     @return {
       "city": "南京市",
       "citycode": "0",
@@ -436,7 +436,7 @@ let Bridge = {
   },
   /* -----------------------------------------------------
     获取当前地理位置带地图 转为与微信的api一致, 原api如下:
-    外勤365默认使用国测局'gcj02'定位, 没有参数控制
+    365默认使用国测局'gcj02'定位, 没有参数控制
     @params {editable: '是否可以标记位置, 1可标记', latlng: '经纬度,只在editable为0时生效', title: '标题, 可不传'}
     @return {
       "city": "南京市",
@@ -574,7 +574,7 @@ let Bridge = {
     if (!isNaN(params.scene)) {
       chooseParams.scene = params.scene || 0
     }
-    console.log('外勤cordova内核chooseImage', chooseParams)
+    console.log('cordova内核chooseImage', chooseParams)
     // eslint-disable-next-line
     wq.wqphoto.getPhoto(
       (result) => {
@@ -641,7 +641,7 @@ let Bridge = {
       }
     }
     if (params.tenantId) uploadParams.tenantId = params.tenantId
-    console.log('外勤Cordova内核上传', uploadParams)
+    console.log('Cordova内核上传', uploadParams)
     wq.wqphoto.startUpload(JSON.stringify(uploadParams)) // eslint-disable-line
     // 截取路径
     let serverId = params.localId.substring(
