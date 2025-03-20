@@ -258,7 +258,7 @@ export default () => {
             Bridge.previewImage({
               urls: [
                 'https://res.waiqin365.com/d/static/images/logo.png',
-                'https://res.waiqin365.com/d/qince-web/platform/home/banner/shootOver.png'
+                'https://res.waiqin365.com/d/static/images/logo.png'
               ],
 
               index: 0,
