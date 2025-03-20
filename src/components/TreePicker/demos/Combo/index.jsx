@@ -24,7 +24,7 @@ export default () => {
                   className="size36"
                   src={`${
                     item?.props?.avatar ||
-                    'https://image-test.waiqin365.com/imobii_portal/images/icon/default-face-small.png'
+                    'https://colaboy.github.io/seedsui-react/assets/images/list/avatar-default.png'
                   }`}
                   alt=""
                   style={{ borderRadius: '100%', marginRight: '4px' }}

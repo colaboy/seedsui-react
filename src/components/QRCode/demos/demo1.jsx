@@ -20,7 +20,11 @@ export default () => {
   return (
     <>
       <QRCode text={url} style={{ width: '300px', height: '300px' }}>
-        <img style={Logo} alt="" src="//res.waiqin365.com/d/dinghuo365/logo.png" />
+        <img
+          style={Logo}
+          alt=""
+          src="https://colaboy.github.io/seedsui-react/assets/images/logo.png"
+        />
       </QRCode>
     </>
   )

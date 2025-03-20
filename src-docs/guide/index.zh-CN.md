@@ -15,7 +15,7 @@ An enterprise-class UI design language and React UI library.
 ### Less import
 
 ```bash
-@import '//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css';
+@import 'https://colaboy.github.io/seedsui-react/assets/seedsui-react.min.css';
 ```
 
 ### CSS import
@@ -23,7 +23,7 @@ An enterprise-class UI design language and React UI library.
 ```html
 <link
   rel="stylesheet"
-  href="//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css"
+  href="https://colaboy.github.io/seedsui-react/assets/seedsui-react.min.css"
 />
 ```
 
@@ -48,12 +48,11 @@ pnpm add seedsui-react
 Add scripts to `index.html`
 
 ```html
-<script src="//res.waiqin365.com/d/waiqin365_h5/externals/react.18.2.0.min.js"></script>
-<script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-dom.18.2.0.min.js"></script>
-<script src="//res.waiqin365.com/d/waiqin365_h5/externals/axios.1.6.2.min.js"></script>
-<script src="//res.waiqin365.com/d/waiqin365_h5/externals/dayjs.1.11.8.min.js"></script>
-<script src="//res.waiqin365.com/d/waiqin365_h5/externals/ahooks.3.8.1.min.js"></script>
-<script src="//res.waiqin365.com/d/waiqin365_h5/externals/lodash.4.17.21.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.8/dayjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 <!-- The react-router cannot use the UMD mode.  Because @ahooksjs/use-url-state not supported. -->
 <!--
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-router.6.26.1.min.js"></script>
@@ -61,10 +60,7 @@ Add scripts to `index.html`
 -->
 
 <!-- SeedsUI must defer -->
-<script
-  defer
-  src="//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.8.52.min.js"
-></script>
+<script defer src="https://colaboy.github.io/seedsui-react/assets/seedsui-react.min.js"></script>
 
 <!-- The UMD tool unpkg can get the latest base library, example:  -->
 <!-- <script src="https://unpkg.com/react-routers"></script> -->

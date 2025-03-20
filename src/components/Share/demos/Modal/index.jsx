@@ -12,25 +12,25 @@ export default () => {
             wechat: {
               title: '标题',
               description: '描述',
-              imageUrl: 'https://res.waiqin365.com/d/seedsui/images/logo.png',
+              imageUrl: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
               url: 'https://www.baidu.com'
             },
             wecom: {
               title: '标题',
               description: '描述',
-              imageUrl: 'https://res.waiqin365.com/d/seedsui/images/logo.png',
+              imageUrl: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
               url: 'https://www.baidu.com'
             },
             dingtalk: {
               title: '标题',
               description: '描述',
-              imageUrl: 'https://res.waiqin365.com/d/seedsui/images/logo.png',
+              imageUrl: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
               url: 'https://www.baidu.com'
             },
             lark: {
               title: '标题',
               description: '描述',
-              imageUrl: 'https://res.waiqin365.com/d/seedsui/images/logo.png',
+              imageUrl: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
               url: 'https://www.baidu.com'
             }
           }}
