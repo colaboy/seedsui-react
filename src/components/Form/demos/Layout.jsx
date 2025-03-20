@@ -61,9 +61,9 @@ export default () => {
               // 互斥图标
               clear={({ clearable, triggerClear }) => {
                 return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
+                  <Input.IconClear onClick={triggerClear} />
                 ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
+                  <Input.IconRightArrow />
                 )
               }}
             />
@@ -104,9 +104,9 @@ export default () => {
               // 互斥图标
               clear={({ clearable, triggerClear }) => {
                 return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
+                  <Input.IconClear onClick={triggerClear} />
                 ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
+                  <Input.IconRightArrow />
                 )
               }}
             />

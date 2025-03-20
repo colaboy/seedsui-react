@@ -156,9 +156,9 @@ const Edit = () => {
               allowClear
               clear={({ clearable, triggerClear }) => {
                 return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
+                  <Input.IconClear onClick={triggerClear} />
                 ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
+                  <Input.IconRightArrow />
                 )
               }}
             />
@@ -179,9 +179,9 @@ const Edit = () => {
               allowClear
               clear={({ clearable, triggerClear }) => {
                 return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
+                  <Input.IconClear onClick={triggerClear} />
                 ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
+                  <Input.IconRightArrow />
                 )
               }}
             />
@@ -287,9 +287,9 @@ const Edit = () => {
               allowClear
               clear={({ clearable, triggerClear }) => {
                 return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
+                  <Input.IconClear onClick={triggerClear} />
                 ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
+                  <Input.IconRightArrow />
                 )
               }}
             />
@@ -300,9 +300,9 @@ const Edit = () => {
               allowClear
               clear={({ clearable, triggerClear }) => {
                 return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
+                  <Input.IconClear onClick={triggerClear} />
                 ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
+                  <Input.IconRightArrow />
                 )
               }}
             />
@@ -314,9 +314,9 @@ const Edit = () => {
               allowClear
               clear={({ clearable, triggerClear }) => {
                 return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
+                  <Input.IconClear onClick={triggerClear} />
                 ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
+                  <Input.IconRightArrow />
                 )
               }}
             />
@@ -327,9 +327,9 @@ const Edit = () => {
               allowClear
               clear={({ clearable, triggerClear }) => {
                 return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
+                  <Input.IconClear onClick={triggerClear} />
                 ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
+                  <Input.IconRightArrow />
                 )
               }}
             />
@@ -340,9 +340,9 @@ const Edit = () => {
               allowClear
               clear={({ clearable, triggerClear }) => {
                 return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
+                  <Input.IconClear onClick={triggerClear} />
                 ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
+                  <Input.IconRightArrow />
                 )
               }}
             />
@@ -359,7 +359,7 @@ const Edit = () => {
               previewVisible
               chooseVisible
               clear={({ clearable, triggerClear }) => {
-                return clearable ? <i className="input-clear" onClick={triggerClear} /> : null
+                return clearable ? <Input.IconClear onClick={triggerClear} /> : null
               }}
             />
           </Form.Item>

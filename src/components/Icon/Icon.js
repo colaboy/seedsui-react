@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-const Icon = forwardRef(({ name, size, children, ...props }, ref) => {
+const Icon = forwardRef(({ name, className, size, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // Expose
@@ -11,6 +11,13 @@ const Icon = forwardRef(({ name, size, children, ...props }, ref) => {
     }
   })
 
+  let classList = []
+  if (name) {
+    classList.push('seeds-icons seeds-icon-' + name)
+  }
+  if (className) {
+    classList.push(className)
+  }
   return (
     <i
       style={
@@ -23,9 +30,7 @@ const Icon = forwardRef(({ name, size, children, ...props }, ref) => {
           : {}
       }
       {...props}
-      className={`icon${name ? ' seeds-icons seeds-icon-' + name : ''}${
-        props.className ? ' ' + props.className : ''
-      }`}
+      className={`${classList.join(' ')}`}
       ref={rootRef}
     >
       {children}

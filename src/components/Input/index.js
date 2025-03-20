@@ -8,6 +8,9 @@ import Tel from './Tel'
 import Text from './Text'
 import Textarea from './Textarea'
 import Url from './Url'
+import IconClear from './Icon/Clear'
+import IconRightArrow from './Icon/RightArrow'
+import IconLeftArrow from './Icon/LeftArrow'
 
 // eslint-disable-next-line
 export default {
@@ -20,5 +23,8 @@ export default {
   Tel: Tel,
   Text: Text,
   Textarea: Textarea,
-  Url: Url
+  Url: Url,
+  IconClear: IconClear,
+  IconRightArrow: IconRightArrow,
+  IconLeftArrow: IconLeftArrow
 }

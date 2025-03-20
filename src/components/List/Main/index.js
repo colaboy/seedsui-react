@@ -27,6 +27,7 @@ const Main = forwardRef(
       visible = true,
 
       // Main: common
+      reload,
       allowClear,
       multiple,
       value,
@@ -282,11 +283,11 @@ const Main = forwardRef(
             status={mainStatus?.status}
             title={mainStatus?.title}
           >
-            {mainStatus?.status !== 'empty' && (
+            {mainStatus?.status !== 'empty' && reload ? (
               <Button className="primary result-button" onClick={() => init('retry')}>
                 {LocaleUtil.locale('重试', 'SeedsUI_retry')}
               </Button>
-            )}
+            ) : null}
           </Result>
         )}
         {/* 页面加载遮罩 */}

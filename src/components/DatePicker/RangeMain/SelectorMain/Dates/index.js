@@ -3,11 +3,12 @@ import Combo from './../../../Combo'
 
 // 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
+import Input from './../../../../Input'
 
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'seedsui-react'
+import { LocaleUtil, Input } from 'seedsui-react'
 测试使用-end */
 
 // 自定义日期选择弹窗: 两框选择
@@ -48,11 +49,7 @@ export default function CustomDates({
         placeholder={LocaleUtil.locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
         clear={({ clearable, triggerClear }) => {
-          return clearable ? (
-            <i className="input-clear" onClick={triggerClear} />
-          ) : (
-            <i className="right-icon shape-arrow-right sm"></i>
-          )
+          return clearable ? <Input.IconClear onClick={triggerClear} /> : <Input.IconRightArrow />
         }}
       />
       —
@@ -72,11 +69,7 @@ export default function CustomDates({
         placeholder={LocaleUtil.locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
         clear={({ clearable, triggerClear }) => {
-          return clearable ? (
-            <i className="input-clear" onClick={triggerClear} />
-          ) : (
-            <i className="right-icon shape-arrow-right sm"></i>
-          )
+          return clearable ? <Input.IconClear onClick={triggerClear} /> : <Input.IconRightArrow />
         }}
       />
     </div>

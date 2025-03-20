@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import _ from 'lodash'
-import { Select, Checkbox, Modal } from 'seedsui-react'
+import { Select, Checkbox, Modal, Input } from 'seedsui-react'
 
 const list = [
   {
@@ -148,9 +148,9 @@ export default () => {
         allowClear
         clear={({ triggerClear }) => {
           return !_.isEmpty(value) ? (
-            <i className="input-clear" onClick={triggerClear} />
+            <Input.IconClear onClick={triggerClear} />
           ) : (
-            <i className="right-icon shape-arrow-right sm"></i>
+            <Input.IconRightArrow />
           )
         }}
         multiple={'tags'}

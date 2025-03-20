@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
-import { Layout, Cascader } from 'seedsui-react'
+import { Layout, Cascader, Input } from 'seedsui-react'
 
 // 判断省市区的数据
 import countryIds from './data/countryIds'
@@ -77,11 +77,7 @@ export default () => {
           placeholder={'点击选择'}
           allowClear
           clear={({ clearable, triggerClear }) => {
-            return clearable ? (
-              <i className="input-clear" onClick={triggerClear} />
-            ) : (
-              <i className="right-icon shape-arrow-right sm"></i>
-            )
+            return clearable ? <Input.IconClear onClick={triggerClear} /> : <Input.IconRightArrow />
           }}
           modalProps={{ maskProps: { style: { zIndex: '9' } } }}
         />
