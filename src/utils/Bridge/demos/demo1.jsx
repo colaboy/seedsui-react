@@ -257,12 +257,12 @@ export default () => {
           onClick={() => {
             Bridge.previewImage({
               urls: [
-                'https://res.waiqin365.com/d/static/images/logo.png',
-                'https://res.waiqin365.com/d/static/images/logo.png'
+                'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
+                'https://colaboy.github.io/seedsui-react/assets/images/logo.png'
               ],
 
               index: 0,
-              current: 'https://res.waiqin365.com/d/static/images/logo.png'
+              current: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png'
             })
           }}
         >
@@ -276,7 +276,7 @@ export default () => {
           style={{ margin: '12px 10px' }}
           onClick={() => {
             Bridge.previewFile({
-              url: 'https://res.waiqin365.com/d/static/images/logo.png'
+              url: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png'
             })
           }}
         >

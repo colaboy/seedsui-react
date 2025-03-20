@@ -7,7 +7,7 @@ export default () => {
   const [list, setList] = useState([
     {
       name: '1',
-      src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png?x-oss-process=style/zk320'
+      src: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png'
     },
     {
       name: '2',

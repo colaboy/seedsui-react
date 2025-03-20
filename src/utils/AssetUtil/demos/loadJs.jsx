@@ -3,7 +3,7 @@ import { AssetUtil } from 'seedsui-react'
 
 export default () => {
   function handleLoadJsByCallback() {
-    AssetUtil.loadJs('//res.waiqin365.com/d/seedsui/plugin/leaflet/js/leaflet.js', {
+    AssetUtil.loadJs('//colaboy.github.io/seedsui-react/assets/plugin/leaflet/js/leaflet.js', {
       id: 'leaflet-js',
       success: () => {
         alert('Js load succeeded')
@@ -15,7 +15,7 @@ export default () => {
   }
   async function handleLoadJsByAsync() {
     let isOk = await AssetUtil.loadJs(
-      '//res.waiqin365.com/d/seedsui/plugin/leaflet/js/leaflet.js',
+      '//colaboy.github.io/seedsui-react/assets/plugin/leaflet/js/leaflet.js',
       {
         id: 'leaflet-js'
       }

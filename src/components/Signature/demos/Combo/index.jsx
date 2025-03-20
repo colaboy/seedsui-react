@@ -7,7 +7,7 @@ import { Signature, Layout, Toast } from 'seedsui-react'
 
 export default () => {
   const [value, setValue] = useState(
-    'https://image-test.waiqin365.com/6069734652819592543/blog/201912/819415708498937580.png?x-oss-process=style/zk320'
+    'https://colaboy.github.io/seedsui-react/assets/images/logo.png'
   )
   return (
     <Layout className="full">

@@ -60,7 +60,7 @@ export default () => {
           //       {item.isLeaf && (
           //         <img
           //           className="size36"
-          //           src="https://image-test.waiqin365.com/imobii_portal/images/icon/default-face-small.png"
+          //           src="https://colaboy.github.io/seedsui-react/assets/images/list/avatar-default.png"
           //           alt=""
           //           style={{ borderRadius: '100%', marginRight: '4px' }}
           //         />
