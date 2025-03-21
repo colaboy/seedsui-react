@@ -45,7 +45,7 @@ const APILoader = forwardRef(
     // 加载
     async function loadData() {
       // 保持单例
-      if (config) {
+      if (config?.key && config?.type) {
         window.APILoaderConfig = config
       }
       // 没有设置config，则读取默认配置
