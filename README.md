@@ -1,6 +1,6 @@
 <div align="center"><a name="readme-top"></a>
 
-<img height="180" src="https://res.waiqin365.com/d/seedsui/logo.png">
+<img height="180" src="https://colaboy.github.io/seedsui-react/assets/images/logo.png">
 
 <h1>SeedsUI for React</h1>
 

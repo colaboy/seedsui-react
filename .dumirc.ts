@@ -12,8 +12,8 @@ const proxyServer = 'https://sftcloud.qince.com'
 // 导出配置，国际化有问题所以暂时只用中文
 export default defineConfig({
   outputPath: 'docs',
-  favicons: ['https://res.waiqin365.com/d/seedsui/favicon.png'],
-  logo: 'https://res.waiqin365.com/d/seedsui/logo.png',
+  favicons: ['https://colaboy.github.io/seedsui-react/assets/images/favicon.png'],
+  logo: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
   // 设置html引用资源路径
   publicPath: '/seedsui-react/',
   // 设置路由前缀，通常用于部署到非根目录
@@ -175,8 +175,8 @@ export default defineConfig({
     /* 代理登录: 登陆页面的其它请求end */
     // 代理-pdf
     '/contract_redirect/': {
-      // target: 'https://contract.waiqin365.com',
-      target: 'https://contract-test.waiqin365.com',
+      // target: 'https://contract.yoururl.com',
+      target: 'https://contract-test.yoururl.com',
       changeOrigin: true,
       pathRewrite: {
         '^/contract_redirect/': '/'
