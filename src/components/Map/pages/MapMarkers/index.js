@@ -1,9 +1,11 @@
 import React, { forwardRef } from 'react'
 
 import coordsToFit from './../../utils/coordsToFit'
+import createMarkerIcon from './../../utils/createMarkerIcon'
 import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
-import Markers, { createIcon as createMarkerIcon } from './../../components/Markers'
+import Markers from './../../components/Markers'
+import MapContext from './../../components/MapContext'
 
 // 内库使用-start
 import Result from './../../../Result'
@@ -33,6 +35,8 @@ function MapMarkers(
   },
   ref
 ) {
+  const { defaultMarkerIconOptions } = useContext(MapContext)
+
   if (!Array.isArray(externalPoints) || !externalPoints.length) {
     return (
       <Result
@@ -76,7 +80,7 @@ function MapMarkers(
         points={points.map((point) => {
           return {
             ...point,
-            icon: createMarkerIcon(point?.icon || icon)
+            icon: createMarkerIcon(point?.icon || icon || defaultMarkerIconOptions)
           }
         })}
         onClick={onMarkerClick}

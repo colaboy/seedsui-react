@@ -1,7 +1,7 @@
 import defaultMarkerIconOptions from './defaultMarkerIconOptions'
 
 // 创建图标
-function createIcon(icon) {
+function createCenterMarkerIcon(icon) {
   if (!window.L?.Icon || !window.L?.divIcon) return null
 
   // 已经是图标了则直接返回
@@ -24,4 +24,4 @@ function createIcon(icon) {
   })
 }
 
-export default createIcon
+export default createCenterMarkerIcon

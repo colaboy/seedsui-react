@@ -5,6 +5,9 @@ import wgs84ToCoords from './utils/wgs84ToCoords'
 import getAddress from './utils/getAddress'
 import getLocation from './utils/getLocation'
 import queryNearby from './utils/queryNearby'
+import createCenterMarkerIcon from './utils/createCenterMarkerIcon'
+import createMarkerIcon from './utils/createMarkerIcon'
+
 // Components
 import APILoader from './components/APILoader'
 import MapContainer from './components/MapContainer'
@@ -26,6 +29,8 @@ const Map = {
   getAddress,
   getLocation,
   queryNearby,
+  createCenterMarkerIcon,
+  createMarkerIcon,
   // components
   APILoader,
   MapContainer,

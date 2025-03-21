@@ -48,8 +48,24 @@ export default () => {
   return (
     <APILoader
       config={{
-        key: '',
-        type: 'bmap'
+        key: '7b6e260fc45a67b31a265e22575f1c5e',
+        type: 'bmap',
+        defaultCenterMarkerIconOptions: {
+          iconUrl: `https://colaboy.github.io/seedsui-react/assets//plugin/leaflet/images/marker-custom-shop.png`,
+          iconRetinaUrl: `https://colaboy.github.io/seedsui-react/assets//plugin/leaflet/images/marker-custom-shop.png`,
+          shadowUrl: `https://colaboy.github.io/seedsui-react/assets//plugin/leaflet/images/marker-shadow.png`,
+          shadowRetinaUrl: `https://colaboy.github.io/seedsui-react/assets//plugin/leaflet/images/marker-shadow.png`
+        },
+        defaultMarkerIconOptions: {
+          iconUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-icon.png`,
+          iconRetinaUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-icon-2x.png`,
+          shadowUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png`,
+          shadowRetinaUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png`
+        },
+        leaflet: {
+          css: 'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/css/leaflet.css',
+          js: 'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/js/leaflet.js'
+        }
       }}
       // config={{
       //   key: '',

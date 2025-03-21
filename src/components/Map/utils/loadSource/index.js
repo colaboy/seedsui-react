@@ -7,11 +7,15 @@ import loadOpenstreet from './loadOpenstreet'
 async function loadSource(
   options = {
     key: '',
-    type: '' // google
+    type: '', // google
+    leaflet: {
+      css: 'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/css/leaflet.css',
+      js: 'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/js/leaflet.js'
+    }
   }
 ) {
   // Load leaflet js and css
-  let isOk = await loadLeaflet()
+  let isOk = await loadLeaflet(options?.leaflet)
   if (typeof isOk === 'string') {
     return {
       errCode: 'LEAFLET_LOAD_ERROR',
