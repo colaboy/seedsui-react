@@ -17,14 +17,14 @@ function Guide({ portal, visible, maskProps = {}, onVisibleChange }) {
     >
       <div className="share-tip-arrow"></div>
       <div className={`share-tip`}>
-        <p>1.点击右上角</p>
-        <p>
+        <div className="share-tip-text">1.点击右上角</div>
+        <div className="share-tip-text">
           2.点击
-          <img alt="" src="//res.waiqin365.com/d/seedsui/images/share/tip_friend.png" />
+          <div className="share-tip-wechat-friend"></div>
           发送给朋友或
-          <img alt="" src="//res.waiqin365.com/d/seedsui/images/share/tip_moments.png" />
+          <div className="share-tip-wechat-moment"></div>
           分享给朋友圈
-        </p>
+        </div>
       </div>
     </div>,
     portal || document.getElementById('root') || document.body

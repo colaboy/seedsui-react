@@ -2,6 +2,7 @@
 .share-main-result {
   // Error Info
 }
+
 .share {
   display: grid;
   grid-template-columns: repeat(4, 25%);
@@ -69,6 +70,25 @@
   background-size: 100% 100%;
 }
 
+.share-tip-wechat-friend,
+.share-tip-wechat-moment {
+  display: inline-block;
+  vertical-align: sub;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.share-tip-wechat-friend {
+  background-image: url('https://colaboy.github.io/seedsui-react/assets/images/share/tip_friend.png');
+}
+
+.share-tip-wechat-moment {
+  background-image: url('https://colaboy.github.io/seedsui-react/assets/images/share/tip_moments.png');
+}
+
 .share-tip {
   position: absolute;
   top: 104.5px;
@@ -82,20 +102,14 @@
   background: #fff;
   border-radius: 4px;
   transform: translate(-50%, 0);
+}
 
-  p {
-    color: #151515;
-    font-size: 16px;
-    white-space: nowrap;
-  }
+.share-tip-text {
+  color: #151515;
+  font-size: 16px;
+  white-space: nowrap;
+}
 
-  p:nth-of-type(even) {
-    margin-top: 10px;
-  }
-
-  img {
-    display: inline-block;
-    height: 20px;
-    vertical-align: bottom;
-  }
+.share-tip-text:nth-of-type(even) {
+  margin-top: 10px;
 }
