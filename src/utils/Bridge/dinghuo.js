@@ -336,7 +336,7 @@ let Bridge = {
     window.top.wq.invoke(
       'uploadFile',
       {
-        url: url || `https://cloud.waiqin365.com/fileupload/v1/doUpload.do?uploadPath=file`,
+        url: url,
         filePath: localId,
         name: 'file',
         formData: data,
