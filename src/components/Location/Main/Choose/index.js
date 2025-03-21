@@ -34,7 +34,7 @@ const LocationChoose = forwardRef(
 
     return (
       <APILoader
-        config={config || window.APILoaderConfig}
+        config={{ ...window.APILoaderConfig, ...config }}
         onSuccess={() => {
           console.log('地图加载成功')
         }}
