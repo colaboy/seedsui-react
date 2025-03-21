@@ -1,12 +1,13 @@
 // 默认图标配置, https://leafletjs.com/reference.html#icon
 const defaultMarkerIconOptions = {
-  iconUrl: `//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-icon.png`,
-  iconRetinaUrl: `//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-icon-2x.png`,
-  shadowUrl: `//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png`,
-  shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png`,
+  iconUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-icon.png`,
+  iconRetinaUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-icon-2x.png`,
+  shadowUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png`,
+  shadowRetinaUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png`,
   shadowSize: [33, 33],
   iconSize: [20, 33],
-  iconAnchor: [10, 16]
+  iconAnchor: [10, 16],
+  ...window.SEEDS_MAP_DEFAULT_MARKER_ICON_OPTIONS
 }
 
 export default defaultMarkerIconOptions

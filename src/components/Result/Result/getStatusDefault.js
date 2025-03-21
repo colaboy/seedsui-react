@@ -16,7 +16,7 @@ function getStatusDefault(status) {
         <img
           alt={''}
           src={'//res.waiqin365.com/d/waiqin365_h5/components/empty.png'}
-          className="result-image"
+          className="result-image result-image-empty"
         />
       )
     }
@@ -28,7 +28,7 @@ function getStatusDefault(status) {
         <img
           alt={''}
           src={'//res.waiqin365.com/d/waiqin365_h5/components/error.png'}
-          className="result-image"
+          className="result-image result-image-500"
         />
       )
     }
