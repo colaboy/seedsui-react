@@ -141,7 +141,7 @@ let Bridge = {
     if (!params.type) {
       params.type = 'gcj02'
     }
-    console.log('调用订货定位...', params)
+    console.log('调用勤策订货定位...', params)
     window.top.wq.getLocation(params)
   },
   /*

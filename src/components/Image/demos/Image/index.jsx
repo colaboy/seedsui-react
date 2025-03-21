@@ -9,22 +9,20 @@ export default () => {
   const [list, setList] = useState([
     {
       id: '1',
-      thumb: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png',
-      src: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png',
+      thumb: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
+      src: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
       status: 'fail'
     },
     {
       id: '2',
-      thumb:
-        'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png?x-oss-process=style/zk320',
-      src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png'
+      thumb: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
+      src: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png'
       // status: 'uploading'
     },
     {
       id: '3',
-      thumb:
-        'https://image-test.waiqin365.com/6069734652819592543/blog/201912/819415708498937580.png?x-oss-process=style/zk320',
-      src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/819415708498937580.png'
+      thumb: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
+      src: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png'
     }
   ])
 

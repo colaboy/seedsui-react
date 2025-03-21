@@ -7,12 +7,12 @@ export default () => {
   const [list, setList] = useState([
     {
       name: '1',
-      src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png?x-oss-process=style/zk320',
+      src: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png',
       status: 'fail'
     },
     {
       name: '2',
-      src: 'https://img.zcool.cn/community/01a9a65dfad975a8012165189a6476.doc'
+      src: 'https://colaboy.github.io/seedsui-react/assets/images/logo.png'
     }
   ])
 
