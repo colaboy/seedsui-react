@@ -85,7 +85,7 @@ export default () => {
           <li>{trans('WeChat Feedback', 'QQ交流反馈')}</li>
           <li>
             <img
-              src="https://res.waiqin365.com/d/seedsui/qrcodeqq-seedsui.png"
+              src="https://colaboy.github.io/seedsui-react/assets/images/qrcodeqq-seedsui.png"
               alt="WeChat-feedback"
               width={240}
             />
