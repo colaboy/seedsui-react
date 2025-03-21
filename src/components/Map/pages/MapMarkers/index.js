@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useContext } from 'react'
 
 import coordsToFit from './../../utils/coordsToFit'
 import createMarkerIcon from './../../utils/createMarkerIcon'

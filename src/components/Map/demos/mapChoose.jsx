@@ -48,7 +48,7 @@ export default () => {
   return (
     <APILoader
       config={{
-        key: '7b6e260fc45a67b31a265e22575f1c5e',
+        key: '',
         type: 'bmap',
         defaultCenterMarkerIconOptions: {
           iconUrl: `https://colaboy.github.io/seedsui-react/assets//plugin/leaflet/images/marker-custom-shop.png`,
