@@ -9,7 +9,7 @@ const defaultMarkerIconOptions = {
   shadowSize: [39, 39],
   iconSize: [30, 49],
   iconAnchor: [15, 25],
-  ...window.SEEDS_MAP_DEFAULT_CENTER_MARKER_ICON_OPTIONS
+  ...window.seedsConfig?.map?.defaultCenterMarkerIconOptions
 }
 
 export default defaultMarkerIconOptions
