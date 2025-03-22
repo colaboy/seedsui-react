@@ -32,10 +32,13 @@ function support(shareTo) {
     return false
   }
 
-  // Qince support wechat,wecom,dingtalk,lark
-  if (Bridge.platform === 'wq' && Device.os !== 'harmony') {
-    if (shareTo?.wechat || shareTo?.wecom || shareTo?.dingtalk || shareTo?.lark) return true
-    return false
+  // Custom Extension Items
+  if (Array.isArray(shareTo?.extensions) && shareTo?.extensions.length) {
+    for (let extension of shareTo.extensions) {
+      if (extension?.isVisible?.({ shareTo })) {
+        return true
+      }
+    }
   }
 
   return false
