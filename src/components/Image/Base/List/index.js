@@ -43,9 +43,7 @@ const List = ({
     if (typeof onPreviewRef.current === 'function') {
       let goOn = await onPreviewRef.current(item, index)
       if (goOn === false) return
-      if (goOn === 'browser') {
-        previewTypeRef.current = 'browser'
-      }
+      previewTypeRef.current = goOn
     }
 
     // 本地能力预览照片
