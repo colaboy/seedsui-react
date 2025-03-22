@@ -4,7 +4,7 @@ import onResize from './onResize'
 // Set global safe area
 function autoSafeArea({ className = 'auto-safe-area-children', isSafeArea, debug } = {}) {
   if (typeof isSafeArea === 'function') {
-    window.isSafeArea = isSafeArea()
+    window.seedsIsSafeArea = isSafeArea()
   }
   if (debug) {
     document.documentElement.classList.add(className)

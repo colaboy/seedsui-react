@@ -8,7 +8,7 @@ import { Device } from 'seedsui-react'
 
 // Determine whether a safe area is needed
 function needsSafeArea() {
-  let customNeedsSafeArea = window.isSafeArea?.()
+  let customNeedsSafeArea = window.seedsIsSafeArea?.()
   if (typeof customNeedsSafeArea === 'boolean') {
     return customNeedsSafeArea
   }

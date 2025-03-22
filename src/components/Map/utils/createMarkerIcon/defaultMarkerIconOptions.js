@@ -6,8 +6,7 @@ const defaultMarkerIconOptions = {
   shadowRetinaUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png`,
   shadowSize: [33, 33],
   iconSize: [20, 33],
-  iconAnchor: [10, 16],
-  ...window.seedsConfig?.map?.defaultMarkerIconOptions
+  iconAnchor: [10, 16]
 }
 
 export default defaultMarkerIconOptions
