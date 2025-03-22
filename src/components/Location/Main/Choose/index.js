@@ -21,7 +21,8 @@ const LocationChoose = forwardRef(
       getLocation,
       getAddress,
       value,
-      onChange
+      onChange,
+      MapChooseProps
       // ...props
     },
     ref
@@ -55,6 +56,7 @@ const LocationChoose = forwardRef(
             console.log('地址选点:', newValue)
             onChange && onChange(newValue)
           }}
+          {...MapChooseProps}
         />
       </APILoader>
     )

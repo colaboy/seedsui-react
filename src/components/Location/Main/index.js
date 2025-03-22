@@ -20,6 +20,7 @@ const Main = forwardRef(
       value,
       onChange,
 
+      MapChooseProps,
       ...props
     },
     ref
@@ -55,6 +56,7 @@ const Main = forwardRef(
               onChange={(newValue) => {
                 onChange && onChange(newValue)
               }}
+              MapChooseProps={MapChooseProps}
             />
           )}
         </div>
