@@ -10,7 +10,7 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 测试使用-end
 
 // 当前位置
-function Current({ map, value, readOnly, onChange }, ref) {
+function Current({ map, navigation, value, readOnly, onChange }, ref) {
   return (
     <div
       className={`map-nearbyControl-item`}
@@ -29,6 +29,7 @@ function Current({ map, value, readOnly, onChange }, ref) {
           </div>
           <Navigation
             map={map}
+            navigation={navigation}
             type={value?.type}
             longitude={value?.longitude}
             latitude={value?.latitude}
