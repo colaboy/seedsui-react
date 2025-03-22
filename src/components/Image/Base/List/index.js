@@ -3,8 +3,6 @@ import React, { useState, useRef } from 'react'
 import Item from './../Item'
 import Preview from './../Preview'
 
-import getPreviewType from './../getPreviewType'
-
 // 内库使用-start
 import Bridge from './../../../../utils/Bridge'
 // 内库使用-end
@@ -26,7 +24,7 @@ const List = ({
   // ...props
 }) => {
   // 预览类型: browser|native
-  const previewTypeRef = useRef(getPreviewType(type))
+  const previewTypeRef = useRef(Bridge?.platform === 'browser' ? 'browser' : null)
 
   // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
   const onDeleteRef = useRef()
@@ -64,6 +62,7 @@ const List = ({
     }
     // 浏览器预览
     else {
+      previewTypeRef.current = 'browser'
       setPreviewCurrent(Number(index))
     }
   }
