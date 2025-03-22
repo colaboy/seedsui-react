@@ -1,6 +1,13 @@
-import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
-import { createIcon as createCenterMarkerIcon } from './../CenterMarker'
-import { createIcon as createMarkerIcon } from './../Markers'
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  forwardRef,
+  useImperativeHandle
+} from 'react'
+import createCenterMarkerIcon from './../../utils/createCenterMarkerIcon'
+import createMarkerIcon from './../../utils/createMarkerIcon'
 import convertToRenderCoord from './../../utils/convertToRenderCoord'
 import getMapType from './../../utils/getMapType'
 import createMap from './createMap'
@@ -11,6 +18,7 @@ import defaultGetLocation from './../../utils/getLocation'
 import defaultQueryNearby from './../../utils/queryNearby'
 import markerClickLeaflet from './markerClickLeaflet'
 import markerClickCanvas from './markerClickCanvas'
+import MapContext from './../MapContext'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -50,6 +58,8 @@ const MapContainer = forwardRef(
     },
     ref
   ) => {
+    const { defaultCenterMarkerIconOptions, defaultMarkerIconOptions } = useContext(MapContext)
+
     // 指定获取定位和地址的方法
     // eslint-disable-next-line
     if (typeof getAddress !== 'function') getAddress = defaultGetAddress
@@ -359,12 +369,12 @@ const MapContainer = forwardRef(
       markersCanvasLayerRef.current = window.L.canvasIconLayer({}).addTo(leafletMap)
       markersLayerRef.current = window.L.layerGroup().addTo(leafletMap)
       // Marker default  icon
-      defaultMarkerIconRef.current = createMarkerIcon()
+      defaultMarkerIconRef.current = createMarkerIcon(defaultMarkerIconOptions)
 
       // Center marker layer init
       centerMarkerLayerRef.current = window.L.layerGroup().addTo(leafletMap)
       // Center marker icon
-      centerMarkerIconRef.current = createCenterMarkerIcon()
+      centerMarkerIconRef.current = createCenterMarkerIcon(defaultCenterMarkerIconOptions)
 
       // Render children
       setLeafletMap(leafletMap)

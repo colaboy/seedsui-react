@@ -4,9 +4,14 @@
   align-items: center;
   justify-content: center;
   height: 30px;
+  padding: 0 12px;
   background-color: white;
-  border-width: 0;
-  &.button-compact-item:not(.button-compact-first-item) {
+  border-radius: 8px;
+  border: 0;
+
+  &.toolbar-button-compact-item:not(.toolbar-button-compact-first-item) {
     border-left-width: 1px;
+    border-color: var(--border);
+    border-style: solid;
   }
 }

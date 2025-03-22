@@ -1,0 +1,41 @@
+.layout-footer-buttons {
+  display: flex;
+  gap: 10px;
+  background-color: white;
+  padding: 8px 12px;
+  .border-t;
+}
+.layout-footer-tab {
+  height: 40px;
+  text-align: center;
+  padding: 0 12px;
+  color: #5d646c;
+}
+.layout-footer-tab-icon {
+  i {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+}
+.layout-footer-tab-icon-more {
+  font-family: 'seeds-icons';
+  &:extend(.seeds-icon-three-dots-fill all);
+}
+.layout-footer-tab-name {
+  font-size: var(--font-size-s);
+  margin-top: 2px;
+}
+.layout-footer-button {
+  flex: 1;
+  border-radius: 8px;
+  height: 40px;
+  border: 0;
+}
+.layout-footer-button-default {
+  background: var(--app-background-color);
+}
+.layout-footer-button-primary {
+  color: white;
+  background: var(--primary);
+}

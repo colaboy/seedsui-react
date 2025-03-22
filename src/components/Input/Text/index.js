@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import { maxLengthFormatter, minMaxFormatter, precisionFormatter, externalFormatter } from './utils'
+import IconClear from './../Icon/Clear'
 
 const InputText = forwardRef(
   (
@@ -288,7 +289,7 @@ const InputText = forwardRef(
 
       // 默认渲染
       if (!clearable) return null
-      return <i className={`input-clear`} onClick={handleClear}></i>
+      return <IconClear onClick={handleClear} />
     }
 
     return (

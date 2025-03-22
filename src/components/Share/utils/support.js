@@ -1,10 +1,9 @@
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
-import Device from './../../../utils/Device'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, Bridge } from 'seedsui-react'
+import { Bridge } from 'seedsui-react'
 测试使用-end */
 
 function support(shareTo) {
@@ -32,10 +31,13 @@ function support(shareTo) {
     return false
   }
 
-  // Qince support wechat,wecom,dingtalk,lark
-  if (Bridge.platform === 'wq' && Device.os !== 'harmony') {
-    if (shareTo?.wechat || shareTo?.wecom || shareTo?.dingtalk || shareTo?.lark) return true
-    return false
+  // Custom Extension Items
+  if (Array.isArray(shareTo?.extensions) && shareTo?.extensions.length) {
+    for (let extension of shareTo.extensions) {
+      if (extension?.isVisible?.({ shareTo })) {
+        return true
+      }
+    }
   }
 
   return false

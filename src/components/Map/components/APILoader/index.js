@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import loadSource from './../../utils/loadSource'
 import canvasMarkers from './leaflet.canvas-markers'
+import MapContext from './../MapContext'
 
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
@@ -16,11 +17,7 @@ import Button from './../../../Button'
 const APILoader = forwardRef(
   (
     {
-      config = {
-        key: '',
-        // 使用哪个地图
-        type: '' // 'osm' | 'google' | 'amap' || 'bmap'
-      },
+      config,
       // 自定义Loading
       loading,
       onError,
@@ -48,7 +45,7 @@ const APILoader = forwardRef(
     // 加载
     async function loadData() {
       // 保持单例
-      if (config) {
+      if (config?.key && config?.type) {
         window.APILoaderConfig = config
       }
       // 没有设置config，则读取默认配置
@@ -114,7 +111,7 @@ const APILoader = forwardRef(
     // require('leaflet-canvas-marker')
 
     // 加载成功
-    return children
+    return <MapContext.Provider value={config}>{children}</MapContext.Provider>
   }
 )
 

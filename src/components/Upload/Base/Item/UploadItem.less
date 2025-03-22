@@ -1,0 +1,118 @@
+// 内容区域
+.upload-item-main {
+  width: 1px; // 用于解决内容过长时超出屏幕的问题
+  flex: 1;
+  display: flex;
+  align-items: center;
+  .border-b;
+  padding: 10px 0;
+  margin-left: 10px;
+}
+
+// 项内容
+.upload-item {
+  position: relative;
+
+  .flex;
+  .flex-middle;
+  .upload-uploading-icon-loading {
+    color: #d9d9d9;
+  }
+
+  &.fail {
+    color: @danger;
+    .upload-reload {
+      display: flex;
+    }
+  }
+
+  &.uploading {
+    .upload-uploading {
+      display: block;
+    }
+  }
+}
+.upload-item-type {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  color: var(--auxiliary);
+  font-family: 'seeds-icons';
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: #f5bda0;
+  // 正方形的图标要略小一些
+  &.word,
+  &.excel,
+  &.ppt {
+    font-size: 18px;
+  }
+  &.video {
+    &:extend(.seeds-icon-file-video all);
+  }
+  &.text {
+    &:extend(.seeds-icon-file-text all);
+  }
+  &.word {
+    color: #83a4eb;
+    &:extend(.seeds-icon-file-word all);
+  }
+  &.unknown {
+    &:extend(.seeds-icon-file-unknow all);
+  }
+  &.audio {
+    &:extend(.seeds-icon-file-audio all);
+  }
+  &.excel {
+    color: #8ad4aa;
+    &:extend(.seeds-icon-file-excel all);
+  }
+  &.pack {
+    &:extend(.seeds-icon-file-pack all);
+  }
+  &.pic {
+    &:extend(.seeds-icon-file-pic all);
+  }
+  &.pdf {
+    &:extend(.seeds-icon-file-pdf all);
+  }
+  &.ppt {
+    color: #e7896d;
+    &:extend(.seeds-icon-file-ppt all);
+  }
+}
+.upload-item-title {
+  pointer-events: none;
+  .flex-1;
+  .nowrap;
+  .ellipsis;
+}
+.upload-item-right-icon {
+  margin-left: 12px;
+}
+.upload-delete {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  color: #d9d9d9;
+  font-family: 'seeds-icons';
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  &:extend(.seeds-icon-close all);
+  overflow: hidden;
+}
+.upload-reload {
+  display: none;
+  .flex-middle;
+  .flex-center;
+  color: #d9d9d9;
+  font-family: 'seeds-icons';
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  &:extend(.seeds-icon-redo all);
+  overflow: hidden;
+}

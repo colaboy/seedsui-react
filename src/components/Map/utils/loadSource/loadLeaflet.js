@@ -7,7 +7,7 @@ import { AssetUtil } from 'seedsui-react'
 测试使用-end */
 
 // 加载地图资源
-function loadLeaflet() {
+function loadLeaflet({ css, js } = {}) {
   return new Promise((resolve) => {
     if (window.L) {
       resolve(window.L)
@@ -24,7 +24,8 @@ function loadLeaflet() {
     const link = document.createElement('link')
     link.rel = 'stylesheet'
     // 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
-    link.href = '//res.waiqin365.com/d/seedsui/plugin/leaflet/css/leaflet.css'
+    link.href =
+      css || 'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/css/leaflet.css'
     link.id = 'leaflet-css'
     document.head.appendChild(link)
 
@@ -36,17 +37,20 @@ function loadLeaflet() {
 
     // Load js
     // 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
-    AssetUtil.loadJs('//res.waiqin365.com/d/seedsui/plugin/leaflet/js/leaflet.js', {
-      id: 'leaflet-js',
-      // integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
-      // crossorigin: '',
-      success: () => {
-        resolve(window.L)
-      },
-      fail: () => {
-        resolve(`leaflet加载失败`)
+    AssetUtil.loadJs(
+      js || 'https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/js/leaflet.js',
+      {
+        id: 'leaflet-js',
+        // integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
+        // crossorigin: '',
+        success: () => {
+          resolve(window.L)
+        },
+        fail: () => {
+          resolve(`leaflet加载失败`)
+        }
       }
-    })
+    )
   })
 }
 

@@ -19,6 +19,7 @@ import Loading from './../../../Loading'
 function Nearby(
   {
     map,
+    navigation,
     radius,
     readOnly,
     value,
@@ -89,6 +90,7 @@ function Nearby(
       {/* 当前位置 */}
       <Current
         map={map}
+        navigation={navigation}
         readOnly={readOnly}
         value={value}
         onChange={(item) => {

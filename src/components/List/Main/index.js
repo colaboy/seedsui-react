@@ -27,6 +27,7 @@ const Main = forwardRef(
       visible = true,
 
       // Main: common
+      reload,
       allowClear,
       multiple,
       value,
@@ -225,6 +226,24 @@ const Main = forwardRef(
       return true
     }
 
+    // 获取重试按钮
+    function getReloadButton() {
+      if (reload === true) {
+        return (
+          <Button className="primary result-button" onClick={() => init('retry')}>
+            {LocaleUtil.locale('重试', 'SeedsUI_retry')}
+          </Button>
+        )
+      }
+      if (typeof reload === 'function') {
+        return reload()
+      }
+      if (React.isValidElement(reload)) {
+        return reload
+      }
+      return null
+    }
+
     const ListNode = virtual?.getItemHeight ? VirtualList : List
 
     return (
@@ -282,11 +301,7 @@ const Main = forwardRef(
             status={mainStatus?.status}
             title={mainStatus?.title}
           >
-            {mainStatus?.status !== 'empty' && (
-              <Button className="primary result-button" onClick={() => init('retry')}>
-                {LocaleUtil.locale('重试', 'SeedsUI_retry')}
-              </Button>
-            )}
+            {mainStatus?.status !== 'empty' ? getReloadButton() : null}
           </Result>
         )}
         {/* 页面加载遮罩 */}

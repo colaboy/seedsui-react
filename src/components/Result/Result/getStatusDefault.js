@@ -12,25 +12,13 @@ function getStatusDefault(status) {
   if (status === 'empty') {
     return {
       title: LocaleUtil.locale('暂无数据', 'SeedsUI_no_data'),
-      image: (
-        <img
-          alt={''}
-          src={'//res.waiqin365.com/d/waiqin365_h5/components/empty.png'}
-          className="result-image"
-        />
-      )
+      image: <div className="result-image result-image-empty"></div>
     }
   }
   if (status === '500') {
     return {
       title: LocaleUtil.locale('获取数据失败，请稍后再试！', 'SeedsUI_query_data_error'),
-      image: (
-        <img
-          alt={''}
-          src={'//res.waiqin365.com/d/waiqin365_h5/components/error.png'}
-          className="result-image"
-        />
-      )
+      image: <div className="result-image result-image-500"></div>
     }
   }
   return null

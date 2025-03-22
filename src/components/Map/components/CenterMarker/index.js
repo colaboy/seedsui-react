@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
-import createIcon from './createIcon'
+import React, { useEffect, useContext, useRef, forwardRef, useImperativeHandle } from 'react'
+import createCenterMarkerIcon from './../../utils/createCenterMarkerIcon'
+import MapContext from './../MapContext'
 
 // 中心点标注
 const CenterMarker = forwardRef(({ map, value, onDragStart, onDragEnd, ...props }, ref) => {
   const rootRef = useRef(null)
+
+  const { defaultCenterMarkerIconOptions } = useContext(MapContext)
 
   // 节点
   useImperativeHandle(ref, () => {
@@ -26,7 +29,7 @@ const CenterMarker = forwardRef(({ map, value, onDragStart, onDragEnd, ...props 
     map.addCenterMarker({
       longitude: value.longitude,
       latitude: value.latitude,
-      icon: createIcon(value?.icon)
+      icon: createCenterMarkerIcon(value?.icon || defaultCenterMarkerIconOptions)
     })
     map.onDragStart = (map) => {
       if (onDragEnd) {
@@ -54,5 +57,4 @@ const CenterMarker = forwardRef(({ map, value, onDragStart, onDragEnd, ...props 
   )
 })
 
-export { createIcon }
 export default CenterMarker

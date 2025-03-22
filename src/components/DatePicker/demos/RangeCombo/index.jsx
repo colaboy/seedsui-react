@@ -23,7 +23,7 @@ export default () => {
         // separator="to"
         // disabledStart
         // disabledEnd
-        // allowClear
+        allowClear
         onVisibleChange={(visible) => {
           console.log('visible2:', visible)
           if (visible) {

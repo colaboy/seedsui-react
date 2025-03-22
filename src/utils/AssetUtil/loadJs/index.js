@@ -14,8 +14,7 @@ function loadJs(
     referrerPolicy,
     fail,
     success
-  } = {},
-  cb
+  } = {}
 ) {
   let attrs = {}
   if (id) attrs.id = id

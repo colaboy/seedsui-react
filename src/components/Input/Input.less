@@ -1,3 +1,4 @@
+@import 'Icon/InputIcon.less';
 @import 'NumberBox/InputNumberBox.less';
 @import 'Color/InputColor.less';
 @import 'PasswordStrength/InputPasswordStrength.less';
@@ -15,7 +16,6 @@
   }
   .right-icon {
     margin-left: 12px;
-    color: #c2c6cd;
   }
 
   .input-text,
@@ -26,23 +26,10 @@
   &.disabled {
     color: rgba(0, 0, 0, 0.25);
     border-color: #d9d9d9;
-    .input-clear {
+    .input-icon-clear {
       display: none;
     }
   }
-}
-
-// 清除按钮
-.input-clear {
-  margin-left: 4px;
-  color: #c2c6cd;
-  font-family: 'seeds-icons';
-  &:extend(.seeds-icon-rdo-close-fill all);
-  font-size: 16px;
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
-  text-align: center;
 }
 
 // 控件: 单行文本框

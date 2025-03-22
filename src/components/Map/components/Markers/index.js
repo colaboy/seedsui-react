@@ -1,9 +1,8 @@
 import React, { useEffect, forwardRef, useImperativeHandle } from 'react'
-import createIcon from './createIcon'
 
 // 批量标注
 const Markers = forwardRef(({ map, points, onClick }, ref) => {
-  // 节点
+  // Expose
   useImperativeHandle(ref, () => {
     return {
       redraw: () => {
@@ -35,5 +34,4 @@ const Markers = forwardRef(({ map, points, onClick }, ref) => {
   return <></>
 })
 
-export { createIcon }
 export default Markers

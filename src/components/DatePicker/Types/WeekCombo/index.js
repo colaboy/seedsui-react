@@ -3,10 +3,11 @@ import Combo from './../../WeekCombo'
 
 // 内库使用-start
 import DateUtil from './../../../../utils/DateUtil'
+import Input from './../../../Input'
 // 内库使用-end
 
 /* 测试使用-start
-import { DateUtil } from 'seedsui-react'
+import { DateUtil, Input } from 'seedsui-react'
 测试使用-end */
 
 // 周选择
@@ -56,7 +57,7 @@ const Week = forwardRef(
 
     return (
       <>
-        <i className="datepicker-types-prev icon shape-arrow-left sm" onClick={handlePrev} />
+        <Input.IconLeftArrow className="datepicker-types-previous" onClick={handlePrev} />
         <Combo
           {...props}
           value={value}
@@ -67,7 +68,7 @@ const Week = forwardRef(
         >
           <p>{displayValue || ''}</p>
         </Combo>
-        <i className="datepicker-types-next icon shape-arrow-right sm" onClick={handleNext} />
+        <Input.IconRightArrow className="datepicker-types-next" onClick={handleNext} />
       </>
     )
   }

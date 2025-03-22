@@ -1,4 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import Buttons from './Buttons'
 
 // 内库使用-start
 import SafeArea from './../../SafeArea'
@@ -8,7 +9,7 @@ import SafeArea from './../../SafeArea'
 import { SafeArea } from 'seedsui-react'
 测试使用-end */
 
-const Footer = forwardRef(({ safeArea, children, ...props }, ref) => {
+const Footer = forwardRef(({ safeArea, buttons, onChange, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // Expose tools
@@ -19,14 +20,17 @@ const Footer = forwardRef(({ safeArea, children, ...props }, ref) => {
     }
   })
 
+  let hasButtons = Array.isArray(buttons) && buttons.length
+
   return (
     <footer
       {...props}
-      className={`layout-footer${SafeArea.getSafeAreaClassName(safeArea)}${
-        props.className ? ' ' + props.className : ''
-      }`}
+      className={`layout-footer${
+        hasButtons ? ' layout-footer-buttons' : ''
+      }${SafeArea.getSafeAreaClassName(safeArea)}${props.className ? ' ' + props.className : ''}`}
       ref={rootRef}
     >
+      {hasButtons ? <Buttons buttons={buttons} onChange={onChange} /> : null}
       {children}
     </footer>
   )

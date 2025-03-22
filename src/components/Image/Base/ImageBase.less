@@ -1,0 +1,40 @@
+@import 'Item/ImageItem.less';
+@import 'Preview/ImagePreview.less';
+@import 'Choose/ImageChoose.less';
+@import 'Uploading/ImageUploading.less';
+@import 'Mark/ImageMark.less';
+
+// 照片视频列表
+.image {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 8px;
+  // 单个照片
+  --cell-width: 85px;
+  --cell-height: 85px;
+
+  .image-item {
+    margin-right: 8px;
+    width: var(--cell-width);
+    height: var(--cell-height);
+  }
+
+  // 上传中
+  &.uploading {
+    // 显示转圈
+    .image-choose {
+      .image-uploading {
+        display: block;
+      }
+    }
+    // 上传中不允许删除
+    .image-delete {
+      display: none;
+    }
+    // 上传中不允许重传
+    .image-reload {
+      display: none;
+    }
+  }
+}

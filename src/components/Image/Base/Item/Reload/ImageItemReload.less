@@ -1,0 +1,33 @@
+// 照片上传失败
+.image-reload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.image-reload-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 100%;
+}
+
+// 照片状态: 失败图标
+.image-reload-icon-fail {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  font-family: 'seeds-icons';
+  &:extend(.seeds-icon-redo all);
+}

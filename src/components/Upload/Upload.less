@@ -1,182 +1,22 @@
-// Upload上传
-// 上传按钮
-.upload-item + .upload-choose {
-  margin-top: 12px;
-}
+@import 'Base/UploadBase.less';
 
-.upload-choose {
+.upload {
   position: relative;
-  display: inline-block;
-
-  .upload-choose-file {
-    display: none;
-    // position: absolute;
-    // top: 0;
-    // right: 0;
-    // bottom: 0;
-    // left: 0;
-    // z-index: 0;
-
-    // width: 100%;
-    // height: 100%;
-    // cursor: pointer;
-    // opacity: 0;
-    // filter: alpha(opacity=0);
-  }
-  .upload-choose-button {
-    &[disabled],
-    &.disabled {
-      opacity: 0.5;
-      pointer-events: none;
+  // 上传中上传按钮需要转圈
+  &.uploading {
+    // pointer-events: none;
+    // 隐藏重试,删除,添加
+    .upload-reload,
+    .upload-delete,
+    .upload-choose-icon-add {
+      display: none;
     }
-    background-color: #f5f5f5;
-    color: #8c8c8c;
-    border-radius: 4px;
-    border: 0;
 
-    // 上传中上传按钮需要转圈
-    &.uploading {
-      pointer-events: none;
-      .upload-button-icon-add {
-        display: none;
-      }
-      .upload-button-loading {
+    // 显示转圈
+    .upload-choose {
+      .upload-uploading {
         display: block;
       }
     }
   }
-}
-
-// 上传图标与文字
-.upload-button-loading,
-.upload-button-icon-add,
-.upload-button-label {
-  pointer-events: none;
-}
-.upload-button-loading {
-  display: none;
-  width: 12px;
-  height: 12px;
-  margin-right: 8px;
-}
-.upload-button-loading-icon {
-  color: var(--auxiliary);
-  width: 12px;
-  height: 12px;
-}
-.upload-button-icon-add {
-  width: 12px;
-  height: 12px;
-  font-size: 12px;
-  line-height: 12px;
-  font-family: 'seeds-icons';
-  &:extend(.seeds-icon-plus-fill all);
-  margin-right: 8px;
-}
-
-// 内容区域
-.upload-item-content {
-  width: 1px; // 用于解决内容过长时超出屏幕的问题
-  flex: 1;
-  display: flex;
-  align-items: center;
-  .border-b;
-  padding: 10px 0;
-  margin-left: 10px;
-}
-
-// 项内容
-.upload-item {
-  .flex;
-  .flex-middle;
-  &.fail {
-    color: @danger;
-    .upload-item-redo {
-      display: flex;
-    }
-  }
-}
-.upload-item-type {
-  .flex;
-  .flex-middle;
-  .flex-center;
-  color: var(--auxiliary);
-  font-family: 'seeds-icons';
-  pointer-events: none;
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
-  color: #f5bda0;
-  // 正方形的图标要略小一些
-  &.word,
-  &.excel,
-  &.ppt {
-    font-size: 18px;
-  }
-  &.video {
-    &:extend(.seeds-icon-file-video all);
-  }
-  &.text {
-    &:extend(.seeds-icon-file-text all);
-  }
-  &.word {
-    color: #83a4eb;
-    &:extend(.seeds-icon-file-word all);
-  }
-  &.unknown {
-    &:extend(.seeds-icon-file-unknow all);
-  }
-  &.audio {
-    &:extend(.seeds-icon-file-audio all);
-  }
-  &.excel {
-    color: #8ad4aa;
-    &:extend(.seeds-icon-file-excel all);
-  }
-  &.pack {
-    &:extend(.seeds-icon-file-pack all);
-  }
-  &.pic {
-    &:extend(.seeds-icon-file-pic all);
-  }
-  &.pdf {
-    &:extend(.seeds-icon-file-pdf all);
-  }
-  &.ppt {
-    color: #e7896d;
-    &:extend(.seeds-icon-file-ppt all);
-  }
-}
-.upload-item-label {
-  pointer-events: none;
-  .flex-1;
-  .nowrap;
-  .ellipsis;
-}
-.upload-item-operate {
-  margin-left: 12px;
-}
-.upload-item-delete {
-  .flex;
-  .flex-middle;
-  .flex-center;
-  color: #d9d9d9;
-  font-family: 'seeds-icons';
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
-  &:extend(.seeds-icon-close all);
-  overflow: hidden;
-}
-.upload-item-redo {
-  display: none;
-  .flex-middle;
-  .flex-center;
-  color: #d9d9d9;
-  font-family: 'seeds-icons';
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
-  &:extend(.seeds-icon-redo all);
-  overflow: hidden;
 }

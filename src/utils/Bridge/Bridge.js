@@ -3,9 +3,6 @@ import BridgeWx from './wx'
 import BridgeAlipay from './ap'
 import BridgeDingtalk from './dingtalk'
 import BridgeLark from './lark'
-import BridgeDinghuo from './dinghuo'
-import BridgeWq from './wq'
-import BridgeWqCordova from './cordova'
 
 // 内库使用-start
 import Device from './../Device'
@@ -29,16 +26,8 @@ if (
   Bridge = BridgeDingtalk
 } else if (Device.platform === 'lark') {
   Bridge = BridgeLark
-} else if (Device.platform === 'dinghuo') {
-  Bridge = BridgeDinghuo
-} else if (Device.platform === 'waiqin') {
-  Bridge = BridgeWqCordova
-} else if (Device.platform === 'wq') {
-  Bridge = BridgeWq
 } else {
   Bridge = BridgeBrowser
 }
-
-window.seedsPlatform = Device.platform
 
 export default Bridge

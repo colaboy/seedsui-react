@@ -6,11 +6,11 @@ import Loading from './../../../Loading'
 import Input from './../../../Input'
 import Layout from './../../../../components/Layout'
 import Result from './../../../Result'
-import HighlightKeyword from './../../../HighlightKeyword'
+import Typography from './../../../Typography'
 // 内库使用-end
 
 // 测试使用-start
-// import { LocaleUtil, Loading, Input, Layout, Result, HighlightKeyword } from 'seedsui-react'
+// import { LocaleUtil, Loading, Input, Layout, Result, Typography } from 'seedsui-react'
 // 测试使用-end
 
 // 搜索
@@ -109,10 +109,9 @@ function Page({ map, visible, onVisibleChange, onChange }) {
                 >
                   <div className="map-searchControl-item-content">
                     <div className="map-searchControl-item-title">
-                      <HighlightKeyword
-                        text={item.name}
-                        keyword={inputRef?.current?.inputDOM?.value || ''}
-                      />
+                      <Typography.Text highlight={inputRef?.current?.inputDOM?.value || ''}>
+                        {item.name}
+                      </Typography.Text>
                     </div>
                     <div className="map-searchControl-item-content-description">{item.address}</div>
                   </div>

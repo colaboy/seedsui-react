@@ -6,8 +6,10 @@ title: Image
 
 # Image
 
-## 示例
+## 照片
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/Image/index.jsx"></code>
 
-<code src="./demos/demo2.jsx"></code>
+## 视频
+
+<code src="./demos/video.jsx"></code>

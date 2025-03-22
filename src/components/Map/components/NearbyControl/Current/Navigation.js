@@ -14,6 +14,8 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 导航
 function Navigation({
   map,
+  // 自定义导航
+  navigation,
   // 终点位置
   type,
   longitude,
@@ -55,11 +57,25 @@ function Navigation({
   if (!longitude || !latitude) return null
 
   // 不支持的平台不显示
+  if (typeof navigation === 'function') {
+    let NavigationNode = navigation({
+      map,
+      // 终点位置
+      type,
+      longitude,
+      latitude,
+      name,
+      address
+    })
+    if (React.isValidElement(NavigationNode)) {
+      return NavigationNode
+    }
+    if (NavigationNode === null) return null
+  }
+
   if (
     Bridge.platform !== 'wechat' &&
     Bridge.platform !== 'wework' &&
-    Bridge.platform !== 'dinghuo' &&
-    Bridge.platform !== 'wq' &&
     Bridge.platform !== 'alipay' &&
     Bridge.platform !== 'dingtalk' &&
     Bridge.platform !== 'lark'

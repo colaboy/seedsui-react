@@ -5,13 +5,7 @@ import { Input } from 'seedsui-react'
 export default () => {
   const inputTextRef = useRef(null)
   const [value, setValue] = useState('中华人民共和中华人民中华人民共和中华人民')
-  useEffect(() => {
-    let inputText = inputTextRef.current.rootDOM
-    setTimeout(() => {
-      // inputText.querySelector('.input-clear').classList.remove('hide')
-    }, 1000)
-    // eslint-disable-next-line
-  }, [])
+
   return (
     <>
       <Input.Text
@@ -29,14 +23,14 @@ export default () => {
         value={value}
         // maxLength={10}
         rightIcon={({ value }) => {
-          return value ? null : <i className="right-icon icon shape-arrow-right sm" />
+          return value ? null : <Input.IconRightArrow />
         }}
         allowClear
         clear={({ triggerClear }) => {
           return !_.isEmpty(value) ? (
-            <i className="input-clear" onClick={triggerClear} />
+            <Input.IconClear onClick={triggerClear} />
           ) : (
-            <i className="right-icon shape-arrow-right sm"></i>
+            <Input.IconRightArrow />
           )
         }}
         onChange={(val) => {

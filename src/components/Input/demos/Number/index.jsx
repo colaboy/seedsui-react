@@ -20,11 +20,7 @@ export default () => {
         trim={true}
         allowClear
         clear={({ clearable, triggerClear }) => {
-          return clearable ? (
-            <i className="input-clear" onClick={triggerClear} />
-          ) : (
-            <i className="right-icon shape-arrow-right sm"></i>
-          )
+          return clearable ? <Input.IconClear onClick={triggerClear} /> : <Input.IconRightArrow />
         }}
         // formatter={(num) => {
         //   if (!num) return num

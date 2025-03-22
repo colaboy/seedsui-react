@@ -19,6 +19,13 @@ function ready(callback, options = {}, Bridge) {
   script.type = 'text/javascript'
   script.defer = 'defer'
 
+  // 外部扩展script
+  if (typeof options?.loadScript === 'function') {
+    options.loadScript(script)
+    if (script.src) document.body.appendChild(script)
+    return
+  }
+
   // 微信支付宝平台
   if (
     platform === 'wechat' ||
@@ -108,45 +115,6 @@ function ready(callback, options = {}, Bridge) {
       script.onerror = function () {
         options.fail({
           errMsg: LocaleUtil.locale('微信js加载失败', 'SeedsUI_weChat_js_load_failed')
-        })
-      }
-    }
-  }
-  // cordova内核
-  else if (platform === 'waiqin') {
-    console.error('请勿使用cordova内核, 请安排版本转成新内核')
-    // cordova
-    script.src =
-      options.wqCordovaSrc || '//res.waiqin365.com/d/common_mobile/component/cordova/cordova.js'
-    script.onload = function () {
-      if (typeof callback === 'function') callback()
-    }
-    if (options.fail) {
-      script.onerror = function () {
-        options.fail({
-          errMsg: LocaleUtil.locale('cordova加载失败', 'SeedsUI_cordova_js_load_failed')
-        })
-      }
-    }
-  }
-  // 与订货平台
-  else if (platform === 'wq' || platform === 'dinghuo') {
-    // 初始化完成不需要重复加载
-    if (window.top.wq) {
-      if (callback) callback()
-      return
-    }
-
-    // jssdk
-    // 用开发d目录可以使用新功能
-    script.src = options.wqSrc || `//res.waiqin365.com/p/open/js/waiqin365.min-2.0.6.js`
-    script.onload = function () {
-      if (typeof callback === 'function') callback()
-    }
-    if (options.fail) {
-      script.onerror = function () {
-        options.fail({
-          errMsg: LocaleUtil.locale('js加载失败', 'SeedsUI_qince_js_load_failed')
         })
       }
     }

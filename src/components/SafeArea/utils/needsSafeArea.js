@@ -8,12 +8,14 @@ import { Device } from 'seedsui-react'
 
 // Determine whether a safe area is needed
 function needsSafeArea() {
-  if (Device.platform === 'wq' && Device.compareVersion(Device.platformVersion, '7.1.90') >= 0) {
-    return true
+  let customNeedsSafeArea = window.seedsIsSafeArea?.()
+  if (typeof customNeedsSafeArea === 'boolean') {
+    return customNeedsSafeArea
   }
   if (Device.platform === 'wechatMiniprogram' || Device.platform === 'alipayMiniprogram') {
     return true
   }
+  // 微信、企微、钉钉会自动加安全区, 也会自己去掉安全区，所以只能根据分辨率判断
   if (
     Device.os === 'ios' &&
     (Device.platform === 'wechat' || Device.platform === 'wework' || Device.platform === 'dingtalk')

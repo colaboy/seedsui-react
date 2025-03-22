@@ -6,17 +6,17 @@
   overflow: auto;
 }
 
-// Adapt to the safe area
+// Adapt to the safe area: className
 .layout-aside.safeArea {
   &:extend(.safe-area all);
   &:extend(.safe-area.after all);
 }
-
+// Adapt to the safe area: safeArea={false}
 .layout-aside.clearSafeArea {
   &:extend(.clear-safe-area all);
   &:extend(.clear-safe-area.after all);
 }
-
+// Adapt to the safe area: safeArea={true}
 .auto-safe-area-children {
   .layout-aside.autoSafeArea {
     &:extend(.safe-area all);

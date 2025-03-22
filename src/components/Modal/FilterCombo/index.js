@@ -92,6 +92,7 @@ const FilterCombo = forwardRef(
         </ComboWrapper>
       )
     }
+
     return (
       <Fragment>
         {/* Combo */}
@@ -100,13 +101,13 @@ const FilterCombo = forwardRef(
         {/* Modal */}
         <FilterModal
           ref={modalRef}
-          {...modalProps}
-          onVisibleChange={setVisible}
-          visible={visible}
           onCancel={onCancel}
           onOk={onOk}
           onReset={onReset}
           onConfig={onConfig}
+          {...modalProps}
+          onVisibleChange={setVisible}
+          visible={visible}
         >
           {children}
         </FilterModal>

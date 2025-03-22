@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Layout, Cascader, Loading } from 'seedsui-react'
+import { Layout, Cascader, Loading, Input } from 'seedsui-react'
 
 export default () => {
   const [value, setValue] = useState(null)
@@ -66,11 +66,7 @@ export default () => {
             console.log('visible:', visible)
           }}
           clear={({ clearable, triggerClear }) => {
-            return clearable ? (
-              <i className="input-clear" onClick={triggerClear} />
-            ) : (
-              <i className="right-icon shape-arrow-right sm"></i>
-            )
+            return clearable ? <Input.IconClear onClick={triggerClear} /> : <Input.IconRightArrow />
           }}
         />
       </Layout.Main>

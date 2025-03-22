@@ -1,44 +1,40 @@
 // ToolBar search
-.toolbar-search {
+.toolbar-search,
+.toolbar-search-expand {
   display: flex;
   flex: auto;
   align-items: center;
   gap: 8px;
+}
 
-  // 折叠模式: 展开时要占满
-  &.expand {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 1;
-    padding: 0 12px;
-    background-color: var(--navbar-bg);
+.toolbar-search-icon {
+  flex: none;
+}
+
+// 展开时要占满
+.toolbar-search-expand {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 0 12px;
+  background-color: var(--toolbar-bg);
+  .toolbar-search-input {
+    background-color: var(--toolbar-search-input-bg);
   }
-
-  // 折叠模式: 仅显示一个搜索图标
-  &.collapse {
-    flex: none;
-
-    .toolbar-search-collapse {
-      display: block;
-      color: var(--tertiary);
-      .toolbar-search-collapse-icon {
-        width: 22px;
-        height: 22px;
-        font-size: 22px;
-        font-family: 'seeds-icons';
-        &:extend(.seeds-icon-search all);
-      }
-    }
-
-    .toolbar-search-form,
-    .toolbar-search-button-ok,
-    .toolbar-search-button-cancel,
-    .toolbar-search-button-barcode {
-      display: none;
-    }
+}
+// 折叠模式: 仅显示一个图标
+.toolbar-search-collapse {
+  display: block;
+  color: var(--tertiary);
+  .toolbar-search-collapse-icon {
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
+    font-family: 'seeds-icons';
+    &:extend(.seeds-icon-search all);
   }
 }
 
@@ -54,6 +50,7 @@
   border-radius: 8px;
   height: 30px;
   padding: 0 8px;
+  background-color: var(--toolbar-search-input-bg);
 }
 .toolbar-search-input-left-icon {
   font-family: 'seeds-icons';
@@ -79,12 +76,13 @@
 
 // Qrcode button
 .toolbar-search-button-barcode {
-  background-color: white;
-  padding: 0px 6px;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   height: 30px;
-  border: 0;
+  background-color: white;
+  border-radius: 8px;
 }
 
 .toolbar-search-button-barcode-icon {

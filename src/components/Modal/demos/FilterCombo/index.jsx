@@ -19,21 +19,21 @@ export default () => {
           Modal visible toggle
         </div>
         <Modal.FilterCombo
-          modalProps={{
-            // safeArea: 'auto',
-            children: (
-              <div className="bg-white" style={{ height: '300px' }}>
-                Modal Content
-              </div>
-            ),
-            onConfig: () => {
-              console.log('setting')
-            },
-            onReset: () => {
-              console.log('reset')
-            }
+          // combo={<div>Custom target</div>}
+          onConfig={() => {
+            console.log('setting')
           }}
-        />
+          onOk={() => {
+            console.log('ok')
+          }}
+          // onReset={() => {
+          //   console.log('reset')
+          // }}
+        >
+          <div className="bg-white" style={{ height: '300px' }}>
+            Modal Content
+          </div>
+        </Modal.FilterCombo>
       </Layout.Main>
     </Layout>
   )

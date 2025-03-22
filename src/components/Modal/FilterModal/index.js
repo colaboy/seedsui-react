@@ -62,15 +62,27 @@ function FilterModal(
         <Layout.Main>{children}</Layout.Main>
         {/* 底部 */}
         <Footer
-          onOk={() => {
-            onOk && onOk({ close: () => onVisibleChange && onVisibleChange(false) })
-          }}
-          onReset={() => {
-            onReset && onReset({ close: () => onVisibleChange && onVisibleChange(false) })
-          }}
-          onConfig={() => {
-            onConfig && onConfig({ close: () => onVisibleChange && onVisibleChange(false) })
-          }}
+          onOk={
+            typeof onOk === 'function'
+              ? () => {
+                  onOk({ close: () => onVisibleChange && onVisibleChange(false) })
+                }
+              : null
+          }
+          onReset={
+            typeof onReset === 'function'
+              ? () => {
+                  onReset({ close: () => onVisibleChange && onVisibleChange(false) })
+                }
+              : undefined
+          }
+          onConfig={
+            typeof onConfig === 'function'
+              ? () => {
+                  onConfig({ close: () => onVisibleChange && onVisibleChange(false) })
+                }
+              : undefined
+          }
         />
       </Layout>
     </Modal>

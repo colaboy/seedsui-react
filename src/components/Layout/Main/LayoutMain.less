@@ -85,17 +85,17 @@
   }
 }
 
-// Adapt to the safe area
+// Adapt to the safe area: className
 .layout-main.safeArea {
   &:extend(.safe-area all);
   &:extend(.safe-area.after all);
 }
-
+// Adapt to the safe area: safeArea={false}
 .layout-main.clearSafeArea {
   &:extend(.clear-safe-area all);
   &:extend(.clear-safe-area.after all);
 }
-
+// Adapt to the safe area: safeArea={true}
 .auto-safe-area-children {
   .layout-main.autoSafeArea {
     &:extend(.safe-area all);
