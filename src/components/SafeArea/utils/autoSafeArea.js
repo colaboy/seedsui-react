@@ -2,7 +2,10 @@ import needsSafeArea from './needsSafeArea'
 import onResize from './onResize'
 
 // Set global safe area
-function autoSafeArea({ className = 'auto-safe-area-children', debug } = {}) {
+function autoSafeArea({ className = 'auto-safe-area-children', isSafeArea, debug } = {}) {
+  if (typeof isSafeArea === 'function') {
+    window.isSafeArea = isSafeArea()
+  }
   if (debug) {
     document.documentElement.classList.add(className)
     document.documentElement.style.setProperty('--safe-area-inset-top', '44px')
