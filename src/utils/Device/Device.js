@@ -42,30 +42,8 @@ let Device = (function () {
   let platformVersion = ''
   let platformMatch = null
   function updatePlatform() {
-    // 订货
-    if (ua.indexOf('dinghuoappversion') > -1) {
-      platform = 'dinghuo'
-      platformMatch = ua.match(/dinghuoappversion\/([\w.]*)/)
-      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
-    }
-    //
-    else if (ua.indexOf('wqappversion') > -1) {
-      // cordova内核
-      platform = 'waiqin'
-      // JsBridge内核
-      if (ua.indexOf('waiqin365') > -1) {
-        platform = 'wq'
-      }
-      // 临时纠错: 因为652之前的客户端wq和waiqin内核ua一样, 无法区分, 所以通过外部传入_device_wq_platform变量区分还是订货
-      if (window._device_wq_platform && ua.indexOf('wqappversion') > -1) {
-        platform = window._device_wq_platform
-      }
-      // 版本号
-      platformMatch = ua.match(/wqappversion\/([\w.]*)/)
-      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
-    }
     // 微信小程序
-    else if (ua.indexOf('miniprogram') > -1 && ua.indexOf('micromessenger') > -1) {
+    if (ua.indexOf('miniprogram') > -1 && ua.indexOf('micromessenger') > -1) {
       if (ua.indexOf('wxwork') > -1) {
         platform = 'weworkMiniprogram'
         platformMatch = ua.match(/wxwork\/([\w.]*)/)
