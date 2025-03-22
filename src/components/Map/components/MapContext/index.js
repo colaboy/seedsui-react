@@ -6,10 +6,10 @@ const MapContext = createContext({
   // 使用哪个地图
   type: '', // 'osm' | 'google' | 'amap' || 'bmap'
   defaultCenterMarkerIconOptions: {
-    iconUrl: `https://colaboy.github.io/seedsui-react/assets//plugin/leaflet/images/marker-custom-shop.png`,
-    iconRetinaUrl: `https://colaboy.github.io/seedsui-react/assets//plugin/leaflet/images/marker-custom-shop.png`,
-    shadowUrl: `https://colaboy.github.io/seedsui-react/assets//plugin/leaflet/images/marker-shadow.png`,
-    shadowRetinaUrl: `https://colaboy.github.io/seedsui-react/assets//plugin/leaflet/images/marker-shadow.png`
+    iconUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-custom-shop.png`,
+    iconRetinaUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-custom-shop.png`,
+    shadowUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png`,
+    shadowRetinaUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-shadow.png`
   },
   defaultMarkerIconOptions: {
     iconUrl: `https://colaboy.github.io/seedsui-react/assets/plugin/leaflet/images/marker-icon.png`,
