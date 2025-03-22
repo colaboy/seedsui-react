@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Uploading from './../Uploading'
 
 // 内库使用-start
@@ -24,12 +24,16 @@ const Item = ({
   onDelete,
   onReUpload
 }) => {
+  // 预览类型: browser|native
+  const previewTypeRef = useRef(Bridge?.platform === 'browser' ? 'browser' : null)
+
   // 点击预览
   async function handlePreview(item, index) {
     // 自定义预览
     if (typeof onPreview === 'function') {
       let goOn = await onPreview(item, index)
       if (goOn === false) return
+      previewTypeRef.current = goOn
     }
 
     // 失败的文件用localId预览
@@ -50,43 +54,7 @@ const Item = ({
     }
 
     // 只有客户端和企微支持预览文件
-    if (
-      (Bridge.platform === 'wq' || Bridge.platform === 'dinghuo') &&
-      [
-        'pdf',
-        'jpg',
-        'jpeg',
-        'png',
-        'bmp',
-        'txt',
-        'doc',
-        'docx',
-        'ppt',
-        'pptx',
-        'xls',
-        'xlsx',
-        'wma',
-        'wav',
-        'midi',
-        'cda',
-        'mp3',
-        'm4a',
-        'mid',
-        'xmf',
-        'ogg',
-        'rm',
-        'avi',
-        'ram',
-        'rmvb',
-        'wmv',
-        'mp4',
-        'mov',
-        'swf',
-        'flv',
-        '3gp',
-        'asf'
-      ].some((suffix) => previewUrl.includes('.' + suffix))
-    ) {
+    if (previewTypeRef.current === 'nativeFile') {
       Bridge.previewFile({ url: previewUrl, name: item?.localId, size: item.size })
     }
     // 平台预览需要复制到剪贴板
